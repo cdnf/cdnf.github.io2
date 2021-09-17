@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="互联网精神病患者小站，始终秉承建站理念：分享是种美德，好人一生平安。"><meta name="keywords" content="网络代理,怎么访问外网,小火箭怎么安装,美国VPS,自定义PAC规则,Hexo,GoodHexo,博客建站,aardio编程"><title>在SAE上搭建自己的Python版Blog[转] | 搜百谷</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create','UA-22119753-2','auto');ga('send','pageview');
+</script><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">在SAE上搭建自己的Python版Blog[转]</h1><a id="logo" href="/.">搜百谷</a><p class="description">达则兼济天下尤物，懒人改变世界劳模！</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/software/"><i class="fa fa-university"> 宝库</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">在SAE上搭建自己的Python版Blog[转]</h1><div class="post-meta">2013-03-24<span> | </span><span class="category"><a href="/categories/%E5%81%9A%E7%BD%91%E7%AB%99/">做网站</a></span><span>：</span><span>在SAE上搭建自己的Python版Blog</span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 1.1k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 4</span><span class="post-meta-item-text"> 分钟</span></span></span></div><div class="post-content"><p>SAE的python功能当前已可用,且可以轻松绑定自己的域名,想体验一把只需以下几步：</p>
+<p>step1:<a target="_blank" rel="noopener" href="http://code.google.com/p/sae-python-tornado-blog/">下载python版blog</a></p>
+<p>step2:修改 config.yaml 和 setting.py 后上传</p>
+<p><span style="text-indent: 2em;">step3:在后台（1）初始化Mysql，（2）新建一个name为default的TaskQueue，（3）建立一个name 为 attachment的Storage domain</span></p>
+<p><span style="text-indent: 2em;">step4:通过访问</span><span style="text-indent: 2em;"><a target="_blank" rel="noopener" href="http://yourappid.sinaapp.com/install">http://yourappid.sinaapp.com/install</a> 来建立数据表，然后就大功告成。</span></p>
+<h2 id="创建自己的Python-应用"><a href="#创建自己的Python-应用" class="headerlink" title="创建自己的Python 应用"></a>创建自己的Python 应用</h2><p>登陆到<a target="_blank" rel="noopener" href="http://sae.sina.com.cn/">SAE 后台</a> 创建一个Python 应用，如saepy，同时为这个应用创建一个版本，右边栏的应用管理/代码管理 点一下“通过这里创建一个版本.”输入一个版本号为“1”</p>
+<p><strong>使用SVN 管理应用</strong></p>
+<p><span style="text-indent: 2em;">接着去学习一下</span><a target="_blank" rel="noopener" href="http://sae.sina.com.cn/?m=devcenter&amp;catId=212">如何使用SVN 来管理代码</a><span style="text-indent: 2em;">，下载一个TortoiseSVN 客户端，使用很方便。</span></p>
+<p>TortoiseSVN 安装好后，在自己的电脑如D 盘下建立一个saeapp 文件夹，在saeapp下建立一个你刚才申请应用的文件夹，如saepy，对着saepy 点右键，点“SVN update”,按提示输入一些信息，若成功，则在saepy下会有一个文件夹“1”，里面有两个文件config.yaml、index.wsgi，这两个文件可以删除。</p>
+<p>下载一款<a target="_blank" rel="noopener" href="http://code.google.com/p/sae-python-tornado-blog/">开源的SAE Python blog 程序</a>解压后把文件夹“1”里的文件都复制到上面的同名文件夹“1”下，<br>只需修改 config.yaml 文件的第二行，把 name: saepy 改为你自己申请到的 appid，</p>
+<p>保存对该文件夹“1”，点右键，点“SVN Commit”，在第一个大框随便输入一个信息，如“new”，注意要把“Select / deselect all”前的小框勾上，这才使新增加的文件上传到SAE。附另外一种上传代码的方法：</p>
+<blockquote>
+<p>如果你嫌SVN麻烦，可以用“<strong>上传代码包</strong>”的方式上传，先修改相关文件，如setting.py 再按下文 <strong>开通SAE 相关服务</strong>， 然后进入<a target="_blank" rel="noopener" href="http://sae.sina.com.cn/">SAE</a> 后台，其“<strong>代码管理</strong>”里有个“<strong>上传代码包</strong>”的选项，点它即可。</p>
+</blockquote>
+<p><span style="text-indent: 2em;">上传代码包需注意：</span></p>
+<blockquote>
+<p>只支持上传zip、 gz、tar.gz三种代码包，文件大小不能超过20MB，同名文件将会被覆盖。上传后的目录结构将跟压缩包内的目录结构保持一致。<br>我没试过，感谢<a target="_blank" rel="noopener" href="http://kupo.sinaapp.com/">kupo</a>尝试了这个方法。</p>
+</blockquote>
+<h2 id="开通SAE相关服务"><a href="#开通SAE相关服务" class="headerlink" title="开通SAE相关服务"></a>开通SAE相关服务</h2><p><span style="text-indent: 2em;">上传后打开你的应用地址 xxx.sinaapp.com 出现“500: Internal Server Error”错误提示，这是因为还没有在SAE 后台开通一些服务，这个blog 应用需要用到的三个服务需要在后台手动开通。</span></p>
+<p>1）开通Mysql</p>
+<p>服务管理/MySQL 点击“点此初始化Mysql”，等5秒钟就完成了。</p>
+<p>2）开通Task Queue</p>
+<p>服务管理/TaskQueue 点“创建队列”,</p>
+<p>队列名：default</p>
+<p>类型：顺序队列</p>
+<p>Level：队列等级 选Level 1</p>
+<p>失败回调URL：可不填</p>
+<p>点创建，瞬间完成</p>
+<p>3）开通Storage</p>
+<p>服务管理/TaskQueue 点“新建一个domain”，</p>
+<p>domain name 为 <code>attachment</code></p>
+<p>勾选缓存过期时间，设为365天</p>
+<p>开通上面三个服务后打开你的应用地址安装：<a target="_blank" rel="noopener" href="http://xxxx.sinaappp.com/install%EF%BC%88%E5%A6%82%E6%9E%9C%E5%87%BA%E7%8E%B0%E9%94%99%E8%AF%AF%E5%B0%B1%E5%86%8D%E5%88%B7%E6%96%B0%E4%B8%80%E6%AC%A1%EF%BC%89,%E8%8B%A5%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%E5%B0%B1%E4%BC%9A%E5%87%BA%E7%8E%B0">http://xxxx.sinaappp.com/install（如果出现错误就再刷新一次）,若安装成功就会出现</a> “博客已经成功安装了，现在就去 设置一个管理员帐号”提示。</p>
+<h2 id="配置自己的博客"><a href="#配置自己的博客" class="headerlink" title="配置自己的博客"></a>配置自己的博客</h2><p>现在博客的一些设置还是默认的设置，<br>还要修改 <code>setting.py</code> 里的信息，里面都有说明，修改后对<code>setting.py</code> 点右键，点<code>SVN Commit</code>，刷新网站就可以了。</p>
+<p>可能会遇到以下问题:</p>
+<blockquote>
+<p><span style="text-indent: 2em;">Traceback (most recent call last):</span></p>
+</blockquote>
+<blockquote>
+<p>File “/data1/www/htdocs/291/sobaigu.com/1/index.wsgi”, line 4, in <module></p>
+</blockquote>
+<blockquote>
+<p>from blog import urls as blogurls</p>
+</blockquote>
+<blockquote>
+<p>……</p>
+</blockquote>
+<blockquote>
+<p>File “/data1/www/htdocs/291/sobaigu.com/1/setting.py”, line 24</p>
+</blockquote>
+<blockquote>
+<p>ANALYTICS_CODE =</p>
+</blockquote>
+<blockquote>
+<p>SyntaxError: invalid syntax</p>
+</blockquote>
+<p>以上错误为修改setting.py时,添加的统计代码未在前后使用’’’注释,修改的时候以为是要去掉注释的,谁知去掉了反而报错,加上注释就好了.</p>
+<blockquote>
+<p>Traceback (most recent call last):</p>
+</blockquote>
+<blockquote>
+<p>File “/usr/local/sae/python/lib/python2.7/site-packages/tornado/web.py”, line 954, in _execute</p>
+</blockquote>
+<blockquote>
+<p>……</p>
+</blockquote>
+<blockquote>
+<p>self.query(“SHOW WARNINGS”)</p>
+</blockquote>
+<blockquote>
+<p>ProgrammingError: (2014, “Commands out of sync; you can’t run this command now”)</p>
+</blockquote>
+<p>这个实际上没什么错误,刷新你的网站前台页面即可.</p>
+<p>参考文档:<a target="_blank" rel="noopener" href="http://saepy.sinaapp.com/category/SAEpy-log/">http://saepy.sinaapp.com/category/SAEpy-log/</a></p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css"><p><span>本文标题：</span>在SAE上搭建自己的Python版Blog[转]</p><p><span>文章作者：</span>凹凸曼</p><p><span>发布时间：</span>2013-03-24</p><p><span>最后更新：</span>2021-09-17</p><p><span>原始链接：</span><a href="/sae-blog-with-python.html">https://sobaigu.com/sae-blog-with-python.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://sobaigu.com/sae-blog-with-python.html"></i></span></p><p><span>版权声明：</span>转载请务必保留本文链接和注明内容来源，并自负版权等法律责任。</p></div><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7390437336363898" data-ad-slot="7454544896" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});
+</script><div class="tags"><a href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99/"><i class="fa fa-tag"></i>博客建站</a></div><div class="post-nav"><a class="pre" href="/wordpress-admin-no-permission.html">登陆后台提示您没有足够的权限访问该页面解决办法</a><a class="next" href="/chrome-fresh-abnormal-homepage.html">chrome首页不断刷新解决办法</a></div><script src="https://utteranc.es/client.js" repo="cdnf/cdnf.github.io" issue-term="title" theme="github-light" crossorigin="anonymous" async></script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/s" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="sobaigu.com"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 网站标签</i></div><div class="tagcloud"><a href="/tags/%E6%B7%B7%E6%8A%80%E8%83%BD/" style="font-size: 20.88px;">混技能</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99/" style="font-size: 22.65px;">博客建站</a> <a href="/tags/%E6%89%8B%E6%9C%BA/" style="font-size: 16.18px;">手机</a> <a href="/tags/Ubuntu/" style="font-size: 20.29px;">Ubuntu</a> <a href="/tags/Linux/" style="font-size: 23.82px;">Linux</a> <a href="/tags/Windows/" style="font-size: 23.24px;">Windows</a> <a href="/tags/%E6%99%92%E9%85%B7%E8%BD%AF/" style="font-size: 25px;">晒酷软</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 22.06px;">软件</a> <a href="/tags/WordPress/" style="font-size: 18.53px;">WordPress</a> <a href="/tags/%E7%B2%BE%E7%AE%80%E7%BB%BF%E8%89%B2%E5%8E%BB%E5%B9%BF%E5%91%8A%E7%89%88/" style="font-size: 24.41px;">精简绿色去广告版</a> <a href="/tags/%E6%B1%9F%E6%B9%96/" style="font-size: 16.76px;">江湖</a> <a href="/tags/shell/" style="font-size: 19.12px;">shell</a> <a href="/tags/shadowsocks/" style="font-size: 15px;">shadowsocks</a> <a href="/tags/%E5%8A%A0%E9%80%9F%E4%BB%A3%E7%90%86/" style="font-size: 21.47px;">加速代理</a> <a href="/tags/aardio/" style="font-size: 17.94px;">aardio</a> <a href="/tags/Hexo/" style="font-size: 19.71px;">Hexo</a> <a href="/tags/%E6%B7%98%E5%AE%9D/" style="font-size: 15px;">淘宝</a> <a href="/tags/%E7%BD%91%E8%B5%9A/" style="font-size: 15px;">网赚</a> <a href="/tags/%E5%88%B7%E5%8D%95/" style="font-size: 15px;">刷单</a> <a href="/tags/python/" style="font-size: 15.59px;">python</a> <a href="/tags/v2ray/" style="font-size: 17.35px;">v2ray</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 17.35px;">教程</a> <a href="/tags/hugo/" style="font-size: 15px;">hugo</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 近期文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/dsm-nas-raid-order-numnber.html">蜗牛星际矿渣拯救及群辉NAS系统阵列盘顺序识别</a></li><li class="post-list-item"><a class="post-list-link" href="/postfix-command-list.html">Postfix常用命令和邮件队列管理（queue）- 转</a></li><li class="post-list-item"><a class="post-list-link" href="/v2board-no-message-tg-email.html">v2board面板统计空白，无邮件及TG通知问题</a></li><li class="post-list-item"><a class="post-list-link" href="/ll-colorized-in-ssh-terminal.html">让 Debian 系统终端环境分色显示</a></li><li class="post-list-item"><a class="post-list-link" href="/shell-special-symbols.html">shell中的一些特殊字符用法知识</a></li><li class="post-list-item"><a class="post-list-link" href="/shell-get-lastest-version-from-github.html">shell脚本中自动获取 GitHub 最新版本号</a></li><li class="post-list-item"><a class="post-list-link" href="/clash-timeout-failed-by-dns.html">解决Clash节点全部超时/失败/timeout不能联网</a></li><li class="post-list-item"><a class="post-list-link" href="/cloudflare-manage-dns-auto.html">利用CloudFlare API批量添加域名并添加解析记录</a></li><li class="post-list-item"><a class="post-list-link" href="/linux-bbr-openvz.html">OpenVZ架构一键开启BBR加速的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/linux-rebuild-rpm-database.html">修复yum提示 Error: rpmdb open failed</a></li><li class="post-list-item"><a class="post-list-link" href="/whmcs-solusvm-1-click.html">Solusvm开心版一键安装脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/whmcs-solusvm-crack-installer.html">SolusVM主被控开心版完美安装配置傻瓜式教程</a></li><li class="post-list-item"><a class="post-list-link" href="/firewalld-forword-ports-with-nat.html">使用firewalld在NAT上中转「转」</a></li><li class="post-list-item"><a class="post-list-link" href="/ssr-free.html">免费酸酸乳，V2Ray账号获取方法</a></li><li class="post-list-item"><a class="post-list-link" href="/firewall-cmd-ports-forward.html">firewalld端口放行、转发常用操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/hexo-con-not-process-in-powershell.html">hexo 命令在 PowerShell 上无法执行的解决办法</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 内容分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%81%9A%E7%BD%91%E7%AB%99/">做网站</a><span class="category-list-count">81</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E7%BC%96%E7%A8%8B/">学编程</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%90%9E%E8%BD%AF%E4%BB%B6/">搞软件</a><span class="category-list-count">138</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%94%92%E7%9F%A5%E8%AF%86/">攒知识</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B7%E7%94%B5%E5%95%86/">混电商</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E7%B3%BB%E7%BB%9F/">玩系统</a><span class="category-list-count">111</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9E%8E%E9%80%BC%E9%80%BC/">瞎逼逼</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://sobaigu.com/software/" title="软件宝库" target="_blank">软件宝库</a><ul></ul><a href="http://www.jayxon.com/" title="JayXon" target="_blank">JayXon</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">搜百谷.</a> Powered by<a rel="nofollow" target="_blank" href="http://sobaigu.com"> 凹凸曼.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
