@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="互联网精神病患者小站，始终秉承建站理念：分享是种美德，好人一生平安。"><meta name="keywords" content="网络代理,怎么访问外网,小火箭怎么安装,美国VPS,自定义PAC规则,Hexo博客建站,aardio编程,消费USDT,USDC信用卡,数字货币信用卡,虚拟币出金卡,U币消费卡"><title>『转载』中国电信出口网络的链路状态（区分 ChinaNet,CN2,GT,GIA） | 搜百谷</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script src="https://www.googletagmanager.com/gtag/js?id=UA-22119753-2" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-22119753-2');
+</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 7.1.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">『转载』中国电信出口网络的链路状态（区分 ChinaNet,CN2,GT,GIA）</h1><a id="logo" href="/.">搜百谷</a><p class="description">达则兼济天下尤物，科技改变世界嫩模！</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/software/"><i class="fa fa-university"> 宝库</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">『转载』中国电信出口网络的链路状态（区分 ChinaNet,CN2,GT,GIA）</h1><div class="post-meta">2019-02-15<span> | </span><span class="category"><a href="/categories/%E6%94%92%E7%9F%A5%E8%AF%86/">攒知识</a></span><span>：</span><span>怎么区分CN2,GT,GIA</span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 2.7k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 9</span><span class="post-meta-item-text"> 分钟</span></span></span></div><a class="disqus-comment-count" href="/chinanet-cncn-cn2gt-cn2gia.html#waline"><span class="waline-comment-count" id="/chinanet-cncn-cn2gt-cn2gia.html"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">基本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ChinaNet"><span class="toc-number">3.1.</span> <span class="toc-text">ChinaNet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chinatelecom-Next-Carrier-Network-CN2"><span class="toc-number">3.2.</span> <span class="toc-text">Chinatelecom Next Carrier Network(CN2)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CN2-GT"><span class="toc-number">3.3.</span> <span class="toc-text">CN2 GT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CN2-GIA"><span class="toc-number">3.4.</span> <span class="toc-text">CN2 GIA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%A8%8B%EF%BC%88%E5%8D%95%E5%90%91%EF%BC%89-CN2"><span class="toc-number">3.5.</span> <span class="toc-text">单程（单向） CN2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E7%A8%8B%EF%BC%88%E5%8F%8C%E5%90%91%EF%BC%89-CN2"><span class="toc-number">3.6.</span> <span class="toc-text">双程（双向） CN2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CN2-%E5%BB%B6%E8%BF%9F%E6%8E%92%E5%BA%8F"><span class="toc-number">3.7.</span> <span class="toc-text">CN2 延迟排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E5%88%A4%E6%96%AD-CN2-GT-%E5%92%8C-CN2-GIA"><span class="toc-number">3.8.</span> <span class="toc-text">怎么判断 CN2 GT 和 CN2 GIA</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E4%B8%80"><span class="toc-number">4.1.</span> <span class="toc-text">补充一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E4%BA%8C"><span class="toc-number">4.2.</span> <span class="toc-text">补充二</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">最后</span></a></li></ol></div></div><div class="post-content"><h1>前言</h1>
+<p>本文讲从几个方面去讲述中国电信出口网络的情况，阅读本文后让读者对使用中国电信连接海外网络中常用的术语与基本知识有一个大致的了解，以及当读者在购买国外高质量主机的时候，有个基本的链路判断，怎么去分辨，ChinaNet，CN2，CN2 GT，CN2 GIA 等线路。</p>
+<h1>基本</h1>
+<p>中国电信(China Telecom)，是中国最大的互联服务提供商，截止2018年1月，中国电信的总出口带宽数为 3.6 Tbps，为互联网用户提供高速稳定的全中国资源访问服务。目前，中国电信骨干网的三大国际出口分别是，北京，上海，广州，全国的出口网络最后都会汇集到这三个出口点。</p>
+<h1>分类</h1>
+<h2 id="ChinaNet"><a class="headerlink" href="#ChinaNet"></a>ChinaNet</h2>
+<p>全球最大的中文资源互联网络 ChinaNet，也叫 163 骨干网，AS4134，要纠正的一点是，很多人缪传一个”CN1″的叫法，这是毫无根据的，Chinatelecom Next Carrier Network，简称 CNCN，再简化为 CN2，CN1 这种叫法可能是看着 CN2 类比出来的，但是官方没有过这种叫法。但如果看到这种说法，你可能知道说的是 ChinaNet 也叫 163 网络。ChinaNet 为超过 8000 万宽带用户服务，同时向全球用户提供超过70%的中文网站的中文互联网资讯。绝大部分的出口带宽都是这种网络，ChinaNet 主要定位于承载普通质量的互联网业务，因为他基建早，带宽大，且足够便宜。</p>
+<p>我们来用 Traceroute 路由表来看一下走 163 网络的出口路由情况。</p>
+<p><img src="https://www.vpsps.com/wp-content/uploads/20190205195929-1e48b.png" alt="ChinaNet" loading="lazy"></p>
+<p>可以看到无论是从出发地点到省级接口，省级接口到上海海外出口，然后到美国，走的都是 AS4134，ChinaNet 网络。</p>
+<h2 id="Chinatelecom-Next-Carrier-Network-CN2"><a class="headerlink" href="#Chinatelecom-Next-Carrier-Network-CN2"></a>Chinatelecom Next Carrier Network(CN2)</h2>
+<p>CN2，即是 ChinaNet 之后由中国电信发展的下一代承载网，AS4809，主要是为了提供更高质量要求的中国电信骨干承载网络而建立的工程。运营全球互联网转接服务，能够实现欧洲、北美和亚洲之间高速、大容量、安全、稳定转接服务。CN2 相比较 163 网络，带宽小得多，小是相对的因为相对受众少，但稳定高速，定位于承载企业级别的 VPN 业务，常用于政府，企业，金融类、游戏类等对延时敏感的业务。它提供更高质量的网络服务，接入 CN2 网络价格普遍要比 ChinaNet 贵上许多。</p>
+<p>下图为 2016 年由中国电信国际有限公司官网提供的全球 CN2 接入点</p>
+<p><img src="https://www.vpsps.com/wp-content/uploads/19a55968682c75.png" alt="CN2_Nodes" loading="lazy"></p>
+<p>下图为截止 2018 年 8 月中国电信国际有限公司官网提供的全球 GIS 接入点<br>
+<img src="https://www.vpsps.com/wp-content/uploads/20190205195937-82c1c.png" alt="GIS_Nodes" loading="lazy"></p>
+<p>可以看到中国大陆有四个出口点，北上广三个，另外还有一个乌鲁木齐，比较少见的哈塞克斯坦 CN2 网络，走的就是乌鲁木齐出口，即使这个也会先走北上广三个点，再跳到乌鲁木齐出口。</p>
+<p>CN2 上又有很多的产品，主要包括 CN2 GT，CN2 GIA 两类。这里是否叫 CN2 GT 和 CN2 GIA 待考证，因为之前还流行叫半程 CN2，和全程 CN2 的叫法，可以肯定的是有两种运行在 CN2 的服务，一种价格便宜省级骨干走163，出口才走 CN2，一种价格昂贵全程走 CN2，目前主机圈主流叫法 CN2 GT 和 CN2 GIA。另外还有单程双程是另外一种分类，后面讲。</p>
+<h2 id="CN2-GT"><a class="headerlink" href="#CN2-GT"></a>CN2 GT</h2>
+<p>GT 英文是 Global Transit，为全球客户提供访问全球互联网资源的转接服务。提供给全球的通讯运营商，截止目前，中国电信已经与国际Tier1/2 运营商以及主流OTT建立超过5000G的互联带宽，本身接入网络是 ChinaNet(AS4134)，但是直连中国电信 CN2(AS4809) 的一个服务。CN2 GT 中国国际出口拥有自己的单独线路，但是在国内的链路还是使用的 163 骨干网络。</p>
+<h2 id="CN2-GIA"><a class="headerlink" href="#CN2-GIA"></a>CN2 GIA</h2>
+<p>GIA 英文是 Global Internet Access，为企业客户提供优质的中国方向互联网专线接入服务，注意 GIA 专指与中国的专线服务。主要是提供给企业的优质网络，本身接入网络 CN2(AS4809)，出口全程 CN2(AS4809) 路由，国际网路高速稳定链接中国内地网络。这种带宽的质量应当是电信网络最好的，但是缺点也比较明显，整个 GIA 的出口带宽较小，在较大流量攻击的时候更容易导致整个 GIA 下的网络波动。GIA 的主要优势是回国有单独的线路，高优先级，高质量，但接入价格较贵。</p>
+<h2 id="单程（单向）-CN2"><a class="headerlink" href="#单程（单向）-CN2"></a>单程（单向） CN2</h2>
+<p>我们知道，路由是双向的，去和回，单程 CN2 就是指，只有一边的走 CN2，另一边走的其他的网络。可能有两种情况</p>
+<ul>
+<li>去程 CN2，回程 ChinaNet。这种情况常见，主要是很多主机商拿来打 CN2 广告的噱头，CN2 去程能够很容易被评测出来。但其实，去程 CN2 并没有什么太大作用只是减小去了去的时延，因为我们知道在普通用户的网络访问情况中，回来的流量要比去的要大得多，单程 CN2 要便宜一些，因为流量使用的少，比纯 ChinaNet 算下来还是要贵一点，有点鸡肋的感觉，弃之可惜，食之无味。</li>
+<li>去程 ChinaNet，回程 CN2。这也是一种组合的单程 CN2，这种情况，主要是为了兼顾抗 DDoS，速度和价格三方面，纯 CN2 网络相对脆弱，遭遇量大的 DDoS 后，很快就会把链路占满，造成出口拥塞（CN2 链路遭遇大量 DDoS 攻击时也会自动切到 163 网络）。163 网络带宽容量大，从中国内地出去的出去的攻击能够被很好的承载，而回程又走 CN2 线路，加快速度。普遍上，单程回 CN2，比单程去 CN2 花费高，因为回程的量在互联网服务中占多数。这种情况下，是综合抗DDoS（如果有），速度，价格的折中的最优解，适合容易遭受攻击，且需要速度的需求，当然最好的当然还是双程的。</li>
+</ul>
+<h2 id="双程（双向）-CN2"><a class="headerlink" href="#双程（双向）-CN2"></a>双程（双向） CN2</h2>
+<p>去程回程都走 CN2 网络。其中包含 CN2 GT 和 CN2 GIA。</p>
+<p>单程同理，包含 CN2 GT 和 CN2 GIA 两种。</p>
+<h2 id="CN2-延迟排序"><a class="headerlink" href="#CN2-延迟排序"></a>CN2 延迟排序</h2>
+<p>根据中国电信国际有限公司官网数据提供的 2018 年 5，6，7 月三个月的 CN2 质量平均情况（未知端点城市，看着像上海，也可能是几个城市平均下来的数据），理论上可看作为最佳情况下，常见 CN2 节点城市与中国连接延迟排序（ms）</p>
+<table>
+<thead>
+<tr>
+<th>香港</th>
+<th>首尔</th>
+<th>东京</th>
+<th>新加坡</th>
+<th>莫斯科</th>
+<th>圣何塞</th>
+<th>洛杉矶</th>
+<th>法兰克福</th>
+<th>西雅图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>28.27</td>
+<td>60.37</td>
+<td>67.32</td>
+<td>67.65</td>
+<td>134.78</td>
+<td>166.44</td>
+<td>175.62</td>
+<td>180.65</td>
+<td>185.47</td>
+</tr>
+</tbody>
+</table>
+<h2 id="怎么判断-CN2-GT-和-CN2-GIA"><a class="headerlink" href="#怎么判断-CN2-GT-和-CN2-GIA"></a>怎么判断 CN2 GT 和 CN2 GIA</h2>
+<p>无论接入的是 GT CN2 还是 GIA CN2，都保证国家与国家之间的传输在 CN2 骨干网内进行，路由中有 ip 开头为 59.43.*，AS4809，首先即判断有一段为 CN2 网络。CN2 上承载了两个较为常见的套餐，那怎么判断是哪一种呢，我们来分析几种特殊情况。</p>
+<ul>
+<li>
+<p>CN2 GT 的省级出口为 202.97 节点（163骨干网节点），在跨境时才进入 CN2 骨干网，国际跨境节点为 59.43 开头。即使处在 CN2 节点城市，如上海，也会先走 202.97 节点。以此类推其他城市，不再列出。可见目前所有的 CN2 GT 路由都会有 202.97 开头的 ip<br>
+<img src="https://www.vpsps.com/wp-content/uploads/20190205195939-465f9.png" alt="CN2_GT_Shanghai" loading="lazy"></p>
+</li>
+<li>
+<p>CN2 GIA 在部署开通有 CN2 节点的省份城市接入该省的省级 CN2 节点，在暂未部署 CN2 节点的省份城市则就近接入北上广节点。(此点不够严谨，特例情况除外，详情看评论区，感谢 Test IP 指出)</p>
+<ul>
+<li>本省有 CN2，但非节点城市，如江苏镇江，经南京 202.97 节点进入江苏南京 CN2 节点，最后进入广州 CN2 出口节点。</li>
+<li>本省无 CN2，如重庆，经过重庆 163 节点，进入广州 202.97 节点，然后接入广州 CN2 节点<br>
+<img src="https://www.vpsps.com/wp-content/uploads/20190205195941-b31b0.png" alt="CN2_GIA_Zhenjiang" loading="lazy"><br>
+<img src="https://www.vpsps.com/wp-content/uploads/20190205195943-18dde.png" alt="CN2_GIA_Chongqing" loading="lazy"></li>
+</ul>
+</li>
+<li>
+<p>所以这两种情况虽然是 CN2 GIA 但也会先走 202.97，而如果是在上海和其他 CN2 节点城市，这种情况下的 GIA 才不会有 202.97 出现。所以有的说法里面讲有 202.97 就是 CN2 GT 的这个观点，是错误的。</p>
+</li>
+<li>
+<p>截止目前，我所知的国内走 CN2 节点城市有，成都，南京，西安，武汉，乌鲁木齐，广州，上海，北京。</p>
+</li>
+<li>
+<p>了解了以上知识点之后，最简单判断 GT 还是 GIA 的方法，直接用上海电信 traceroute，有 59.43 先是 CN2，再无 202.97 即为 GIA。</p>
+</li>
+</ul>
+<h1>其他</h1>
+<h2 id="补充一"><a class="headerlink" href="#补充一"></a>补充一</h2>
+<p>这里要分清的一点是，ChinaNet 和 CN2 是骨干网的分类，而以下四个则是，中国电信提供的国际互联网服务 Global Internet Services（GIS）下的四个产品，具体不细说了，有兴趣自查。所以说 CN2 GT 和 CN2 GIA 可以理解为运行在 CN2 承载网上的 GT 或 GIA 服务。</p>
+<p>以下四段摘自中国电信国际有限公司官网，GIS 产品介绍。</p>
+<ul>
+<li>
+<p>Global Transit（GT）<br>
+为全球客户提供访问全球互联网资源的转接服务。</p>
+</li>
+<li>
+<p>Global Internet Access(GIA)<br>
+为企业客户提供优质的中国方向互联网专线接入服务。</p>
+</li>
+<li>
+<p>ChinaNet Paid-Peer<br>
+为全世界运营商和OTT用户提供中国电信中文互联网资源的最短路由接入服务。</p>
+</li>
+<li>
+<p>China Access<br>
+为全球客户提供一站式的中文互联网资源接入服务。</p>
+</li>
+</ul>
+<h2 id="补充二"><a class="headerlink" href="#补充二"></a>补充二</h2>
+<p>无论什么网络，路由都不是固定，路由是时刻动态的，随时会变，这个变，由你自身（比如本地精品网络CN2用户），或者你连接的网络（比如提供CN2的服务器）与通信提供商签约的合同而定，也由网络容量，稳定情况而定。</p>
+<h1>最后</h1>
+<p>中国电信的出口网络，依然是占中国出口网络带宽的几乎一半之多，但是使用人数也是最多的，从使用情况经验上来看，呈现高峰明显拥堵，低峰充足。</p>
+<p>本文转载自：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.oldking.net/751.html">https://www.oldking.net/751.html</a><br>
+图片引自：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.vpsps.com/1017.html">https://www.vpsps.com/1017.html</a></p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>本文标题：</span>『转载』中国电信出口网络的链路状态（区分 ChinaNet,CN2,GT,GIA）</p><p><span>文章作者：</span>凹凸曼</p><p><span>发布时间：</span>2019-02-15</p><p><span>最后更新：</span>2019-02-15</p><p><span>原始链接：</span><a href="/chinanet-cncn-cn2gt-cn2gia.html">https://sobaigu.com/chinanet-cncn-cn2gt-cn2gia.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://sobaigu.com/chinanet-cncn-cn2gt-cn2gia.html"></i></span></p><p><span>版权声明：</span>转载请务必保留本文链接和注明内容来源，并自负版权等法律责任。</p></div><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7390437336363898" data-ad-slot="7454544896" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});
+</script><div class="tags"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99/" rel="tag">博客建站</a></li></ul></div><div class="post-nav"><a class="pre" href="/cloud-server-tourist.html">建个墙外墙，禁止访问银行，法轮大法等网站的正则表达式</a><a class="next" href="/no-module-named-peewee-when-python-server-py.html">SSR错误提示：ImportError No module named peewee</a></div><div class="nofancybox" id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://waline.sobaigu.com',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+  login: 'disable',
+  reaction: true,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/s" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="sobaigu.com"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 网站标签</i></div><div class="tagcloud"><a href="/tags/Ubuntu/" style="font-size: 19.71px;">Ubuntu</a> <a href="/tags/Linux/" style="font-size: 23.82px;">Linux</a> <a href="/tags/Windows/" style="font-size: 22.65px;">Windows</a> <a href="/tags/%E6%99%92%E9%85%B7%E8%BD%AF/" style="font-size: 25px;">晒酷软</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 22.06px;">软件</a> <a href="/tags/%E6%B7%B7%E6%8A%80%E8%83%BD/" style="font-size: 20.88px;">混技能</a> <a href="/tags/WordPress/" style="font-size: 18.53px;">WordPress</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99/" style="font-size: 23.24px;">博客建站</a> <a href="/tags/%E7%B2%BE%E7%AE%80%E7%BB%BF%E8%89%B2%E5%8E%BB%E5%B9%BF%E5%91%8A%E7%89%88/" style="font-size: 24.41px;">精简绿色去广告版</a> <a href="/tags/%E6%B1%9F%E6%B9%96/" style="font-size: 16.18px;">江湖</a> <a href="/tags/shell/" style="font-size: 20.29px;">shell</a> <a href="/tags/shadowsocks/" style="font-size: 15px;">shadowsocks</a> <a href="/tags/%E5%8A%A0%E9%80%9F%E4%BB%A3%E7%90%86/" style="font-size: 21.47px;">加速代理</a> <a href="/tags/aardio/" style="font-size: 17.94px;">aardio</a> <a href="/tags/python/" style="font-size: 15.59px;">python</a> <a href="/tags/%E6%89%8B%E6%9C%BA/" style="font-size: 17.35px;">手机</a> <a href="/tags/Hexo/" style="font-size: 19.12px;">Hexo</a> <a href="/tags/%E6%B7%98%E5%AE%9D/" style="font-size: 15px;">淘宝</a> <a href="/tags/%E7%BD%91%E8%B5%9A/" style="font-size: 15px;">网赚</a> <a href="/tags/%E5%88%B7%E5%8D%95/" style="font-size: 15px;">刷单</a> <a href="/tags/v2ray/" style="font-size: 16.76px;">v2ray</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 16.76px;">教程</a> <a href="/tags/hugo/" style="font-size: 15px;">hugo</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%B8%81/" style="font-size: 15.59px;">虚拟币</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 近期文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/windows-iis-log-with-360xingtu-webview.html">网站服务器使用360星图自动分析IIS日志，并通过网页浏览</a></li><li class="post-list-item"><a class="post-list-link" href="/webhook-install-as-service-in-windows-server.html">Windows Server 部署 webhook 服务，并注册为系统服务守护</a></li><li class="post-list-item"><a class="post-list-link" href="/iis-charset-chinese.html">解决 IIS W3C格式日志中中文路径乱码问题</a></li><li class="post-list-item"><a class="post-list-link" href="/bat-git-clone-auto-public.html">一个BAT批处理实现HTML网页自动同步发布到Windows Server</a></li><li class="post-list-item"><a class="post-list-link" href="/DNS-PROBE-STARTED-issue-on-edge-in-windows-server.html">解决Windows服务器开一段时间edge浏览器就 DNS_PROBE_STARTED 错误</a></li><li class="post-list-item"><a class="post-list-link" href="/bot-spider-names.html">最新搜索引擎蜘蛛机器人User Agent名称</a></li><li class="post-list-item"><a class="post-list-link" href="/linux-jq-syntax-list.html">常用 linux jq 命令语法整理</a></li><li class="post-list-item"><a class="post-list-link" href="/software-postfix-mailinfo-hostname.html">宝塔邮局优化解决 `hostname` 信息得分大幅提升</a></li><li class="post-list-item"><a class="post-list-link" href="/git-set-proxy-for-github.html">设置Git通过代理连接，解决GitHub仓库无法更新等</a></li><li class="post-list-item"><a class="post-list-link" href="/composer-upgrade-error-A-facade-root-has-not-been-set.html">php composer.phar update：A facade root has not been set</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://waline.sobaigu.com" count="6" src="/js/recent-comments.js?v=1.0.2" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 内容分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%81%9A%E7%BD%91%E7%AB%99/">做网站</a><span class="category-list-count">97</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E7%BC%96%E7%A8%8B/">学编程</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%90%9E%E8%BD%AF%E4%BB%B6/">搞软件</a><span class="category-list-count">142</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%94%92%E7%9F%A5%E8%AF%86/">攒知识</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B7X%E5%9C%88/">混X圈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E7%B3%BB%E7%BB%9F/">玩系统</a><span class="category-list-count">126</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9E%8E%E9%80%BC%E9%80%BC/">瞎逼逼</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://sobaigu.com/software/" title="软件宝库" target="_blank">软件宝库</a><ul></ul><a href="http://www.jayxon.com/" title="JayXon" target="_blank">JayXon</a><ul></ul><a href="http://www.wubase.com/" title="网联基地" target="_blank">网联基地</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">搜百谷.</a> Powered by<a rel="nofollow" target="_blank" href="http://sobaigu.com"> 凹凸曼.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script></div></body></html>

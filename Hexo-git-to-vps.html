@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="互联网精神病患者小站，始终秉承建站理念：分享是种美德，好人一生平安。"><meta name="keywords" content="网络代理,怎么访问外网,小火箭怎么安装,美国VPS,自定义PAC规则,Hexo博客建站,aardio编程,消费USDT,USDC信用卡,数字货币信用卡,虚拟币出金卡,U币消费卡"><title>开始新的折腾，Hexo博客Git-VPS部署完整记录 | 搜百谷</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script src="https://www.googletagmanager.com/gtag/js?id=UA-22119753-2" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-22119753-2');
+</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 7.1.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">开始新的折腾，Hexo博客Git-VPS部署完整记录</h1><a id="logo" href="/.">搜百谷</a><p class="description">达则兼济天下尤物，科技改变世界嫩模！</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/software/"><i class="fa fa-university"> 宝库</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">开始新的折腾，Hexo博客Git-VPS部署完整记录</h1><div class="post-meta">2016-12-23<span> | </span><span class="category"><a href="/categories/%E5%81%9A%E7%BD%91%E7%AB%99/">做网站</a></span><span>：</span><span>Hexo博客自动部署到VPS</span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 4.1k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 15</span><span class="post-meta-item-text"> 分钟</span></span></span></div><a class="disqus-comment-count" href="/Hexo-git-to-vps.html#waline"><span class="waline-comment-count" id="/Hexo-git-to-vps.html"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">Hexo博客部署方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">需要安装的环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#VPS%E4%B8%8A%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.</span> <span class="toc-text">VPS上安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E6%96%87%E6%A1%A3%E7%9A%84%E7%94%B5%E8%84%91%E8%A6%81%E7%94%A8%E5%88%B0"><span class="toc-number">2.2.</span> <span class="toc-text">写文档的电脑要用到</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">实施步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GitHub%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.1.</span> <span class="toc-text">GitHub设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VPS%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.2.</span> <span class="toc-text">VPS设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx%E9%85%8D%E7%BD%AE%E7%BD%91%E7%AB%99%E7%9B%AE%E5%BD%95"><span class="toc-number">3.2.1.</span> <span class="toc-text">Nginx配置网站目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.2.2.</span> <span class="toc-text">Git设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85git"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">安装git</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git%E7%94%A8%E6%88%B7%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.2.2.2.</span> <span class="toc-text">git用户设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC"><span class="toc-number">3.2.2.3.</span> <span class="toc-text">git自动部署脚本</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E6%96%87%E6%A1%A3%E7%9A%84%E7%94%B5%E8%84%91"><span class="toc-number">3.3.</span> <span class="toc-text">写文档的电脑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">3.3.1.</span> <span class="toc-text">Git客户端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-js"><span class="toc-number">3.3.2.</span> <span class="toc-text">Node.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo"><span class="toc-number">3.3.3.</span> <span class="toc-text">Hexo</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">体验Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.1.</span> <span class="toc-text">Hexo设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%96%9C%E6%AC%A2%E7%9A%84%E4%B8%BB%E9%A2%98"><span class="toc-number">4.1.1.</span> <span class="toc-text">安装喜欢的主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4%E9%83%A8%E7%BD%B2"><span class="toc-number">4.1.2.</span> <span class="toc-text">文件自动提交部署</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E5%86%99%E4%BD%9C"><span class="toc-number">4.2.</span> <span class="toc-text">开始写作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%94%B9%E6%96%87%E7%AB%A0%E9%A1%B5%E9%9D%A2%E6%A8%A1%E6%9D%BF"><span class="toc-number">4.2.1.</span> <span class="toc-text">更改文章页面模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0"><span class="toc-number">4.2.2.</span> <span class="toc-text">新建文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%81%E7%A7%BBWordPress%E6%96%87%E7%AB%A0"><span class="toc-number">4.2.3.</span> <span class="toc-text">迁移WordPress文章</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">常见问题及其解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5"><span class="toc-number">5.1.</span> <span class="toc-text">Hexo启动失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F%E9%94%99%E4%B9%B1"><span class="toc-number">5.2.</span> <span class="toc-text">样式错乱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A2%E9%98%85"><span class="toc-number">5.3.</span> <span class="toc-text">订阅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E9%A1%B5%E9%9D%A2"><span class="toc-number">5.4.</span> <span class="toc-text">关于页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%AF%B4%E8%AF%84%E8%AE%BA%E6%A1%86"><span class="toc-number">5.5.</span> <span class="toc-text">多说评论框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="toc-number">5.6.</span> <span class="toc-text">免密码登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%BB%93%E5%BA%93%E6%8F%90%E4%BA%A4"><span class="toc-number">5.7.</span> <span class="toc-text">多仓库提交</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%92%8CVPS%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5%E9%83%A8%E7%BD%B2"><span class="toc-number">5.8.</span> <span class="toc-text">Git和VPS自动同步部署</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">后记</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">7.</span> <span class="toc-text">参考文档</span></a></li></ol></div></div><div class="post-content"><blockquote>
+<p>本文章部分知识已经有点久远了，可能有些知识会不适用，建议去参考官方文档，最近发现网友 <a target="_blank" rel="noopener" href="https://www.yiwangmeng.com/build-a-small-station-from-scratch-tutorial-navigation" title="仓库管理源码方案">这篇</a> <a target="_blank" rel="noopener" href="https://www.yiwangmeng.com/how-to-have-a-site-selection-of-scheme" title="建议选免费静态站方案">方案</a> 还是更合理，可以参考</p>
+</blockquote>
+<p>很长时间没有料理博客了，算算上一次正儿八经写篇文章居然是年初…今天偶尔打开，居然没有要写点什么的欲望。</p>
+<p>看久了WordPress，突然有点厌倦了.正好最近喜欢上MarkDown文档格式，脑子一热，索性就把WordPress舍弃了，折腾下Hexo，极简风格看上去也不错。日常就记录点打杂琐事，分享个好用的软件，完全能满足一个半吊子打杂工的需求。</p>
+<h1>Hexo博客部署方案</h1>
+<ol>
+<li>本地编写MarkDown文档→本地Hexo解析成静态页→提交到VPS上的Git和GitHub等多仓库→Nginx对外服务→用户访问</li>
+<li>本地编写MarkDown文档→本地Hexo解析成静态页→提交到GitHub→直接用GitHub Page资源→用户访问</li>
+<li>本地编写MarkDown文档→自动同步到VPS并安装Hexo服务解析成静态页→Nginx对外服务→用户访问</li>
+<li>本地编写MarkDown文档→自动同步到VPS并安装Hexo服务解析成静态页→Hexo server对外服务→用户访问</li>
+</ol>
+<p>各种方案无非是在哪解析静态页，文件怎么提交流转的不同。大家可根据自己的需求选择方案，各方案都有优缺点，这里暂且选择第一种方案。</p>
+<ul>
+<li>
+<p>第一种方案的优点是:</p>
+</li>
+<li>
+<p>VPS上只需要安装Git和Nginx，不用Git也要用其他工具把文件同步上去，那就索性装个Git自动同步吧</p>
+</li>
+<li>
+<p>不在VPS上装Hexo服务，节省点资源</p>
+</li>
+<li>
+<p>Git提交后利用Git的<code>post-receive</code>完成自动部署到网站根目录</p>
+</li>
+<li>
+<p>文件同时提交到GitHub和VPS，这样有个备份，VPS不行了直接改下DNS解析就可以无缝过渡</p>
+</li>
+<li>
+<p>Git上能保留完整的修改记录</p>
+</li>
+<li>
+<p>当然，也有缺点:</p>
+</li>
+<li>
+<p>需要在写文档的机器上安装Hexo，换个电脑用需要重新装</p>
+</li>
+<li>
+<p>在解放区，GitHub同步有点坑</p>
+</li>
+</ul>
+<p>以后兴许会选择在VPS上部署Hexo，仍然git管理，有更新的时候自动触发VPS上编译，这样就不需要在多个工作机上安装Hexo环境了。</p>
+<h1>需要安装的环境</h1>
+<p>软件产品介绍就不写了，图片也懒得贴，有不清楚的可以参考相关官方文档或者自行google搜索。</p>
+<h2 id="VPS上安装"><a class="headerlink" href="#VPS上安装"></a>VPS上安装</h2>
+<ul>
+<li>Nginx</li>
+<li>提供网站服务程序</li>
+<li>Git</li>
+<li>自动从Git上<code>checkout</code>静态页到网站根目录</li>
+</ul>
+<h2 id="写文档的电脑要用到"><a class="headerlink" href="#写文档的电脑要用到"></a>写文档的电脑要用到</h2>
+<ul>
+<li>Node.js</li>
+<li>Hexo基于Node.js写的，需要提供Hexo依赖环境</li>
+<li>Git</li>
+<li>Git客户端，将静态页提交到GitHub等仓库托管服务商<br>
+-<code>Hexo d</code>命令也用到git命令，能自动提交到对应的仓库</li>
+<li>Hexo</li>
+<li>MarkDown解析编译成静态页</li>
+<li>MarkDown编辑器</li>
+<li>更好更快地写MarkDown格式文档，不屑的直接用notepad或其他代notepad编辑器也行</li>
+<li>如果是编辑单个文档，这里给安利个开源，免费，跨平台，简洁，高颜值编辑器:<a href="/software-markdown-editor.html">Moeditor</a>或者<a href="/software-markdown-editor.html">Typora</a>，你值得拥有</li>
+<li>如果是整站管理Hexo文章，那就用GitHub出的Atom吧，原生支持MarkDown，集成Git显色状态</li>
+</ul>
+<h1>实施步骤</h1>
+<h2 id="GitHub设置"><a class="headerlink" href="#GitHub设置"></a>GitHub设置</h2>
+<p>创建个仓库，仓库命名格式必须为:GitHub用户名.github.io，然后根据提示一直下一步即可。等有静态页提交到这个仓库就可以使用Github Pages静态主页，免费的静态站点不要白不要。</p>
+<blockquote>
+<p>Head over to GitHub and create a new repository named <code>username.github.io</code>， where <code>username</code> is your username (or organization name) on GitHub.</p>
+</blockquote>
+<p>如果要把自己的网站域名直接指向github page页，那么就登录页面GitHub，对着个仓库进行别名设置，设置了别名就不能用https，界面上有说明，就不贴图了。</p>
+<blockquote>
+<p>coding page等托管商设置也大同小异</p>
+</blockquote>
+<h2 id="VPS设置"><a class="headerlink" href="#VPS设置"></a>VPS设置</h2>
+<p>VPS自行购买，要兼顾搭梯子就买墙外的，要速度最好买墙内。如果你的域名有备案或者打算备案，建议买阿里云的云服务器。</p>
+<p><a href="/cloud-server-tourist.html" title="腾讯云，阿里云1折起"><img src="../images/server_tourist.jpg" alt="" loading="lazy"></a></p>
+<h3 id="Nginx配置网站目录"><a class="headerlink" href="#Nginx配置网站目录"></a>Nginx配置网站目录</h3>
+<p>通用的Nginx配置方法，只是用了Nginx提供网站服务，所以记住个网站根目录，我的VPS上之前装过lnmp，直接略过。</p>
+<h3 id="Git设置"><a class="headerlink" href="#Git设置"></a>Git设置</h3>
+<p>VPS上装Git自动同步文件到网站根目录，实现自动化部署。</p>
+<h4 id="安装git"><a class="headerlink" href="#安装git"></a>安装git</h4>
+<p>以 CentOS 为例，其他操作系统请自行更换命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install git-core</span><br><span class="line"><span class="comment">#早期Git名称被占用，所以Git只能叫Git-core了，不过现在可以直接用Git名安装了</span></span><br><span class="line">yum install git</span><br></pre></td></tr></table></figure>
+<h4 id="git用户设置"><a class="headerlink" href="#git用户设置"></a>git用户设置</h4>
+<p>装好后，创建个git用户(<strong>如果直接用root账户就不用建了</strong>)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">useradd -m git  <span class="comment"># 创建 git 用户，也可以用 adduser</span></span><br><span class="line">passwd git <span class="comment"># 设置密码</span></span><br><span class="line"><span class="built_in">chmod</span> 740 /etc/sudoers  <span class="comment">#将新建的用户添加sudo权限</span></span><br><span class="line">vi /etc/sudoers</span><br></pre></td></tr></table></figure>
+<p>在vi编辑中找到如下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## Allow root to run any commands anywhere</span><br><span class="line">root    ALL=(ALL)     ALL</span><br></pre></td></tr></table></figure>
+<p>把刚才新建的用户下面同样格式添加一行就变成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## Allow root to run any commands anywhere</span><br><span class="line">root    ALL=(ALL)     ALL</span><br><span class="line">git   ALL=(ALL)     ALL</span><br></pre></td></tr></table></figure>
+<p>搞定就可以切换到新用户生成ssh秘钥了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">su git</span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">git config --global user.email <span class="string">&#x27;youremail@example.com&#x27;</span></span><br><span class="line">git config --global user.name <span class="string">&#x27;yourusername&#x27;</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&#x27;youremail@example.com&#x27;</span></span><br><span class="line"><span class="comment">#一般默认就可以了，`.pub`是公钥，把私钥复制到本地</span></span><br><span class="line">ssh -Tv <span class="string">&#x27;vps上的git用户名@vps地址&#x27;</span> -p <span class="string">&#x27;ssh端口&#x27;</span>  <span class="comment">#测试ssh连接是否成功</span></span><br></pre></td></tr></table></figure>
+<p>秘钥本地生成后上传到服务器也行，生成方法是一样的，如果ssh登录一直出现需要密码，或者<strong>复制的密钥总是不对</strong>，那试试下面的方法，也推荐直接用命令拷贝</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i ~/.ssh/id_rsa.pub <span class="string">&#x27;git@vps地址&#x27;</span> -p <span class="string">&#x27;ssh端口&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>将生成的公钥添加到GitHub里面，参考<a target="_blank" rel="noopener external nofollow noreferrer" href="https://help.github.com/articles/which-remote-url-should-i-use/">官方帮助文档</a></p>
+<h4 id="git自动部署脚本"><a class="headerlink" href="#git自动部署脚本"></a>git自动部署脚本</h4>
+<p>将网站根目录赋予git用户，就是Nginx中设置的那个网站根目录，如Hexo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/wwwroot</span><br><span class="line"><span class="built_in">mkdir</span> hexo</span><br><span class="line"><span class="built_in">chown</span> git:git -R /home/wwwroot/hexo</span><br></pre></td></tr></table></figure>
+<p>创建git仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~  <span class="comment">#这里直接放用户目录下</span></span><br><span class="line">git init --bare hexo.git  <span class="comment">#建立一个名字叫hexo.git的裸库</span></span><br></pre></td></tr></table></figure>
+<p>配置<code>git hooks</code>，新建并编辑刚刚初始化过的仓库里的<code>hooks/post-receive</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">su git</span><br><span class="line"><span class="built_in">cd</span> /home/git/hexo.git/hooks</span><br><span class="line">vi post-receive</span><br></pre></td></tr></table></figure>
+<p>输入如下内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">unset</span> GIT_DIR</span><br><span class="line">GIT_REPO=/home/git/hexo.git <span class="comment">#git仓库</span></span><br><span class="line">TMP_GIT_CLONE=/tmp/hexo</span><br><span class="line">PUBLIC_WWW=/home/wwwroot/hexo <span class="comment">#网站目录</span></span><br><span class="line"><span class="built_in">rm</span> -rf <span class="variable">$&#123;TMP_GIT_CLONE&#125;</span></span><br><span class="line">git <span class="built_in">clone</span> <span class="variable">$GIT_REPO</span> <span class="variable">$TMP_GIT_CLONE</span></span><br><span class="line"><span class="built_in">rm</span> -rf <span class="variable">$&#123;PUBLIC_WWW&#125;</span>/*</span><br><span class="line"><span class="built_in">cp</span> -rf <span class="variable">$&#123;TMP_GIT_CLONE&#125;</span>/* <span class="variable">$&#123;PUBLIC_WWW&#125;</span></span><br></pre></td></tr></table></figure>
+<p>保存退出后赋予该脚本可执行权限就可以了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x post-receive</span><br></pre></td></tr></table></figure>
+<p>更高级的用法可以自动提交百度熊掌号，刷新CDN等操作，可见：<a href="/linux-shell-with-vps.html">网站Git自动部署</a></p>
+<h2 id="写文档的电脑"><a class="headerlink" href="#写文档的电脑"></a>写文档的电脑</h2>
+<p>一般是Windows操作系统，这里以Windows为例，其他操作系统就不罗列了，自己去看文档或者google一下。</p>
+<h3 id="Git客户端"><a class="headerlink" href="#Git客户端"></a>Git客户端</h3>
+<p>可以安装<a target="_blank" rel="noopener external nofollow noreferrer" href="https://git-scm.com/download/win">Git Window</a>s或者索性<a target="_blank" rel="noopener external nofollow noreferrer" href="https://desktop.github.com/">GitHub Desktop</a>，完全可视化，简单。</p>
+<p>安装完成后，登录自己的账户，配置Git根目录。</p>
+<h3 id="Node-js"><a class="headerlink" href="#Node-js"></a>Node.js</h3>
+<p>从<a target="_blank" rel="noopener external nofollow noreferrer" href="https://nodejs.org/en/download/">Node.js网站</a>上下载安装包，一路默认下来就行，记得勾选自动配置Path，省得以后麻烦。</p>
+<h3 id="Hexo"><a class="headerlink" href="#Hexo"></a>Hexo</h3>
+<p>安装好Node.js和Git，就可以使用<code>npm</code>命令安装Hexo了。</p>
+<blockquote>
+<p>npm介绍可见:<a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.ruanyifeng.com/blog/2016/01/npm-install.html">npm模块安装机制简介</a></p>
+</blockquote>
+<p>启动<code>Git Shell</code>或者’CMD’等终端，切换到Git根目录，开始安装Hexo。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g <span class="comment">#全局安装Hexo客户端</span></span><br><span class="line"><span class="comment">#安装完成后，创建个myHexo目录，并初始化Hexo项目</span></span><br><span class="line">Hexo init myHexo</span><br><span class="line"><span class="comment">#这个`myHexo`目录就是Hexo博客的工作目录了，以后启动Hexo命令都要先切到这个目录下</span></span><br><span class="line"><span class="built_in">cd</span> myHexo</span><br><span class="line">npm install  <span class="comment">#这个命令会把需要的依赖环境都自动装上</span></span><br></pre></td></tr></table></figure>
+<p>Hexo从 3.0 开始把服务器独立成了个别模块，所以要本地调试的话，还需要安装 <code>hexo-server</code> 才能使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-server --save</span><br></pre></td></tr></table></figure>
+<p>安装完成后，输入 <code>hexo server</code> 或简写 <code>hexo s</code> 命令以启动服务器，默认网站会在 <code>http://localhost:4000</code> 下启动。也可以指定端口如 <code>hexo s -p 80</code> ，这样浏览器里只需要输入 <code>localhost</code> 就能访问本地调试内容了。</p>
+<p>在服务器启动期间，Hexo 会监视文件变动并自动更新，无须重启服务。</p>
+<p>客户端初始化完成后，在myHexo目录下应该有一堆文件了，目录结构应该这个样子的:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── <span class="built_in">source</span></span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
+<p>更多说明详见<a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io/zh-cn/docs/index.html">Hexo官方文档</a></p>
+<h1>体验Hexo</h1>
+<h2 id="Hexo设置"><a class="headerlink" href="#Hexo设置"></a>Hexo设置</h2>
+<h3 id="安装喜欢的主题"><a class="headerlink" href="#安装喜欢的主题"></a>安装喜欢的主题</h3>
+<p>转Hexo的一个原因也是喜欢&quot;maupassant&quot;这个主题，简洁大气，更多的自己去官网看。</p>
+<p>首先，去Hexo官网选择自己喜欢的主题，进入Gitshell或cmd切到刚才初始化好的Hexo工作目录，然后把主题用Git克隆到本地</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/tufu9441/maupassant-hexo.git themes/maupassant</span><br></pre></td></tr></table></figure>
+<p>克隆完成后修改Hexo配置文件<code>_config.yml</code></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">maupassant</span> <span class="comment">#自己用的主题叫什么就改成什么</span></span><br></pre></td></tr></table></figure>
+<p>装 <code>maupassant</code> 这个主题折腾了好久，本地测试的时候样式错乱，作者博客说渲染器不对，具体见下文遇到的问题。</p>
+<p>如果要设置自己的网站在浏览器标签左侧的图标，在Hexo的 <code>source</code> 下放个 <code>favicon.ico</code>。</p>
+<h3 id="文件自动提交部署"><a class="headerlink" href="#文件自动提交部署"></a>文件自动提交部署</h3>
+<p>主要是改 Hexo 的配置 <code>_config.yml</code> 和主题目录下的 <code>_config.yml</code> ，按自己的需求改，找官方文档或自行Google。</p>
+<p>多仓库同步提交deploy配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="comment">##如果出于安全或其它原因考虑，你修改了 SSH 默认的端口，那么上面 repository 的配置要做如下修改：</span></span><br><span class="line"><span class="comment">##repo: ssh://yourusername@server:&lt;yourport&gt;/~/hexo.git</span></span><br><span class="line"><span class="comment">##示例</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span></span><br><span class="line">    <span class="attr">github:</span>  <span class="string">https://github.com/GitHubusername/example.github.io.git</span>  <span class="comment">#同步到GitHub</span></span><br><span class="line">    <span class="attr">vps:</span>  <span class="string">ssh://git@example.com:22231/~/hexo.git</span>  <span class="comment">#同步到自己的VPS</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br><span class="line">  <span class="attr">message:</span> <span class="string">Hexo</span> <span class="string">update</span></span><br></pre></td></tr></table></figure>
+<h2 id="开始写作"><a class="headerlink" href="#开始写作"></a>开始写作</h2>
+<h3 id="更改文章页面模板"><a class="headerlink" href="#更改文章页面模板"></a>更改文章页面模板</h3>
+<p>Hexo下的<code>scaffolds</code>目录里，默认存着几个md模板，按自己的需求改，也可以按自己的需求建新模板，参数字段去Hexo官方文档里看。</p>
+<h3 id="新建文章"><a class="headerlink" href="#新建文章"></a>新建文章</h3>
+<p>用官方命令 <code>Hexo new [layout] &lt;title&gt;</code>（<code>Hexo new</code> 可以简写为<code>hexo n</code>）或者用任何编辑器新建<code>.md</code>文档都可以。<br>
+建好后用 <code>Hexo g</code> 生成静态页，用 <code>Hexo d</code> 则会自动发布到你配置的git仓库中去.<br>
+Hexo常用命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo clean  <span class="comment">#清理已解析编译文件，有文件删除改名，发布后但前台没改变时使用此命令</span></span><br><span class="line">hexo n [layout] &lt;title&gt;  <span class="comment">#新建文章</span></span><br><span class="line">hexo g  <span class="comment">#重新解析生成html</span></span><br><span class="line">hexo d  <span class="comment">#发布到git或其他地方</span></span><br><span class="line"><span class="comment">#如果_config.xml中配置的发布地址是GitHubpage或者coding page页面，那访问对应 的仓库地址就可以看到网站效果了</span></span><br></pre></td></tr></table></figure>
+<p>Hexo有个我觉得需要改进的地方就是每次都要把全部文章重新生成，不管需不需要更新，用自动发布的命令后也会造成所有的文章都重新提交一遍。<br>
+有文章了，启动<code>Hexo server</code>就可以本地预览效果，编译的静态文件上传网站根目录就可以使用了。</p>
+<h3 id="迁移WordPress文章"><a class="headerlink" href="#迁移WordPress文章"></a>迁移WordPress文章</h3>
+<p>首先，安装 hexo-migrator-wordpress 插件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-migrator-wordpress --save</span><br></pre></td></tr></table></figure>
+<p>在 WordPress 仪表盘中导出数据<code>“Tools” → “Export” → “WordPress”</code>(详情参考<a target="_blank" rel="noopener external nofollow noreferrer" href="http://en.support.WordPress.com/export/">WP支持页面</a>)。</p>
+<p>插件安装完成后，执行下列命令来迁移所有文章，source 可以是 WordPress 导出的文件路径或网址。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo migrate WordPress &lt;<span class="built_in">source</span>&gt;</span><br><span class="line"><span class="comment">#上面的&lt;source&gt;就是导出的xml文件</span></span><br></pre></td></tr></table></figure>
+<p>其他平台迁移可以参考<a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io/zh-cn/docs/migration.html">官方文档</a>。</p>
+<h1>常见问题及其解决方案</h1>
+<h2 id="Hexo启动失败"><a class="headerlink" href="#Hexo启动失败"></a>Hexo启动失败</h2>
+<blockquote>
+<p>JS-YAML: bad indentation of a mapping entry at line …</p>
+</blockquote>
+<p>导入WordPress文章后，启动<code>Hexo server</code>一堆错误，这事折腾了一个周末，按错误提示一个个去看，结果还是用人力排除法，在某篇文章里出现了某段代码，把代码重新按MarkDown格式写了一遍就好了。<br>
+可坑爹的是，报错信息里压根就没提到这里有问题…</p>
+<h2 id="样式错乱"><a class="headerlink" href="#样式错乱"></a>样式错乱</h2>
+<p>maupassant主题装好后，测试出现样式错乱。这下面这俩命令反反复复，ss全局代理，换淘宝npm源都无济于事…</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-sass</span><br><span class="line">npm uninstall hexo-renderer-jade</span><br><span class="line">npm install hexo-renderer-jade --save</span><br><span class="line">npm install hexo-renderer-sass --save</span><br></pre></td></tr></table></figure>
+<p>渲染器安装失败的可以先卸载再装试试，一般用<code>npm install</code>就会把需要的东西自动都装上</p>
+<p>如果是因为被墙的问题，用下面的命令改成淘宝源或使用代理。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org --global</span><br><span class="line">npm config <span class="built_in">set</span> disturl https://npm.taobao.org/dist --global</span><br><span class="line">npm info underscore</span><br><span class="line"><span class="comment">#如果上面配置正确这个命令会有字符串response</span></span><br></pre></td></tr></table></figure>
+<p>做完以上，有些人问题已经解决，但有些问题依旧。最后的最后，翻到主题作者页的评论的n层，原来说要安装python，而且是 <code>python2.7</code> !!!安装此环境一般可成功编译 <code>node-sass</code> 。</p>
+<blockquote>
+<p><code>hexo-renderer-sass</code> 这个插件看了下最后一次更新是2018年，估计作者都不维护了，建议 <a href="/hexo-renderer-sass-error.html">按此方法换个插件替代</a> 最终解决。</p>
+</blockquote>
+<h2 id="订阅"><a class="headerlink" href="#订阅"></a>订阅</h2>
+<p>安装订阅插件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure>
+<h2 id="关于页面"><a class="headerlink" href="#关于页面"></a>关于页面</h2>
+<p>maupassant主题里有个关于导航菜单，默认点进去是不行的，需要自己新建个。<br>
+在Hexo的 <code>source</code> 目录新建个 <code>about</code> 文件夹，文件夹里按模板新建个 <code>index.md</code>，内容大致如下:</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">关于本站</span></span><br><span class="line"><span class="attr">layout:</span> <span class="string">page</span></span><br><span class="line"><span class="attr">comments:</span> <span class="literal">false</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="string">这里写自己的关于介绍...</span></span><br></pre></td></tr></table></figure>
+<h2 id="多说评论框"><a class="headerlink" href="#多说评论框"></a>多说评论框</h2>
+<blockquote>
+<p>这个第三方评论已成历史，还能用的可以试下<a href="/hexo-with-changyan-comments.html">畅言</a></p>
+</blockquote>
+<p>调试的时候用的 <code>localhost</code> 访问，而多说是绑定了对应的域名的，所以会出现多说评论框不显示，分享那一行也样式错乱列表显示出来。</p>
+<p>再检查下你的多说设置，就是<code>.duoshuo.com</code>前面那个，别填错了就可以了。</p>
+<h2 id="免密码登录"><a class="headerlink" href="#免密码登录"></a>免密码登录</h2>
+<p>明明已经同步好密钥了，但仍然需要输入密码认证，多半是密钥同步内容或权限有问题，本地电脑重新生成一把密钥，然后使用<code>ssh-copy-id </code>命令上传，该命令会自动处理权限。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i ~/.ssh/id_rsa.pub <span class="string">&#x27;vps上的git用户名@vps地址&#x27;</span> -p <span class="string">&#x27;ssh端口&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="多仓库提交"><a class="headerlink" href="#多仓库提交"></a>多仓库提交</h2>
+<p>配置方法见前文。<br>
+第一次提交的时候可能会遇到这样的错误提示</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[remote rejected] HEAD -&gt; master (branch is currently checked out)</span><br><span class="line">remote: error: refusing to update checked out branch: refs/heads/master</span><br><span class="line">remote: error: By default， updating the current branch <span class="keyword">in</span> a non-bare repository</span><br><span class="line">remote: error: is denied， because it will make the index and work tree inconsistent       </span><br><span class="line">...</span><br><span class="line">remote: error: To squelch this message and still keep the default behaviour， <span class="built_in">set</span></span><br><span class="line">remote: error: <span class="string">&#x27;receive.denyCurrentBranch&#x27;</span> configuration variable to <span class="string">&#x27;refuse&#x27;</span>.</span><br></pre></td></tr></table></figure>
+<p>错误里说的很明白了，vps上的git默认设置的问题，其实已经告知改<code>receive.denyCurrentBranch</code>了，不想去找配置就用下面这条命令解决</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --bool core.bare <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h2 id="Git和VPS自动同步部署"><a class="headerlink" href="#Git和VPS自动同步部署"></a>Git和VPS自动同步部署</h2>
+<blockquote>
+<p>这个从git自动同步到网站根目录的问题一直没解决，手动执行shell可以，但提交后不会自动部署，不知道哪里的问题…找了很多资料都没说</p>
+</blockquote>
+<p>之前操作的时候因为VPS已有用于网站的账户，就没有新建 <code>git</code> 用户，原来这里默认用户名需要是 <code>git</code> 才可以，否则会出现不会知道执行 <code>githooks</code> 功能，这真的是个坑，应该哪里有用户名设置的，有空再研究下git文档。</p>
+<h1>后记</h1>
+<p>好了，这就是我的第一篇用MarkDown格式写的Hexo文章，我觉着把整个过程整理完整了，有缺漏或谬误之处欢迎留言进行指正赐教。</p>
+<h1>参考文档</h1>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io/zh-cn/docs/index.html">hexo docs</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://wsgzao.github.io/post/hexo-guide/">使用git搭建静态免费blog</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.jianshu.com/p/51a936dd396a">VPS配合Git搭建Hexo博客</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.yizhilee.com/post/deploy-hexo-to-vps/">通过 Git Hooks 自动部署 Hexo 到 VPS</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://segmentfault.com/a/1190000006745478">Hexo快速搭建静态博客并实现远程VPS自动部署</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://blog.csdn.net/anonymalias/article/details/50528946">通过Hexo在GitHub搭站全记录 </a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://tiktoking.github.io/2016/01/26/hexo/">在VPS上搭建hexo博客，利用git更新</a></li>
+</ul>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>本文标题：</span>开始新的折腾，Hexo博客Git-VPS部署完整记录</p><p><span>文章作者：</span>凹凸曼</p><p><span>发布时间：</span>2016-12-23</p><p><span>最后更新：</span>2017-02-23</p><p><span>原始链接：</span><a href="/Hexo-git-to-vps.html">https://sobaigu.com/Hexo-git-to-vps.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://sobaigu.com/Hexo-git-to-vps.html"></i></span></p><p><span>版权声明：</span>转载请务必保留本文链接和注明内容来源，并自负版权等法律责任。</p></div><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7390437336363898" data-ad-slot="7454544896" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});
+</script><div class="tags"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li></ul></div><div class="post-nav"><a class="pre" href="/use-git.html">Git强制删除提交到远程版本库的数据或版本记录</a><a class="next" href="/software-beyond-compare.html">Beyond Compare-文件比较工具</a></div><div class="nofancybox" id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://waline.sobaigu.com',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+  login: 'disable',
+  reaction: true,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/s" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="sobaigu.com"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 网站标签</i></div><div class="tagcloud"><a href="/tags/Ubuntu/" style="font-size: 19.71px;">Ubuntu</a> <a href="/tags/Linux/" style="font-size: 23.82px;">Linux</a> <a href="/tags/Windows/" style="font-size: 22.65px;">Windows</a> <a href="/tags/%E6%99%92%E9%85%B7%E8%BD%AF/" style="font-size: 25px;">晒酷软</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 22.06px;">软件</a> <a href="/tags/%E6%B7%B7%E6%8A%80%E8%83%BD/" style="font-size: 20.88px;">混技能</a> <a href="/tags/WordPress/" style="font-size: 18.53px;">WordPress</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99/" style="font-size: 23.24px;">博客建站</a> <a href="/tags/%E7%B2%BE%E7%AE%80%E7%BB%BF%E8%89%B2%E5%8E%BB%E5%B9%BF%E5%91%8A%E7%89%88/" style="font-size: 24.41px;">精简绿色去广告版</a> <a href="/tags/%E6%B1%9F%E6%B9%96/" style="font-size: 16.18px;">江湖</a> <a href="/tags/shell/" style="font-size: 20.29px;">shell</a> <a href="/tags/shadowsocks/" style="font-size: 15px;">shadowsocks</a> <a href="/tags/%E5%8A%A0%E9%80%9F%E4%BB%A3%E7%90%86/" style="font-size: 21.47px;">加速代理</a> <a href="/tags/aardio/" style="font-size: 17.94px;">aardio</a> <a href="/tags/python/" style="font-size: 15.59px;">python</a> <a href="/tags/%E6%89%8B%E6%9C%BA/" style="font-size: 17.35px;">手机</a> <a href="/tags/Hexo/" style="font-size: 19.12px;">Hexo</a> <a href="/tags/%E6%B7%98%E5%AE%9D/" style="font-size: 15px;">淘宝</a> <a href="/tags/%E7%BD%91%E8%B5%9A/" style="font-size: 15px;">网赚</a> <a href="/tags/%E5%88%B7%E5%8D%95/" style="font-size: 15px;">刷单</a> <a href="/tags/v2ray/" style="font-size: 16.76px;">v2ray</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 16.76px;">教程</a> <a href="/tags/hugo/" style="font-size: 15px;">hugo</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%B8%81/" style="font-size: 15.59px;">虚拟币</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 近期文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/windows-iis-log-with-360xingtu-webview.html">网站服务器使用360星图自动分析IIS日志，并通过网页浏览</a></li><li class="post-list-item"><a class="post-list-link" href="/webhook-install-as-service-in-windows-server.html">Windows Server 部署 webhook 服务，并注册为系统服务守护</a></li><li class="post-list-item"><a class="post-list-link" href="/iis-charset-chinese.html">解决 IIS W3C格式日志中中文路径乱码问题</a></li><li class="post-list-item"><a class="post-list-link" href="/bat-git-clone-auto-public.html">一个BAT批处理实现HTML网页自动同步发布到Windows Server</a></li><li class="post-list-item"><a class="post-list-link" href="/DNS-PROBE-STARTED-issue-on-edge-in-windows-server.html">解决Windows服务器开一段时间edge浏览器就 DNS_PROBE_STARTED 错误</a></li><li class="post-list-item"><a class="post-list-link" href="/bot-spider-names.html">最新搜索引擎蜘蛛机器人User Agent名称</a></li><li class="post-list-item"><a class="post-list-link" href="/linux-jq-syntax-list.html">常用 linux jq 命令语法整理</a></li><li class="post-list-item"><a class="post-list-link" href="/software-postfix-mailinfo-hostname.html">宝塔邮局优化解决 `hostname` 信息得分大幅提升</a></li><li class="post-list-item"><a class="post-list-link" href="/git-set-proxy-for-github.html">设置Git通过代理连接，解决GitHub仓库无法更新等</a></li><li class="post-list-item"><a class="post-list-link" href="/composer-upgrade-error-A-facade-root-has-not-been-set.html">php composer.phar update：A facade root has not been set</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://waline.sobaigu.com" count="6" src="/js/recent-comments.js?v=1.0.2" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 内容分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%81%9A%E7%BD%91%E7%AB%99/">做网站</a><span class="category-list-count">97</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E7%BC%96%E7%A8%8B/">学编程</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%90%9E%E8%BD%AF%E4%BB%B6/">搞软件</a><span class="category-list-count">142</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%94%92%E7%9F%A5%E8%AF%86/">攒知识</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B7X%E5%9C%88/">混X圈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E7%B3%BB%E7%BB%9F/">玩系统</a><span class="category-list-count">126</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9E%8E%E9%80%BC%E9%80%BC/">瞎逼逼</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://sobaigu.com/software/" title="软件宝库" target="_blank">软件宝库</a><ul></ul><a href="http://www.jayxon.com/" title="JayXon" target="_blank">JayXon</a><ul></ul><a href="http://www.wubase.com/" title="网联基地" target="_blank">网联基地</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">搜百谷.</a> Powered by<a rel="nofollow" target="_blank" href="http://sobaigu.com"> 凹凸曼.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script></div></body></html>

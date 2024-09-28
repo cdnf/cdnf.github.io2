@@ -1,0 +1,184 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="互联网精神病患者小站，始终秉承建站理念：分享是种美德，好人一生平安。"><meta name="keywords" content="网络代理,怎么访问外网,小火箭怎么安装,美国VPS,自定义PAC规则,Hexo博客建站,aardio编程,消费USDT,USDC信用卡,数字货币信用卡,虚拟币出金卡,U币消费卡"><title>个人博客-移动主题-在360网站卫士缓存全开情况下的切换 | 搜百谷</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script src="https://www.googletagmanager.com/gtag/js?id=UA-22119753-2" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-22119753-2');
+</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 7.1.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">个人博客-移动主题-在360网站卫士缓存全开情况下的切换</h1><a id="logo" href="/.">搜百谷</a><p class="description">达则兼济天下尤物，科技改变世界嫩模！</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/software/"><i class="fa fa-university"> 宝库</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">个人博客-移动主题-在360网站卫士缓存全开情况下的切换</h1><div class="post-meta">2014-07-12<span> | </span><span class="category"><a href="/categories/%E5%81%9A%E7%BD%91%E7%AB%99/">做网站</a></span><span>：</span><span>移动版主题</span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 1.6k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 5</span><span class="post-meta-item-text"> 分钟</span></span></span></div><a class="disqus-comment-count" href="/mobile-view-with-360.html#waline"><span class="waline-comment-count" id="/mobile-view-with-360.html"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#360%E7%BD%91%E7%AB%99%E5%8D%AB%E5%A3%AB%E7%BC%93%E5%AD%98%E5%85%A8%E5%BC%80%E4%B9%8B%E5%90%8E%E7%9A%84%E4%BC%98%E5%8A%A3%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">360网站卫士缓存全开之后的优劣分析：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%85%A8%E5%BC%80%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84"><span class="toc-number">1.1.</span> <span class="toc-text">缓存全开有什么好处?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%85%A8%E5%BC%80%E4%B9%8B%E5%90%8E%EF%BC%8C%E4%BC%9A%E6%9C%89%E4%BB%80%E4%B9%88%E5%BC%8A%E7%AB%AF%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">缓存全开之后，会有什么弊端：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E7%94%B1%E6%9D%A5%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">方法由来：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">1.4.</span> <span class="toc-text">实现方法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%96%B0%E5%A2%9E%E7%A7%BB%E5%8A%A8%E7%AB%99%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D"><span class="toc-number">1.5.</span> <span class="toc-text">一、新增移动站二级域名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85WordPress-Mobile-Pack"><span class="toc-number">1.5.1.</span> <span class="toc-text">二、安装WordPress Mobile Pack</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%B7%BB%E5%8A%A0UA%E5%88%A4%E6%96%ADJS%E4%BB%A3%E7%A0%81"><span class="toc-number">1.6.</span> <span class="toc-text">三、添加UA判断JS代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%B7%BB%E5%8A%A0%E6%89%8B%E5%8A%A8%E5%88%87%E6%8D%A2%E5%8A%9F%E8%83%BD"><span class="toc-number">1.7.</span> <span class="toc-text">四、添加手动切换功能</span></a></li></ol></li></ol></div></div><div class="post-content"><h2 id="360网站卫士缓存全开之后的优劣分析："><a class="headerlink" href="#360网站卫士缓存全开之后的优劣分析："></a><a target="_blank" rel="noopener external nofollow noreferrer" href="http://zhangge.net/tag/360%e7%bd%91%e7%ab%99%e5%8d%ab%e5%a3%ab/" title="查看与 360网站卫士 相关的文章">360网站卫士</a>缓存全开之后的优劣分析：</h2>
+<h3 id="缓存全开有什么好处"><a class="headerlink" href="#缓存全开有什么好处"></a>缓存全开有什么好处?</h3>
+<p>①、速度达到飞一般的感觉；</p>
+<p>②、节约空间大量流量，因为访问调用的是<a target="_blank" rel="noopener external nofollow noreferrer" href="http://zhangge.net/tag/360cdn/" title="查看与 360CDN 相关的文章">360CDN</a>缓存镜像</p>
+<p>③、可抛弃本地相关插件：比如wp-super-cache等缓存插件、七牛CDN插件等</p>
+<h3 id="缓存全开之后，会有什么弊端："><a class="headerlink" href="#缓存全开之后，会有什么弊端："></a>缓存全开之后，会有什么弊端：</h3>
+<p>①、主题切换失效（仅针对非响应式主题）；→<strong>本文重点解决对象</strong></p>
+<p>②、前台登录功能失效（可使用wp-admin路径登录）；</p>
+<p>③、原生评论可能会出问题（用多说就没影响）；</p>
+<p>④、补充：移动端无法切换到电脑版（此问题已解决，详见及<a target="_blank" rel="noopener external nofollow noreferrer" href="http://zhangge.net/3664.html" title="js获取url中?后的参数，修复移动版无法切换到电脑版的BUG">相关文章=&gt;</a>）</p>
+<p>⑤、补充：浏览计数无法排除已登录用户的访问，如wp-postviews；</p>
+<p>⑥、其他张戈可能尚未发现的问题，欢迎反馈！</p>
+<h3 id="方法由来："><a class="headerlink" href="#方法由来："></a>方法由来：</h3>
+<p>当张戈把主题调度插件：**Any Mobile Theme Switcher **卸载之后，想起了百度的移动建站siteapp，于是前往<a target="_blank" rel="noopener external nofollow noreferrer" href="http://siteapp.baidu.com">http://siteapp.baidu.com</a> 开始尝试siteapp制作移动站，在提交审核之后，在域名部署里面发现了新大陆：</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://res.zhangge.net/wp-content/uploads/2014/05/siteapp1.png"><img src="http://res.zhangge.net/wp-content/uploads/2014/05/siteapp1.png?w=480" alt="" loading="lazy"></a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://res.zhangge.net/wp-content/uploads/2014/05/siteapp2.png"><img src="http://res.zhangge.net/wp-content/uploads/2014/05/siteapp2.png?w=480" alt="" loading="lazy"></a></p>
+<p>终于让我找到了JS判断UA并切换主题的方法（之前找到方法的好像用的都不太顺…）！</p>
+<p>只要将百度提供的切换代码根据实际情况修改了下，再结合另一款支持二级域名的主题调度插件，终于完美实现了JS切换移动主题！</p>
+<p>终于，非响应式网站也可以酣畅淋漓地使用<a target="_blank" rel="noopener external nofollow noreferrer" href="http://zhangge.net/tag/360%e7%bd%91%e7%ab%99%e5%8d%ab%e5%a3%ab/" title="查看与 360网站卫士 相关的文章">360网站卫士</a>的全部缓存功能了！同时，也绝对兼容任何本地静态缓存插件，比如完全静态缓存插件<strong>cos-cache-html、<strong>偶尔主题切换抽风的</strong>wp-super-cache</strong>和<strong>Hpyer Cache</strong>等！</p>
+<hr>
+<h3 id="实现方法："><a class="headerlink" href="#实现方法："></a>实现方法：</h3>
+<h3 id="一、新增移动站二级域名"><a class="headerlink" href="#一、新增移动站二级域名"></a>一、新增移动站二级域名</h3>
+<p>如何新增二级域名，请自查方法，张戈在此仅提供DA面板的设置方法：</p>
+<p>①、打开你的DA控制面板，找到如下高级设置，并选择域名额外绑定（DA版本不一样，可能位置有所区别）：</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://res.zhangge.net/wp-content/uploads/2014/05/DA1.png"><img src="http://res.zhangge.net/wp-content/uploads/2014/05/DA1.png?w=480" alt="" loading="lazy"></a></p>
+<p>②、点击打开“域名额外绑定”，如下图增加自定义二级域名，作为移动访问站点：</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://res.zhangge.net/wp-content/uploads/2014/05/DA2.png"><img src="http://res.zhangge.net/wp-content/uploads/2014/05/DA2.png?w=480" alt="" loading="lazy"></a></p>
+<p>③、前往域名DNS管理那给二级域名新增A记录：</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://res.zhangge.net/wp-content/uploads/2014/05/dnsmobile.png"><img src="http://res.zhangge.net/wp-content/uploads/2014/05/dnsmobile.png?w=480" alt="" loading="lazy"></a></p>
+<p><em>Ps：利用此方法制作移动站，仅需要一个插件和一个二级域名足矣，而不需要另外一份网站文件，强烈推荐！</em></p>
+<p>接下来，在坐等二级域名生效的同时，咱们继续往下操作。</p>
+<h4 id="二、安装WordPress-Mobile-Pack"><a class="headerlink" href="#二、安装WordPress-Mobile-Pack"></a>二、安装WordPress Mobile Pack</h4>
+<p>①、首先请安装支持二级域名的主题调度插件：WordPress Mobile Pack。</p>
+<p>可以后台搜索安装英文原版，或者下载张戈DIY之后的汉化精简版：</p>
+<div id="down">
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://zhangge.net/3668.html#button_file" title="下载链接">下载地址</a></p>
+<div class="clear"></div>
+</div>
+Ps：张戈将插件汉化之后，又精简了大部分功能，比如：删除了插件自带的4款移动主题、访问统计以及侧边栏等功能（具体请自行对比），仅剩下了主题切换功能，不喜勿下~~~
+<p>②、插件设置</p>
+<p>请如下图设置插件：（若还没有手机主题，请先准备一套手机主题，找不到的可以参考<a target="_blank" rel="noopener external nofollow noreferrer" href="http://zhangge.net/1765.html" title="很棒的移动主题">张戈博客相关文章</a>）</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://res.zhangge.net/wp-content/uploads/2014/05/switcher.png"><img src="http://res.zhangge.net/wp-content/uploads/2014/05/switcher.png?w=480" alt="" loading="lazy"></a></p>
+<h3 id="三、添加UA判断JS代码"><a class="headerlink" href="#三、添加UA判断JS代码"></a>三、添加UA判断JS代码</h3>
+<p>因为是静态缓存，所以只有JS判断才能在静态页面下继续工作！下面继续~</p>
+<p>①、在function.php中新增函数，用于生成当前页面的链接：</p>
+<p>编辑function.php，找个位置新增以下代码（怕放错就直接放到最后一个** ?&gt;** 的前面）：</p>
+<div id="crayon-55a3bc59c7629517259560" class="crayon-syntax crayon-theme-diy crayon-font-consolas crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover">
+> <div class="crayon-plain-wrap">
+>
+> <div id="crayon-55a3bc59c7629517259560-1" class="crayon-line"><span class="crayon-t">function</span> <span class="crayon-e">curMobURL</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span> <span class="crayon-sy">{</span></div>
+>
+> <div id="crayon-55a3bc59c7629517259560-2" class="crayon-line crayon-striped-line"><span class="crayon-h">   </span><span class="crayon-c">/* 获取当前页面地址 */</span></div>
+>
+> <div id="crayon-55a3bc59c7629517259560-3" class="crayon-line"><span class="crayon-h">    </span><span class="crayon-v">$current_url</span> <span class="crayon-o">=</span> <span class="crayon-e">home_url</span><span class="crayon-sy">(</span><span class="crayon-e">add_query_arg</span><span class="crayon-sy">(</span><span class="crayon-t">array</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div>
+>
+> <div id="crayon-55a3bc59c7629517259560-4" class="crayon-line crayon-striped-line"><span class="crayon-h">   </span><span class="crayon-c">/* 将地址中的http:// 替换为http://m. */</span></div>
+>
+> <div id="crayon-55a3bc59c7629517259560-5" class="crayon-line"><span class="crayon-h">    </span><span class="crayon-v">$target_url</span> <span class="crayon-o">=</span> <span class="crayon-e">str_replace</span><span class="crayon-sy">(</span><span class="crayon-s">"http://"</span><span class="crayon-sy">,</span><span class="crayon-s">"http://m."</span><span class="crayon-sy">,</span><span class="crayon-s">"$current_url"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div>
+>
+> <div id="crayon-55a3bc59c7629517259560-6" class="crayon-line crayon-striped-line"><span class="crayon-h">   </span><span class="crayon-c">/* 过滤一些留言和分页页面 */</span></div>
+>
+> <div id="crayon-55a3bc59c7629517259560-7" class="crayon-line"><span class="crayon-h">    </span><span class="crayon-st">if</span> <span class="crayon-sy">(</span><span class="crayon-e">is_single</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span> <span class="crayon-sy">{</span></div>
+>
+> <div id="crayon-55a3bc59c7629517259560-8" class="crayon-line crayon-striped-line"><span class="crayon-h">        </span><span class="crayon-v">$target_url</span> <span class="crayon-o">=</span> <span class="crayon-e">preg_replace</span><span class="crayon-sy">(</span><span class="crayon-s">'/(\/comment|page|#).*$/'</span><span class="crayon-sy">,</span><span class="crayon-s">''</span><span class="crayon-sy">,</span><span class="crayon-v">$target_url</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div>
+>
+> <div id="crayon-55a3bc59c7629517259560-9" class="crayon-line"><span class="crayon-h">    </span><span class="crayon-sy">}</span> <span class="crayon-st">else</span> <span class="crayon-sy">{</span></div>
+>
+> <div id="crayon-55a3bc59c7629517259560-10" class="crayon-line crayon-striped-line"><span class="crayon-h">        </span><span class="crayon-v">$target_url</span> <span class="crayon-o">=</span> <span class="crayon-e">preg_replace</span><span class="crayon-sy">(</span><span class="crayon-s">'/(comment|page|#).*$/'</span><span class="crayon-sy">,</span><span class="crayon-s">''</span><span class="crayon-sy">,</span><span class="crayon-v">$target_url</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span><span class="crayon-h">   </span></div>
+>
+> <div id="crayon-55a3bc59c7629517259560-11" class="crayon-line"><span class="crayon-h">    </span><span class="crayon-sy">}</span></div>
+>
+> <div id="crayon-55a3bc59c7629517259560-12" class="crayon-line crayon-striped-line"><span class="crayon-h">    </span><span class="crayon-k ">echo</span> <span class="crayon-v">$target_url</span><span class="crayon-sy">;</span></div>
+>
+> <div id="crayon-55a3bc59c7629517259560-13" class="crayon-line"><span class="crayon-sy">}</span></div>
+>
+> </div>
+<div class="crayon-main"></div>
+</div>
+②、编辑主题头部模板：header.php，在<head>后面加上如下代码：
+<div id="crayon-55a3bc59c7646430018560" class="crayon-syntax crayon-theme-diy crayon-font-consolas crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover">
+> <div class="crayon-plain-wrap">
+>
+> <div id="crayon-55a3bc59c7646430018560-1" class="crayon-line"><span class="crayon-ta"><script </span><span class="crayon-e ">type</span><span class="crayon-o">=</span><span class="crayon-s">"text/javascript"</span><span class="crayon-o">></span></div>
+>
+> <div id="crayon-55a3bc59c7646430018560-2" class="crayon-line crayon-striped-line"><span class="crayon-o"><</span><span class="crayon-o">!</span><span class="crayon-o">--</span> 遇到移动端<span class="crayon-i">UA</span>将跳转到移动主题 <span class="crayon-o">--</span><span class="crayon-o">></span></div>
+>
+> <div id="crayon-55a3bc59c7646430018560-3" class="crayon-line"><span class="crayon-sy">(</span><span class="crayon-t">function</span><span class="crayon-sy">(</span><span class="crayon-st">Switch</span><span class="crayon-sy">)</span><span class="crayon-sy">{</span></div>
+>
+> <div id="crayon-55a3bc59c7646430018560-4" class="crayon-line crayon-striped-line"><span class="crayon-h">    </span><span class="crayon-t">var</span> <span class="crayon-v">switch_pc</span> <span class="crayon-o">=</span> <span class="crayon-v">window</span><span class="crayon-sy">.</span><span class="crayon-v">location</span><span class="crayon-sy">.</span><span class="crayon-v">hash</span><span class="crayon-sy">;</span></div>
+>
+> <div id="crayon-55a3bc59c7646430018560-5" class="crayon-line"><span class="crayon-h">    </span><span class="crayon-st">if</span><span class="crayon-sy">(</span><span class="crayon-v">switch_pc</span> <span class="crayon-o">!=</span> <span class="crayon-s">"#pc"</span><span class="crayon-sy">)</span><span class="crayon-sy">{</span></div>
+>
+> <div id="crayon-55a3bc59c7646430018560-6" class="crayon-line crayon-striped-line"><span class="crayon-h">        </span><span class="crayon-st">if</span><span class="crayon-sy">(</span><span class="crayon-c ">/iphone|ipod|ipad|ipad|Android|nokia|blackberry|webos|webos|webmate|bada|lg|ucweb|skyfire|sony|ericsson|mot|samsung|sgh|lg|philips|panasonic|alcatel|lenovo|cldc|midp|wap|mobile/i</span><span class="crayon-sy">.</span><span class="crayon-e">test</span><span class="crayon-sy">(</span><span class="crayon-v">navigator</span><span class="crayon-sy">.</span><span class="crayon-v">userAgent</span><span class="crayon-sy">.</span><span class="crayon-e">toLowerCase</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">{</span></div>
+>
+> <div id="crayon-55a3bc59c7646430018560-7" class="crayon-line"><span class="crayon-h">            </span><span class="crayon-st">Switch</span><span class="crayon-sy">.</span><span class="crayon-v">location</span><span class="crayon-sy">.</span><span class="crayon-e ">href</span><span class="crayon-o">=</span><span class="crayon-s">'<?php curMobURL(); ?>'</span><span class="crayon-sy">;</span></div>
+>
+> <div id="crayon-55a3bc59c7646430018560-8" class="crayon-line crayon-striped-line"><span class="crayon-h">        </span><span class="crayon-sy">}</span></div>
+>
+> <div id="crayon-55a3bc59c7646430018560-9" class="crayon-line"><span class="crayon-h">    </span><span class="crayon-sy">}</span></div>
+>
+> <div id="crayon-55a3bc59c7646430018560-10" class="crayon-line crayon-striped-line"><span class="crayon-sy">}</span><span class="crayon-sy">)</span><span class="crayon-sy">(</span><span class="crayon-r">window</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div>
+>
+> <div id="crayon-55a3bc59c7646430018560-11" class="crayon-line"><span class="crayon-ta"></script></span></div>
+>
+> </div>
+<div class="crayon-main"></div>
+</div>
+做完这些操作之后，现在你可以试试效果了：
+<p>先清除所有静态缓存和手机浏览器缓存，然后用手机访问网站，比如<a target="_blank" rel="noopener external nofollow noreferrer" href="http://zhangge.net">http://zhangge.net</a>，观察是否会跳转到<a target="_blank" rel="noopener external nofollow noreferrer" href="http://m.zhangge.net">http://m.zhangge.net</a>，并且展示的是移动样式！</p>
+<h3 id="四、添加手动切换功能"><a class="headerlink" href="#四、添加手动切换功能"></a>四、添加手动切换功能</h3>
+<p>切换正常后，你还可以依葫芦画瓢，在移动主题的footer.php加上手动切换链接，详见张戈博客底部！</p>
+<p>具体做法：将以下代码添加到移动版主题目录下的footer.php相应位置即可。</p>
+<div id="crayon-55a3bc59c7659094643771" class="crayon-syntax crayon-theme-diy crayon-font-consolas crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover">
+> <div class="crayon-plain-wrap">
+>
+> <div id="crayon-55a3bc59c7659094643771-1" class="crayon-line"><span class="crayon-c">/* 下面的curlPcURL函数也可以添加到移动主题的functions.php中（但是切记不要重复添加！） */</span></div>
+>
+> <div id="crayon-55a3bc59c7659094643771-2" class="crayon-line crayon-striped-line"><span class="crayon-t">function</span> <span class="crayon-e">curPcURL</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span> <span class="crayon-sy">{</span></div>
+>
+> <div id="crayon-55a3bc59c7659094643771-3" class="crayon-line"><span class="crayon-h">   </span><span class="crayon-c">/* 获取当前页面地址 */</span></div>
+>
+> <div id="crayon-55a3bc59c7659094643771-4" class="crayon-line crayon-striped-line"><span class="crayon-h">    </span><span class="crayon-v">$current_url</span> <span class="crayon-o">=</span> <span class="crayon-e">home_url</span><span class="crayon-sy">(</span><span class="crayon-e">add_query_arg</span><span class="crayon-sy">(</span><span class="crayon-t">array</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div>
+>
+> <div id="crayon-55a3bc59c7659094643771-5" class="crayon-line"><span class="crayon-h">   </span><span class="crayon-c">/* 将地址中的http://m.替换为http:// */</span></div>
+>
+> <div id="crayon-55a3bc59c7659094643771-6" class="crayon-line crayon-striped-line"><span class="crayon-h">    </span><span class="crayon-v">$target_url</span> <span class="crayon-o">=</span> <span class="crayon-e">str_replace</span><span class="crayon-sy">(</span><span class="crayon-s">"http://m."</span><span class="crayon-sy">,</span><span class="crayon-s">"http://"</span><span class="crayon-sy">,</span><span class="crayon-s">"$current_url"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div>
+>
+> <div id="crayon-55a3bc59c7659094643771-7" class="crayon-line"><span class="crayon-h">   </span><span class="crayon-c">/* 过滤一些留言和分页页面 */</span></div>
+>
+> <div id="crayon-55a3bc59c7659094643771-8" class="crayon-line crayon-striped-line"><span class="crayon-h">    </span><span class="crayon-st">if</span> <span class="crayon-sy">(</span><span class="crayon-e">is_single</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span> <span class="crayon-sy">{</span></div>
+>
+> <div id="crayon-55a3bc59c7659094643771-9" class="crayon-line"><span class="crayon-h">        </span><span class="crayon-v">$target_url</span> <span class="crayon-o">=</span> <span class="crayon-e">preg_replace</span><span class="crayon-sy">(</span><span class="crayon-s">'/(\/comment|page|#).*$/'</span><span class="crayon-sy">,</span><span class="crayon-s">''</span><span class="crayon-sy">,</span><span class="crayon-v">$target_url</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div>
+>
+> <div id="crayon-55a3bc59c7659094643771-10" class="crayon-line crayon-striped-line"><span class="crayon-h">    </span><span class="crayon-sy">}</span> <span class="crayon-st">else</span> <span class="crayon-sy">{</span></div>
+>
+> <div id="crayon-55a3bc59c7659094643771-11" class="crayon-line"><span class="crayon-h">        </span><span class="crayon-v">$target_url</span> <span class="crayon-o">=</span> <span class="crayon-e">preg_replace</span><span class="crayon-sy">(</span><span class="crayon-s">'/(comment|page|#).*$/'</span><span class="crayon-sy">,</span><span class="crayon-s">''</span><span class="crayon-sy">,</span><span class="crayon-v">$target_url</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span><span class="crayon-h">   </span></div>
+>
+> <div id="crayon-55a3bc59c7659094643771-12" class="crayon-line crayon-striped-line"><span class="crayon-h">    </span><span class="crayon-sy">}</span></div>
+>
+> <div id="crayon-55a3bc59c7659094643771-13" class="crayon-line"><span class="crayon-h">    </span><span class="crayon-k ">echo</span> <span class="crayon-v">$target_url</span><span class="crayon-sy">;</span></div>
+>
+> <div id="crayon-55a3bc59c7659094643771-14" class="crayon-line crayon-striped-line"><span class="crayon-sy">}</span></div>
+>
+> <div id="crayon-55a3bc59c7659094643771-15" class="crayon-line"><span class="crayon-ta">?></span></div>
+>
+> <div id="crayon-55a3bc59c7659094643771-16" class="crayon-line crayon-striped-line"><span class="crayon-o"><</span><span class="crayon-o">!</span><span class="crayon-o">--</span> 切换到电脑版的按钮 <span class="crayon-o">--</span><span class="crayon-o">></span></div>
+>
+> <div id="crayon-55a3bc59c7659094643771-17" class="crayon-line"><span class="crayon-o"><</span><span class="crayon-i">a</span> <span class="crayon-i">href</span><span class="crayon-o">=</span><span class="crayon-s">"<span class="crayon-ta"><?php</span> <span class="crayon-e">curPcURL</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span> <span class="crayon-ta">?></span>#pc"</span><span class="crayon-o">></span>电脑版<span class="crayon-o"><</span><span class="crayon-o">/</span><span class="crayon-i">a</span><span class="crayon-o">></span></div>
+>
+> </div>
+<div class="crayon-main"></div>
+</div>
+Ps：电脑版切换到移动版，以及PC端用户访问移动版自动跳到电脑版的方法，请自行依葫芦画瓢添加代码，张戈就不赘述了**（实在不懂的可以参考张戈博客的PC和移动页面的源代码）。**
+<hr>
+<p>全部完成之后，你就可以开启360网站卫士的全部静态缓存功能了：</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://res.zhangge.net/wp-content/uploads/2014/05/360cdn1.png"><img src="http://res.zhangge.net/wp-content/uploads/2014/05/360cdn1.png?w=480" alt="" loading="lazy"></a></p>
+<p>Ps：记得移动二级域名同样设置下整站缓存，移动端开启速度快到无法想象！</p>
+<p>而且可以发现，上图的三项缓存功能并没有缓存到单页面和分类页面，于是你可以下拉，如下图添加强行缓存地址：</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://res.zhangge.net/wp-content/uploads/2014/05/360cdn2.png"><img src="http://res.zhangge.net/wp-content/uploads/2014/05/360cdn2.png?w=480" alt="" loading="lazy"></a></p>
+<p>设置后，一分钟左右就会生效！用手机访问将直接跳至移动站，完美实现了在静态缓存的情况下的站点切换！</p>
+<p>另外，非响应式网站使用【**本地静态缓存插件】**也不再纠结偶尔PC机访问网站出现手机页面的尴尬事儿！</p>
+<p>这就是JS判断UA的天然优势！静态页面下依然坚挺有效！</p>
+<p>本文方法理论上同样适用于其他支持整站静态缓存的CDN，比如百度加速乐，有兴趣的朋友可以试试看！</p>
+<p>本文部分代码和插件仅支持WordPress，其他建站程序请参考解决思路，自行折腾吧~</p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>本文标题：</span>个人博客-移动主题-在360网站卫士缓存全开情况下的切换</p><p><span>文章作者：</span>凹凸曼</p><p><span>发布时间：</span>2014-07-12</p><p><span>最后更新：</span>2024-09-28</p><p><span>原始链接：</span><a href="/mobile-view-with-360.html">https://sobaigu.com/mobile-view-with-360.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://sobaigu.com/mobile-view-with-360.html"></i></span></p><p><span>版权声明：</span>转载请务必保留本文链接和注明内容来源，并自负版权等法律责任。</p></div><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7390437336363898" data-ad-slot="7454544896" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});
+</script><div class="tags"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WordPress/" rel="tag">WordPress</a></li></ul></div><div class="post-nav"><a class="pre" href="/chromium-display-chinese-in-ubuntu.html">Ubuntu-chromium地址栏不显示中文及标题栏中文显示乱码问题</a><a class="next" href="/ssh-login-ubuntu-with-root.html">Ubuntu环境-使用root账号ssh登陆</a></div><div class="nofancybox" id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://waline.sobaigu.com',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+  login: 'disable',
+  reaction: true,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/s" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="sobaigu.com"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 网站标签</i></div><div class="tagcloud"><a href="/tags/Ubuntu/" style="font-size: 19.71px;">Ubuntu</a> <a href="/tags/Linux/" style="font-size: 23.82px;">Linux</a> <a href="/tags/Windows/" style="font-size: 22.65px;">Windows</a> <a href="/tags/%E6%99%92%E9%85%B7%E8%BD%AF/" style="font-size: 25px;">晒酷软</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 22.06px;">软件</a> <a href="/tags/%E6%B7%B7%E6%8A%80%E8%83%BD/" style="font-size: 20.88px;">混技能</a> <a href="/tags/WordPress/" style="font-size: 18.53px;">WordPress</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99/" style="font-size: 23.24px;">博客建站</a> <a href="/tags/%E7%B2%BE%E7%AE%80%E7%BB%BF%E8%89%B2%E5%8E%BB%E5%B9%BF%E5%91%8A%E7%89%88/" style="font-size: 24.41px;">精简绿色去广告版</a> <a href="/tags/%E6%B1%9F%E6%B9%96/" style="font-size: 16.18px;">江湖</a> <a href="/tags/shell/" style="font-size: 20.29px;">shell</a> <a href="/tags/shadowsocks/" style="font-size: 15px;">shadowsocks</a> <a href="/tags/%E5%8A%A0%E9%80%9F%E4%BB%A3%E7%90%86/" style="font-size: 21.47px;">加速代理</a> <a href="/tags/aardio/" style="font-size: 17.94px;">aardio</a> <a href="/tags/python/" style="font-size: 15.59px;">python</a> <a href="/tags/%E6%89%8B%E6%9C%BA/" style="font-size: 17.35px;">手机</a> <a href="/tags/Hexo/" style="font-size: 19.12px;">Hexo</a> <a href="/tags/%E6%B7%98%E5%AE%9D/" style="font-size: 15px;">淘宝</a> <a href="/tags/%E7%BD%91%E8%B5%9A/" style="font-size: 15px;">网赚</a> <a href="/tags/%E5%88%B7%E5%8D%95/" style="font-size: 15px;">刷单</a> <a href="/tags/v2ray/" style="font-size: 16.76px;">v2ray</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 16.76px;">教程</a> <a href="/tags/hugo/" style="font-size: 15px;">hugo</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%B8%81/" style="font-size: 15.59px;">虚拟币</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 近期文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/windows-iis-log-with-360xingtu-webview.html">网站服务器使用360星图自动分析IIS日志，并通过网页浏览</a></li><li class="post-list-item"><a class="post-list-link" href="/webhook-install-as-service-in-windows-server.html">Windows Server 部署 webhook 服务，并注册为系统服务守护</a></li><li class="post-list-item"><a class="post-list-link" href="/iis-charset-chinese.html">解决 IIS W3C格式日志中中文路径乱码问题</a></li><li class="post-list-item"><a class="post-list-link" href="/bat-git-clone-auto-public.html">一个BAT批处理实现HTML网页自动同步发布到Windows Server</a></li><li class="post-list-item"><a class="post-list-link" href="/DNS-PROBE-STARTED-issue-on-edge-in-windows-server.html">解决Windows服务器开一段时间edge浏览器就 DNS_PROBE_STARTED 错误</a></li><li class="post-list-item"><a class="post-list-link" href="/bot-spider-names.html">最新搜索引擎蜘蛛机器人User Agent名称</a></li><li class="post-list-item"><a class="post-list-link" href="/linux-jq-syntax-list.html">常用 linux jq 命令语法整理</a></li><li class="post-list-item"><a class="post-list-link" href="/software-postfix-mailinfo-hostname.html">宝塔邮局优化解决 `hostname` 信息得分大幅提升</a></li><li class="post-list-item"><a class="post-list-link" href="/git-set-proxy-for-github.html">设置Git通过代理连接，解决GitHub仓库无法更新等</a></li><li class="post-list-item"><a class="post-list-link" href="/composer-upgrade-error-A-facade-root-has-not-been-set.html">php composer.phar update：A facade root has not been set</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://waline.sobaigu.com" count="6" src="/js/recent-comments.js?v=1.0.2" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 内容分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%81%9A%E7%BD%91%E7%AB%99/">做网站</a><span class="category-list-count">97</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E7%BC%96%E7%A8%8B/">学编程</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%90%9E%E8%BD%AF%E4%BB%B6/">搞软件</a><span class="category-list-count">142</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%94%92%E7%9F%A5%E8%AF%86/">攒知识</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B7X%E5%9C%88/">混X圈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E7%B3%BB%E7%BB%9F/">玩系统</a><span class="category-list-count">126</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9E%8E%E9%80%BC%E9%80%BC/">瞎逼逼</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://sobaigu.com/software/" title="软件宝库" target="_blank">软件宝库</a><ul></ul><a href="http://www.jayxon.com/" title="JayXon" target="_blank">JayXon</a><ul></ul><a href="http://www.wubase.com/" title="网联基地" target="_blank">网联基地</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">搜百谷.</a> Powered by<a rel="nofollow" target="_blank" href="http://sobaigu.com"> 凹凸曼.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script></div></body></html>

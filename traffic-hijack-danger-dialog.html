@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="互联网精神病患者小站，始终秉承建站理念：分享是种美德，好人一生平安。"><meta name="keywords" content="网络代理,怎么访问外网,小火箭怎么安装,美国VPS,自定义PAC规则,Hexo博客建站,aardio编程,消费USDT,USDC信用卡,数字货币信用卡,虚拟币出金卡,U币消费卡"><title>流量劫持系列6_浮层登录框的隐患 | 搜百谷</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script src="https://www.googletagmanager.com/gtag/js?id=UA-22119753-2" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-22119753-2');
+</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 7.1.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">流量劫持系列6_浮层登录框的隐患</h1><a id="logo" href="/.">搜百谷</a><p class="description">达则兼济天下尤物，科技改变世界嫩模！</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/software/"><i class="fa fa-university"> 宝库</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">流量劫持系列6_浮层登录框的隐患</h1><div class="post-meta">2015-05-21<span> | </span><span class="category"><a href="/categories/%E6%90%9E%E8%BD%AF%E4%BB%B6/">搞软件</a></span><span>：</span><span>流量劫持</span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 2.3k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 7</span><span class="post-meta-item-text"> 分钟</span></span></span></div><a class="disqus-comment-count" href="/traffic-hijack-danger-dialog.html#waline"><span class="waline-comment-count" id="/traffic-hijack-danger-dialog.html"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E7%9A%84%E7%99%BB%E5%BD%95%E6%A1%86"><span class="toc-number">1.</span> <span class="toc-text">传统的登录框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8E%E4%B8%BD%E7%9A%84%E7%99%BB%E5%BD%95%E6%A1%86"><span class="toc-number">2.</span> <span class="toc-text">华丽的登录框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-%E9%A1%B5%E9%9D%A2%E7%94%A8-HTTPS-%E6%9C%89%E6%84%8F%E4%B9%89%E5%90%97%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">HTTP 页面用 HTTPS 有意义吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%92%8C%E3%80%8E%E7%BC%93%E5%AD%98%E6%8A%95%E6%AF%92%E3%80%8F%E9%85%8D%E5%90%88%E5%87%BA%E5%87%BB"><span class="toc-number">4.</span> <span class="toc-text">和『缓存投毒』配合出击</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E7%99%BB%E5%BD%95"><span class="toc-number">4.1.</span> <span class="toc-text">传统登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E5%B1%82%E7%99%BB%E5%BD%95"><span class="toc-number">4.2.</span> <span class="toc-text">浮层登录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E9%80%86%E7%9A%84%E8%AE%B0%E5%BF%86"><span class="toc-number">5.</span> <span class="toc-text">不可逆的记忆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%80%A7%E5%8D%87%E7%BA%A7"><span class="toc-number">6.</span> <span class="toc-text">安全性升级</span></a></li></ol></div></div><div class="post-content"><h2 id="传统的登录框"><a class="headerlink" href="#传统的登录框"></a>传统的登录框</h2>
+<p>在之前的文章<a href="/traffic-hijack-harm.html">流量劫持危害</a>详细讲解了 HTTP 的高危性，以至于重要的操作都使用 HTTPS 协议，来保障流量在途中的安全。</p>
+<p><img src="http://fex.baidu.com/img/danger-behind-popup-login-dialog/traditional-login.png" alt="" loading="lazy"></p>
+<p>这是最经典的登录模式。尽管主页面并没有开启 HTTPS，但登录时会跳转到一个安全页面来进行，所以整个过程仍是比较安全的 —— 至少在登录页面是安全的。</p>
+<p>对于这种安全页面的登录模式，黑客硬要下手仍是有办法的。在之前的文章里也列举了几种最常用的方法：拦截 HTTPS 向下转型、伪造证书、跳转钓鱼网站。</p>
+<p><img src="http://fex.baidu.com/img/danger-behind-popup-login-dialog/traditional-danger.png" alt="" loading="lazy"></p>
+<p>其中转型 HTTPS 的手段最为先进，甚至一些安全意识较强的用户也时有疏忽。</p>
+<p>然而，用户的意识和知识总是在不断提升的。尤其在如今各种网上交易的时代，安全常识广泛普及，用户在账号登录时会格外留心，就像过马路时那样变得小心翼翼。</p>
+<p>久而久之，用户的火眼金睛一扫地址栏即可识别破绽。</p>
+<p><img src="http://fex.baidu.com/img/danger-behind-popup-login-dialog/hehe.png" alt="" loading="lazy"></p>
+<p>因此，这种传统的登录模式，仍具备一定的安全性，至少能给用户提供识别真假的机会。</p>
+<h2 id="华丽的登录框"><a class="headerlink" href="#华丽的登录框"></a>华丽的登录框</h2>
+<p>不知从何时起，人们开始热衷在网页里模仿传统应用程序的界面。无论控件、窗口还是交互体验，纷纷向着本地程序靠拢，效果越做越绚。</p>
+<p>然而华丽的背后，其本质仍是一个网页，自然掩盖不了网页的安全缺陷。</p>
+<p>当网页特效蔓延到一些重要数据的交互 —— 例如账号登录时，风险也随之产生。因为它改变了用户的使用习惯，同时也彻底颠覆了传统的意识。</p>
+<p><img src="http://fex.baidu.com/img/danger-behind-popup-login-dialog/modern-login.png" alt="" loading="lazy"></p>
+<p>乍一看，似乎也没什么问题。虽然未使用登录页跳转，但数据仍通过 HTTPS 传输，途中还是无法被截获。</p>
+<h2 id="HTTP-页面用-HTTPS-有意义吗？"><a class="headerlink" href="#HTTP-页面用-HTTPS-有意义吗？"></a>HTTP 页面用 HTTPS 有意义吗？</h2>
+<p>如果认为这类登录框没什么大问题，显然还没领悟到『流量劫持』的精髓 —— 流量不是单向的，而是有进也有出。</p>
+<p>能捕获你『出流量』的黑客，大多也有办法控制你的『入流量』。这在流量劫持<a target="_blank" rel="noopener external nofollow noreferrer" href="http://fex.baidu.com/blog/2014/04/traffic-hijack/">第一篇</a>里也详细列举了。</p>
+<p>使用 HTTPS 确实能保障通信的安全。但在这个场合里，它只能保障『发送』的数据，对于『接收』的流量，则完全不在其保护范围内。</p>
+<p>因为整个登录框都当作『虚拟窗口』嵌套在主页面里的，因此其中的一切都在同个页面环境里。而主页面使用的仍是不安全的 HTTP 协议，所以注入的 XSS 代码能轻而易举的控制登录框。</p>
+<p><img src="http://fex.baidu.com/img/danger-behind-popup-login-dialog/modern-login-inject.png" alt="" loading="lazy"></p>
+<p>当然，或许你会说这只是设计缺陷。若是直接嵌入 HTTPS 登录页的 iframe 框架，那就会因同源策略而无法被 XSS 控制了。</p>
+<p>这样的改进确实能提高一些安全性，但也只是略微的。既然我们能控制主页面，里面显示什么内容完全可以由 XSS 说了算。不论什么登录框、框架页，甚至安全插件，我们都可以将其删除，用看起来完全相同的文本框代替。得到账号后，通过后台反向代理实现登录，然后通知前端脚本伪造一个登录成功的界面。</p>
+<p>所以，HTTPS 被用在 HTTP 页面里，意义就大幅下降了。</p>
+<h2 id="和『缓存投毒』配合出击"><a class="headerlink" href="#和『缓存投毒』配合出击"></a>和『缓存投毒』配合出击</h2>
+<p>在流量劫持<a href="/traffic-hijack-harm.html">第二篇</a>里提到『HTTP 缓存投毒』这一概念，只要流量暂时性的被劫持，都可导致缓存长期感染。但这种攻击有个前提，必须事先找到站点下较稳定的脚本资源，做投毒的对象。</p>
+<h3 id="传统登录"><a class="headerlink" href="#传统登录"></a>传统登录</h3>
+<p>在传统的登录模式里，缓存投毒非常难以利用：</p>
+<p>HTTPS 资源显然无法被感染。</p>
+<p>而使用 HTTPS 向下转型的方案，也会因为离开劫持环境，而无法访问中间人的 HTTP 版登陆页面，导致缓存失效；或者这个真实的 HTTP 版的登录页面根本就不接受你的本地缓存，直接重定向到正常的 HTTPS 页面。</p>
+<p>因此只有在主页面上，修改链接地址，让用户跳转到钓鱼网站去登录，才能勉强利用。</p>
+<h3 id="浮层登录"><a class="headerlink" href="#浮层登录"></a>浮层登录</h3>
+<p>制作一个精良的浮层登录框，需要不少的界面代码，所以经常引用 jQuery 这类通用脚本库。而这些脚本往往是长久不会修改的，因此是缓存投毒的绝好原料。</p>
+<p>所以，浮层登录框的存在，让『缓存投毒』有了绝佳的用武之地。</p>
+<p>再之前的文章 <a href="/traffic-hijack-wifi-js.html">WiFi流量劫持 —— JS脚本缓存投毒</a>，演示了如何利用 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.163.com">www.163.com</a> 下的某个长缓存脚本进行投毒，最终利用网易的浮层登录框获取账号。尽管网易也使用 HTTPS 传输账号数据，但在流量攻击面前不堪一击。</p>
+<p>尽管这种登录模式风险重重，但最近百度也升级成浮层登录框，并且还是所有产品。所以，我们再次尝试那套的古老方法，看看在如今是否仍能发起攻击。</p>
+<p>我们选几个最常用的产品线，进行一次缓存扫描：</p>
+<p><img src="http://fex.baidu.com/img/danger-behind-popup-login-dialog/cache-sniffer.png" alt="" loading="lazy"></p>
+<p>果然，每个产品线里都有长期未修改、并且缓存很久的脚本库。</p>
+<p>接着开启我们的钓鱼热点，让前来连接的用户，访问任何一个页面都能中毒。</p>
+<p>为了让钓鱼热点更隐蔽，这次我们不再使用路由器，而是利用报废的安卓手机（下一篇文章详细讲解如何实现）。</p>
+<p><img src="http://fex.baidu.com/img/danger-behind-popup-login-dialog/phishing-wifi.jpg" alt="" loading="lazy"></p>
+<p>为了不影响附近办公，本文就不演示同名热点钓鱼了，所以随便取了个名字。</p>
+<p>接着让『受害者』来连一下我们的热点：</p>
+<p><img src="http://fex.baidu.com/img/danger-behind-popup-login-dialog/connect-wifi.jpg" alt="" loading="lazy"></p>
+<p>之前正好开着网页，所以很快收到了 HTTP 请求。我们在任何网页里注入 XSS，进行缓存投毒。</p>
+<p>（由于原理和之前讲一样，所以这里就省略步骤了）</p>
+<p>然后重启电脑，连上正常的 WiFi（模拟用户回到安全的场合）。</p>
+<p>打开 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://tiebai.baidu.com">tiebai.baidu.com</a>，一切正常。</p>
+<p><img src="http://fex.baidu.com/img/danger-behind-popup-login-dialog/tieba.jpg" alt="" loading="lazy"></p>
+<p>开始登录了。。。</p>
+<p>看看这种浮层登录框，能否躲避我们的从沉睡中唤起的 XSS 脚本：</p>
+<p><img src="http://fex.baidu.com/img/danger-behind-popup-login-dialog/tieba-poisoning.jpg" alt="" loading="lazy"></p>
+<p>奇迹依然发生！</p>
+<p>由于之前有过详细的原理讲解，因此这里就不再累述了。不过在实战中，缓存投毒+非安全页面登录框，是批量获取明文账号的最理想手段。</p>
+<h2 id="不可逆的记忆"><a class="headerlink" href="#不可逆的记忆"></a>不可逆的记忆</h2>
+<p>如果现在再将登录模式换回传统的，还来得及吗？显然，为时已晚。</p>
+<p>当网站第一次从传统登录，升级到浮层登录时，用户大多不会立即输入，而是『欣赏』下这个新版本的创意。确认不是病毒广告弹出的窗口，而是真的官方设计的，才开始登录。</p>
+<p>当用户多次使用浮层登录框之后，慢慢也就接受了这种新模式。</p>
+<p>即使未来，网站取消了浮层登录，黑客使用 XSS 创建一个类似的浮层，用户仍会毫不犹豫的输入账号。因为在他们的记忆里，官方就曾使用过，仍然对其保留着对其信任度。</p>
+<h2 id="安全性升级"><a class="headerlink" href="#安全性升级"></a>安全性升级</h2>
+<p>既然这个过程是不可逆的，撤回传统模式意义也不大。事实上，使用浮层的用户体验还是不错的，对于不了解安全性的用户来说，还是喜欢华丽的界面。</p>
+<p>要保留体验，又得考虑安全性，最好的解决方案就是将所有的页面都使用 HTTPS，将站点武装到牙齿，不留一丝安全缝隙。这也是未来网站的趋势。</p>
+<p> </p>
+<p>原文:<a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.cnblogs.com/index-html/p/traffic-hijack-danger-dialog.html">http://www.cnblogs.com/index-html/p/traffic-hijack-danger-dialog.html</a></p>
+<p> </p>
+<p>流量劫持系列文章目录:</p>
+<p><a href="/traffic-hijack.html" title="[混技能]流量劫持系列1_流量劫持_常见方法_是如何产生的?">流量劫持系列1_流量劫持_常见方法_是如何产生的?</a></p>
+<p><a href="/traffic-hijack-harm.html">流量劫持系列2_流量劫持能有多大危害?</a></p>
+<p><a href="/traffic-hijack-wifi-phone.html">流量劫持系列3_WiFi流量劫持_把笔记本改造成无线路由器_手机抓包</a></p>
+<p><a href="/traffic-hijack-in-everypage.html">流量劫持系列4_WiFi流量劫持_浏览任意页面即可中毒！</a></p>
+<p><a href="/traffic-hijack-wifi-js.html">流量劫持系列5_WiFi流量劫持_JS脚本缓存投毒</a></p>
+<p><a href="/traffic-hijack-danger-dialog.html">流量劫持系列6_浮层登录框的隐患</a></p>
+<p><a href="/traffic-hijack-sslstrip.html">流量劫持系列7_SSLStrip 的未来_HTTPS 前端劫持</a></p>
+<p><a href="/traffic-hijack-sslstrip-plus.html">流量劫持系列8_SSLStrip终极版_location瞒天过海</a></p>
+<p><a href="/traffic-hijack-mitm-cookie-sniffer.html">流量劫持系列9_沉默中的狂怒_Cookie 大喷发</a></p>
+<p><a href="/traffic-hijack-hsts.html">流量劫持系列10_躲避HSTS的HTTPS劫持</a></p>
+<p><a href="/traffic-hijack-web-hijack.html">流量劫持系列11_浅谈网站流量劫持防范措施</a></p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>本文标题：</span>流量劫持系列6_浮层登录框的隐患</p><p><span>文章作者：</span>凹凸曼</p><p><span>发布时间：</span>2015-05-21</p><p><span>最后更新：</span>2024-09-28</p><p><span>原始链接：</span><a href="/traffic-hijack-danger-dialog.html">https://sobaigu.com/traffic-hijack-danger-dialog.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://sobaigu.com/traffic-hijack-danger-dialog.html"></i></span></p><p><span>版权声明：</span>转载请务必保留本文链接和注明内容来源，并自负版权等法律责任。</p></div><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7390437336363898" data-ad-slot="7454544896" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});
+</script><div class="tags"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B7%E6%8A%80%E8%83%BD/" rel="tag">混技能</a></li></ul></div><div class="post-nav"><a class="pre" href="/traffic-hijack-sslstrip.html">流量劫持系列7_SSLStrip 的未来_HTTPS 前端劫持</a><a class="next" href="/traffic-hijack-wifi-js.html"> 混技能流量劫持系列5_WiFi流量劫持_JS脚本缓存投毒</a></div><div class="nofancybox" id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://waline.sobaigu.com',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+  login: 'disable',
+  reaction: true,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/s" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="sobaigu.com"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 网站标签</i></div><div class="tagcloud"><a href="/tags/Ubuntu/" style="font-size: 19.71px;">Ubuntu</a> <a href="/tags/Linux/" style="font-size: 23.82px;">Linux</a> <a href="/tags/Windows/" style="font-size: 22.65px;">Windows</a> <a href="/tags/%E6%99%92%E9%85%B7%E8%BD%AF/" style="font-size: 25px;">晒酷软</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 22.06px;">软件</a> <a href="/tags/%E6%B7%B7%E6%8A%80%E8%83%BD/" style="font-size: 20.88px;">混技能</a> <a href="/tags/WordPress/" style="font-size: 18.53px;">WordPress</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99/" style="font-size: 23.24px;">博客建站</a> <a href="/tags/%E7%B2%BE%E7%AE%80%E7%BB%BF%E8%89%B2%E5%8E%BB%E5%B9%BF%E5%91%8A%E7%89%88/" style="font-size: 24.41px;">精简绿色去广告版</a> <a href="/tags/%E6%B1%9F%E6%B9%96/" style="font-size: 16.18px;">江湖</a> <a href="/tags/shell/" style="font-size: 20.29px;">shell</a> <a href="/tags/shadowsocks/" style="font-size: 15px;">shadowsocks</a> <a href="/tags/%E5%8A%A0%E9%80%9F%E4%BB%A3%E7%90%86/" style="font-size: 21.47px;">加速代理</a> <a href="/tags/aardio/" style="font-size: 17.94px;">aardio</a> <a href="/tags/python/" style="font-size: 15.59px;">python</a> <a href="/tags/%E6%89%8B%E6%9C%BA/" style="font-size: 17.35px;">手机</a> <a href="/tags/Hexo/" style="font-size: 19.12px;">Hexo</a> <a href="/tags/%E6%B7%98%E5%AE%9D/" style="font-size: 15px;">淘宝</a> <a href="/tags/%E7%BD%91%E8%B5%9A/" style="font-size: 15px;">网赚</a> <a href="/tags/%E5%88%B7%E5%8D%95/" style="font-size: 15px;">刷单</a> <a href="/tags/v2ray/" style="font-size: 16.76px;">v2ray</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 16.76px;">教程</a> <a href="/tags/hugo/" style="font-size: 15px;">hugo</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%B8%81/" style="font-size: 15.59px;">虚拟币</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 近期文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/windows-iis-log-with-360xingtu-webview.html">网站服务器使用360星图自动分析IIS日志，并通过网页浏览</a></li><li class="post-list-item"><a class="post-list-link" href="/webhook-install-as-service-in-windows-server.html">Windows Server 部署 webhook 服务，并注册为系统服务守护</a></li><li class="post-list-item"><a class="post-list-link" href="/iis-charset-chinese.html">解决 IIS W3C格式日志中中文路径乱码问题</a></li><li class="post-list-item"><a class="post-list-link" href="/bat-git-clone-auto-public.html">一个BAT批处理实现HTML网页自动同步发布到Windows Server</a></li><li class="post-list-item"><a class="post-list-link" href="/DNS-PROBE-STARTED-issue-on-edge-in-windows-server.html">解决Windows服务器开一段时间edge浏览器就 DNS_PROBE_STARTED 错误</a></li><li class="post-list-item"><a class="post-list-link" href="/bot-spider-names.html">最新搜索引擎蜘蛛机器人User Agent名称</a></li><li class="post-list-item"><a class="post-list-link" href="/linux-jq-syntax-list.html">常用 linux jq 命令语法整理</a></li><li class="post-list-item"><a class="post-list-link" href="/software-postfix-mailinfo-hostname.html">宝塔邮局优化解决 `hostname` 信息得分大幅提升</a></li><li class="post-list-item"><a class="post-list-link" href="/git-set-proxy-for-github.html">设置Git通过代理连接，解决GitHub仓库无法更新等</a></li><li class="post-list-item"><a class="post-list-link" href="/composer-upgrade-error-A-facade-root-has-not-been-set.html">php composer.phar update：A facade root has not been set</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://waline.sobaigu.com" count="6" src="/js/recent-comments.js?v=1.0.2" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 内容分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%81%9A%E7%BD%91%E7%AB%99/">做网站</a><span class="category-list-count">97</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E7%BC%96%E7%A8%8B/">学编程</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%90%9E%E8%BD%AF%E4%BB%B6/">搞软件</a><span class="category-list-count">142</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%94%92%E7%9F%A5%E8%AF%86/">攒知识</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B7X%E5%9C%88/">混X圈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E7%B3%BB%E7%BB%9F/">玩系统</a><span class="category-list-count">126</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9E%8E%E9%80%BC%E9%80%BC/">瞎逼逼</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://sobaigu.com/software/" title="软件宝库" target="_blank">软件宝库</a><ul></ul><a href="http://www.jayxon.com/" title="JayXon" target="_blank">JayXon</a><ul></ul><a href="http://www.wubase.com/" title="网联基地" target="_blank">网联基地</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">搜百谷.</a> Powered by<a rel="nofollow" target="_blank" href="http://sobaigu.com"> 凹凸曼.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script></div></body></html>

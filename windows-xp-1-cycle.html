@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="互联网精神病患者小站，始终秉承建站理念：分享是种美德，好人一生平安。"><meta name="keywords" content="网络代理,怎么访问外网,小火箭怎么安装,美国VPS,自定义PAC规则,Hexo博客建站,aardio编程,消费USDT,USDC信用卡,数字货币信用卡,虚拟币出金卡,U币消费卡"><title>Windows XP启动跑1圈就进系统 | 搜百谷</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script src="https://www.googletagmanager.com/gtag/js?id=UA-22119753-2" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-22119753-2');
+</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 7.1.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Windows XP启动跑1圈就进系统</h1><a id="logo" href="/.">搜百谷</a><p class="description">达则兼济天下尤物，科技改变世界嫩模！</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/software/"><i class="fa fa-university"> 宝库</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Windows XP启动跑1圈就进系统</h1><div class="post-meta">2012-11-17<span> | </span><span class="category"><a href="/categories/%E7%8E%A9%E7%B3%BB%E7%BB%9F/">玩系统</a></span><span>：</span><span>xp系统优化</span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 3.1k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 11</span><span class="post-meta-item-text"> 分钟</span></span></span></div><a class="disqus-comment-count" href="/windows-xp-1-cycle.html#waline"><span class="waline-comment-count" id="/windows-xp-1-cycle.html"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">瘦身行动</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">加速计划</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">我安全吗</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">其他技巧</span></a></li></ol></div></div><div class="post-content"><p>近日被人问起如何让系统启动更快，好久不研究，网上找了篇，写得还是很详细，收藏。谢谢原作者。</p>
+<p>原文出处：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://csunews.com/oblog4/asp.asp/eduedu/archives/2009/879.html">http://csunews.com/oblog4/asp.asp/eduedu/archives/2009/879.html</a></p>
+<p>第一步:进设备管理器，分别进<code>primary(second)de channel</code>属性，把不用的<code>device type</code>改成<code>none</code>。</p>
+<p>第二步:寻找</p>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\ControlSession Manager\Memory Management\Prefetch\Parameters</span><br></pre></td></tr></table></figure>
+<p>有一个键<code>EnablePrefetcher</code>把它的数值改为<code>1</code>。</p>
+<p>在C2433,98M,40G.试验过只跑一圈就进winxp了!</p>
+<h1>瘦身行动</h1>
+<p>1、在各种软硬件安装妥当之后，其实XP需要更新文件的时候就很少了。删除系统备份文件吧, 近3xxM：<code>开始→运行→sfc.exe /purgecache</code></p>
+<p>2、删除驱动备份：</p>
+<p><code>%system32%\drivercache\i386</code>目录下的<code>driver.cab</code>文件，通常这个文件是76M</p>
+<p>3、偶没有看help的习惯，所以保留着help目录下的东西对我来说是一种伤害，呵呵。。。都干掉，近4xM。</p>
+<p>4、一会在升级完成后你还会发现%Windows%多了许多类似<code>$NtUninstallQ311889$</code>这些目录，都干掉吧，1x-3xM。</p>
+<p>5、正好硬盘中还有win2000/server等，所以顺便把pagefile.sys文件都指向一个地方：<code>控制面板→系统→性能—高级→虚拟内存→更改</code>，注意要点“设置”才会生效。</p>
+<p>6、卸载不常用组件：用记事本修改</p>
+<p>%Windir%\inf\sysoc.inf</p>
+<p>用查找/替换功能，在查找框中输入,hide，全部替换为空。这样，就把所有的,hide都去掉了，存盘退出后再运行“添加-删除程序”，就会看见“添加/删除 Windows 组件”中多出不少选项；删除掉游戏啊，码表啊等不用的东西。</p>
+<p>7、删除Windowsime下不用的输入法，8xM。我重新安装了自己用的输入法。</p>
+<p>8、如果实在空间紧张，启用NTFS的压缩功能，这样还会少用2x% 的空间，不过我没作。</p>
+<p>9、关了系统还原，这破功能对我这样常下载、测试软件的人来说简直是灾难，用鼠标右健单击桌面上的“我的电脑”，选择“属性”，找到“系统还原”，选择“在所有驱动器上关闭系统还原”呵呵，又可以省空间了。</p>
+<p>10、还有几个文件，挺大的，也没什么用。。。。忘了名字 ：（ ，刚安装的系统可以用查找功能查找大于50M的文件来看看，应该能找到的。</p>
+<p>如果你能按照上面的过程做完，你的原本1.4G的XP，完全可以减少到800以下。<!--nextpage--></p>
+<h1>加速计划</h1>
+<p>WinXP的启动会有许多影响速度的功能，尽管ms说已经作最优化处理过，但对我们来说还是有许多可定制之处。我一般是这样来做的。</p>
+<p>1、修改注册表的run键，取消那几个不常用的东西，比如Windows Messenger 。</p>
+<p>启用注册表管理器：<code>开始→运行→Regedit</code>,找到</p>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run\MSMSGS /BACKGROUND</span><br><span class="line">#这个键值，右键删除，世界清静多了，顺便把那几个什么cfmon的都干掉吧</span><br></pre></td></tr></table></figure>
+<p>2、修改注册表来减少预读取，减少进度条等待时间，效果是进度条跑一圈就进入登录画面了，<code>开始→运行→regedit</code>启动注册表编辑器，找</p>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\Prefetch\Parameters</span><br></pre></td></tr></table></figure>
+<p>有一个键<code>EnablePrefetcher</code>把它的数值改为“1”。</p>
+<p>3、关闭系统属性中的特效，这可是简单有效的提速良方。点击<code>开始→控制面板→系统→高级→性能→设置</code>，在视觉效果中，设置为调整为最佳性能→确定即可。这样桌面就会和win2000很相似的，我还是挺喜欢XP的蓝色窗口，所以在“在窗口和按钮上使用视觉样式”打上勾，这样既能看到漂亮的蓝色界面，又可以加快速度。</p>
+<p>4、我用Windows commadner＋Winrar来管理文件，Win XP的ZIP支持对我而言连鸡肋也不如，因为不管我需不需要，开机系统就打开个zip支持，本来就闲少的系统资源又少了一分，点击开始→运行，敲入：<code>regsvr32 /u zipfldr.dll</code>双引号中间的，然后回车确认即可，成功的标志是出现个提示窗口，内容大致为：zipfldr.dll中的Dll UnrgisterServer成功。<!--nextpage--></p>
+<p>5、据说XP的一个系统服务Qos，这个调度要占用一定的网络带宽，像我这样的一毛不拔的人是无法忍受的，去掉方法是：开始菜单→运行→键入 gpedit.msc ，出现“组策略”窗口， 展开 “管理模板”→“网络” ， 展开 “QoS 数据包调度程序”， 在右边窗右键单击“限制可保留带宽” ，在属性中的“设置”中有“限制可保留带宽&quot; ，选择“已禁用”，确定即可。当上述修改完成并应用后，用户在网络连接的属性对话框内的一般属性标签栏中如果能够看到&quot;QoS Packet Scheduler（QoS 数据包调度程序）&quot;。说明修改成功，否则说明修改失败，顺便把网络属性中的那个Qos 协议也一起干掉（卸载）吧。</p>
+<p>6、快速浏览局域网络的共享</p>
+<p>通常情况下，Windows XP在连接其它计算机时，会全面检查对方机子上所有预定的任务，这个检查会让你等上30秒钟或更多时间。去掉的方法是开始→运行→Regedit→在注册表中找到</p>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\Current Version\Explorer\RemoteComputer\NameSpace</span><br></pre></td></tr></table></figure>
+<p>。在此键值下，会有个<code>&#123;D6277990-4C6A-11CF-87-00AA0060F5BF&#125;</code>键，把它删掉后，重新启动计算机，Windows XP就不再检查预定任务了，hoho~~~ ，速度明显提高啦！</p>
+<p>7、关掉调试器Dr. Watson</p>
+<p>我好像从win95年代开始一次也没用过这东西，可以这样取消：打开册表，找到</p>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug</span><br></pre></td></tr></table></figure>
+<p>子键分支，双击在它下面的Auto键值名称，将其“数值数据”改为0，最后按F5刷新使设置生效，这样就取消它的运行了。沿用这个思路，我们可以把所有具备调试功能的选项取消，比如蓝屏时出现的<code>memory.dmp</code>，在<code>我的电脑→属性→高级→设置→写入调试信息→选择无</code>等等。<!--nextpage--></p>
+<p>8、被我终止的服务列表以及相关说明</p>
+<p>1)alerter 错误警报</p>
+<p>2)automatic updates Windows 自动更新</p>
+<p>3)background intelligent transfer service 微软说使用空闲的网络带宽传数据</p>
+<p>4)clipbook 与远程电脑来共享剪贴板内容，我看还是免了吧</p>
+<p>5)Computer browser　说什么要维护网络更新列表</p>
+<p>6)DHCP client 我不需要这东西</p>
+<p>7)Distributed link tracking client 保持局域网连接更新等信息，偶很少用局域网，这东西占用4M左右内存。</p>
+<p>8)Distributed Transaction coordinator 协调***，和上面的差不多</p>
+<p>9)DNS Client 我不需要这东西</p>
+<p>10)Error reporting service 错误报告</p>
+<p>11)Event Log 系统日志纪录</p>
+<p>12)Fast user switching compatibility 用户切换</p>
+<p>13)help and support 帮助</p>
+<p>14)Human interface device access 据说是智能设备。。。</p>
+<p>15)IMAPI CD-burning COM service　偶不用这个刻碟</p>
+<p>16)Indexing service 索引，索引什么呢？</p>
+<p>17)Internet Connection Firewall(ICF) ICF防火墙</p>
+<p>18)IPSEC Services 这个我不懂，你想知道问Quack去</p>
+<p>19)Logical Disk manager administrative service 配置磁盘</p>
+<p>20)messenger 好像net send 等东西用的就是这个功能</p>
+<p>21)MS software shadow copy provider 卷复制备份的</p>
+<p>22)Net Logon 我可不想让黑客远程登录进来，关！</p>
+<p>23)Netmeeting remote desktop sharing 我不用netmeeting</p>
+<p>24)Network DDE　 动态数据交换传输</p>
+<p>25)Network DDE DSDM　和上面差不多</p>
+<p>26)Network Location Awareness 关，我的机子不作共享<!--nextpage--></p>
+<p>27)NTLM Security support provider－telnet　呵呵，关！</p>
+<p>28)Performance logs and alert 将系统状态写日志或发警告</p>
+<p>29)Portable media serial number 关！</p>
+<p>30)Print Spooler 打印机，不幸的是我的机子不连接Print ~</p>
+<ol start="31">
+<li>QoS RSVP 关！</li>
+</ol>
+<p>32)Remote desktop help session manager 远程帮助服务</p>
+<p>33)remote Procedure Call LOCATOR 管理RPC</p>
+<p>34)remote registry 远程管理注册表</p>
+<p>35)removable storage</p>
+<p>36)routing and remote access 我干脆禁用了它</p>
+<p>37)security accounts manager 我的系统只是一个客户系统，不用iis。</p>
+<p>38)smart card</p>
+<p>39)smart card helper 关！！！</p>
+<p>40)SSDP Discovery service 我用不到这个</p>
+<p>41)system event notification 如果是服务器肯定要记录的</p>
+<p>42)system restore service 系统还原服务</p>
+<p>43)task scheduler Windows 计划服务</p>
+<p>44)Telephony 拨号服务，我不拨号还不行吗？</p>
+<p>45)telnet</p>
+<p>46)terminal services 终端服务</p>
+<p>47)uninterruptible power supply UPS，我没有呀</p>
+<p>48)universal plug and play device host 太先进了点，用不到</p>
+<p>49)upload manager 关了也能传输文件的</p>
+<p>50)volume shadow copy 又是备份，晕</p>
+<p>51)webclient 没用过</p>
+<p>52)Windows Installer MSI服务，我一直关着。</p>
+<p>53)Windows image acquisition (WIA) 数码设备用的</p>
+<p>54)Windows management instrumentation driver extensions 关了</p>
+<p>55)Windows time 时间服务</p>
+<p>56)wireless zero configuration 无线网络，偶用不到的</p>
+<p>57)WMI perfromance adapter 关！</p>
+<p>这里面的一些服务是刚开始就是关的，但我忘了，所以只好把现在系统中关闭的服务基本都列了出来。你根据自己的情况酌情处理吧。<!--nextpage--></p>
+<h1>我安全吗</h1>
+<p>多了不谈，基本的共享还是得关的：</p>
+<p>修改注册表为以下两个样式：</p>
+<p>去除共享</p>
+<div class="dp-highlighter">
+<div class="bar"></div>
+<ol>
+<li><span><span>Windows Registry Editor Version 5.00   </span></span></li>
+<li><span>  </span></li>
+<li><span>HKEY_LOCAL_MACHINESYSTEMCurrentControlSetservicesLanmanServerParameters]   </span></li>
+<li><span>  </span></li>
+<li><span class="string">“AutoShareServer”</span><span>=dword:00000000   </span></li>
+<li><span>  </span></li>
+<li><span class="string">“AutoSharewks”</span><span>=dword:00000000  </span></li>
+</ol>
+</div>
+去除IPC$管理
+<div class="dp-highlighter">
+<div class="bar"></div>
+<ol>
+<li><span><span>Windows Registry Editor Version 5.00   </span></span></li>
+<li><span>[HKEY_LOCAL_MACHINESYSTEMCurrentControlSetControlLsa]   </span></li>
+<li><span class="string">“restrictanonymous”</span><span>=dword:00000001  </span></li>
+</ol>
+</div>
+或者将上面两个保存成个.REG文件，然后双击导入就可以了。
+<p>顺便把不要脸的的3721也屏蔽，在hosts文件中加入：</p>
+<div class="dp-highlighter">
+<ol>
+<li><span><span>127.0.0.1 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://cnsmin.3721.com">cnsmin.3721.com</a>   </span></span></li>
+<li><span>127.0.0.1 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.3721.net">www.3721.net</a>  </span></li>
+</ol>
+</div>
+<h1>其他技巧</h1>
+<p>1、给鼠标右键增加个复制到…/移动到…功能</p>
+<div class="dp-highlighter">
+<div class="bar"></div>
+<ol>
+<li><span><span>Windows Registry Editor Version 5.00   </span></span></li>
+<li><span>  </span></li>
+<li><span>[HKEY_LOCAL_MACHINESOFTWAREClassesAllFilesystemObjectsshellex]   </span></li>
+<li><span>  </span></li>
+<li><span>[HKEY_LOCAL_MACHINESOFTWAREClassesAllFilesystemObjectsshellexContextMenuHandlers]   </span></li>
+<li><span>  </span></li>
+<li><span>[HKEY_LOCAL_MACHINESOFTWAREClassesAllFilesystemObjectsshellexContextMenuHandlers</span><span class="func">Copy</span><span> To]   </span></li>
+<li><span>@=</span><span class="string">“{C2FBB630-2971-11D1-A18C-00C04FD75D13}”</span><span>  </span></li>
+<li><span>[HKEY_LOCAL_MACHINESOFTWAREClassesAllFilesystemObjectsshellexContextMenuHandlersMove To]   </span></li>
+<li><span>@=</span><span class="string">“{C2FBB631-2971-11D1-A18C-00C04FD75D13}”</span><span>  </span></li>
+</ol>
+</div>
+将上面内容保存成add.reg文件，然后双击导入就可以了。
+<p>2、关了错误报告，KAO ！这东西搞得我像个微软免费的测试员似的：点击控制面板----&gt;系统----&gt;高级----&gt;右下角—&gt;错误报告----&gt;禁用错误汇报——&gt;确定！</p>
+<p>3、取消分组显示：右键单击任务栏的空白区域，在弹出的菜单中选择“属性”，在弹出的窗口中，取消“分组相似任务栏按钮”前面的对钩，确定就可以了。</p>
+<p>4、找回经典的登录窗口，WinXP默认的登录界面虽然漂亮，但如果你想用一个列表中没有的用户登录，你会发现无从下手，改回经典窗口的方法是：点击“开始”→“控制面板”→“用户账户”→“更改用户登录或注销的方式”→把“使用欢迎屏幕”前面的对钩取消，最后点“应用选项”就OK啦。</p>
+<p>5、将自己最常用的输入法设置一个快捷键：点击“开始”→“控制面板”→“区域和语言选项”→在弹出的窗口中选择“语言”→“详细信息”→“键设置”在弹出的窗口中找到自己用的输入法，点“更改按键顺序”→在这里选一个快捷键就可以了。<!--nextpage--> 6、关闭计算机时自动结束不响应的任务，注册表:</p>
+<div class="dp-highlighter">
+<ol>
+<li><span><span>HKEY_CURRENT_USERControl PanelDesktop  </span></span></li>
+</ol>
+</div>
+中的“AugoEndTasks”的键值改为“1”
+<p>7、关闭自动更新：右键单击“我的电脑”，点击属性，点击“自动更新”，在“通知设置”一栏选择“关闭自动更新。我将手动更新计算机”一项。</p>
+<p>8、减少开机磁盘扫描等待时间:</p>
+<div class="dp-highlighter">
+<ol>
+<li><span><span>开始→运行,键入:   </span></span></li>
+<li><span>chkntfs/t:0  </span></li>
+</ol>
+</div>
+然后连接到ms站点顺便升级一次就算优化基本完成，对于XP而言，可以采用许多内部命令来看看优化情况，比如tasklist.exe /svc 可以查看系统服务实际使用情况。
+<p>优化一个系统，挺麻烦的。所以我们把他保存起来，我们用Ghost生成.GHO文件，这样就可以拿给别人炫耀一下啦，在Ghost之前先要作一个事情，清除系统硬件、注册等信息，否则克隆到不同的机子上将无法启动，在Winxp安装盘上找Deploy.cab 中的sysprep.exe文件。</p>
+<p>执行sysprep.exe，选择“重新封装”，下面的标记中可以选择“已提前激活”，还可以选择封装完成后是关机还是重新启动。封装完成后，我们再用带有Ghost的系统盘启动，用Ghost来生成备份.GHO镜像，备份完成！</p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>本文标题：</span>Windows XP启动跑1圈就进系统</p><p><span>文章作者：</span>凹凸曼</p><p><span>发布时间：</span>2012-11-17</p><p><span>最后更新：</span>2024-09-28</p><p><span>原始链接：</span><a href="/windows-xp-1-cycle.html">https://sobaigu.com/windows-xp-1-cycle.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://sobaigu.com/windows-xp-1-cycle.html"></i></span></p><p><span>版权声明：</span>转载请务必保留本文链接和注明内容来源，并自负版权等法律责任。</p></div><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7390437336363898" data-ad-slot="7454544896" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});
+</script><div class="tags"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li></ul></div><div class="post-nav"><a class="pre" href="/udiskmassproduction.html">[原创]金士顿U盘量产图文教程</a><a class="next" href="/wordpress-navi-menu.html">导航菜单图文使用教程</a></div><div class="nofancybox" id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://waline.sobaigu.com',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+  login: 'disable',
+  reaction: true,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/s" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="sobaigu.com"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 网站标签</i></div><div class="tagcloud"><a href="/tags/Ubuntu/" style="font-size: 19.71px;">Ubuntu</a> <a href="/tags/Linux/" style="font-size: 23.82px;">Linux</a> <a href="/tags/Windows/" style="font-size: 22.65px;">Windows</a> <a href="/tags/%E6%99%92%E9%85%B7%E8%BD%AF/" style="font-size: 25px;">晒酷软</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 22.06px;">软件</a> <a href="/tags/%E6%B7%B7%E6%8A%80%E8%83%BD/" style="font-size: 20.88px;">混技能</a> <a href="/tags/WordPress/" style="font-size: 18.53px;">WordPress</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99/" style="font-size: 23.24px;">博客建站</a> <a href="/tags/%E7%B2%BE%E7%AE%80%E7%BB%BF%E8%89%B2%E5%8E%BB%E5%B9%BF%E5%91%8A%E7%89%88/" style="font-size: 24.41px;">精简绿色去广告版</a> <a href="/tags/%E6%B1%9F%E6%B9%96/" style="font-size: 16.18px;">江湖</a> <a href="/tags/shell/" style="font-size: 20.29px;">shell</a> <a href="/tags/shadowsocks/" style="font-size: 15px;">shadowsocks</a> <a href="/tags/%E5%8A%A0%E9%80%9F%E4%BB%A3%E7%90%86/" style="font-size: 21.47px;">加速代理</a> <a href="/tags/aardio/" style="font-size: 17.94px;">aardio</a> <a href="/tags/python/" style="font-size: 15.59px;">python</a> <a href="/tags/%E6%89%8B%E6%9C%BA/" style="font-size: 17.35px;">手机</a> <a href="/tags/Hexo/" style="font-size: 19.12px;">Hexo</a> <a href="/tags/%E6%B7%98%E5%AE%9D/" style="font-size: 15px;">淘宝</a> <a href="/tags/%E7%BD%91%E8%B5%9A/" style="font-size: 15px;">网赚</a> <a href="/tags/%E5%88%B7%E5%8D%95/" style="font-size: 15px;">刷单</a> <a href="/tags/v2ray/" style="font-size: 16.76px;">v2ray</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 16.76px;">教程</a> <a href="/tags/hugo/" style="font-size: 15px;">hugo</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%B8%81/" style="font-size: 15.59px;">虚拟币</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 近期文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/windows-iis-log-with-360xingtu-webview.html">网站服务器使用360星图自动分析IIS日志，并通过网页浏览</a></li><li class="post-list-item"><a class="post-list-link" href="/webhook-install-as-service-in-windows-server.html">Windows Server 部署 webhook 服务，并注册为系统服务守护</a></li><li class="post-list-item"><a class="post-list-link" href="/iis-charset-chinese.html">解决 IIS W3C格式日志中中文路径乱码问题</a></li><li class="post-list-item"><a class="post-list-link" href="/bat-git-clone-auto-public.html">一个BAT批处理实现HTML网页自动同步发布到Windows Server</a></li><li class="post-list-item"><a class="post-list-link" href="/DNS-PROBE-STARTED-issue-on-edge-in-windows-server.html">解决Windows服务器开一段时间edge浏览器就 DNS_PROBE_STARTED 错误</a></li><li class="post-list-item"><a class="post-list-link" href="/bot-spider-names.html">最新搜索引擎蜘蛛机器人User Agent名称</a></li><li class="post-list-item"><a class="post-list-link" href="/linux-jq-syntax-list.html">常用 linux jq 命令语法整理</a></li><li class="post-list-item"><a class="post-list-link" href="/software-postfix-mailinfo-hostname.html">宝塔邮局优化解决 `hostname` 信息得分大幅提升</a></li><li class="post-list-item"><a class="post-list-link" href="/git-set-proxy-for-github.html">设置Git通过代理连接，解决GitHub仓库无法更新等</a></li><li class="post-list-item"><a class="post-list-link" href="/composer-upgrade-error-A-facade-root-has-not-been-set.html">php composer.phar update：A facade root has not been set</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://waline.sobaigu.com" count="6" src="/js/recent-comments.js?v=1.0.2" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 内容分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%81%9A%E7%BD%91%E7%AB%99/">做网站</a><span class="category-list-count">97</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E7%BC%96%E7%A8%8B/">学编程</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%90%9E%E8%BD%AF%E4%BB%B6/">搞软件</a><span class="category-list-count">142</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%94%92%E7%9F%A5%E8%AF%86/">攒知识</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B7X%E5%9C%88/">混X圈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E7%B3%BB%E7%BB%9F/">玩系统</a><span class="category-list-count">126</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9E%8E%E9%80%BC%E9%80%BC/">瞎逼逼</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://sobaigu.com/software/" title="软件宝库" target="_blank">软件宝库</a><ul></ul><a href="http://www.jayxon.com/" title="JayXon" target="_blank">JayXon</a><ul></ul><a href="http://www.wubase.com/" title="网联基地" target="_blank">网联基地</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">搜百谷.</a> Powered by<a rel="nofollow" target="_blank" href="http://sobaigu.com"> 凹凸曼.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script></div></body></html>

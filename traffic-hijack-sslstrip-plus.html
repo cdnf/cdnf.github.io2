@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="互联网精神病患者小站，始终秉承建站理念：分享是种美德，好人一生平安。"><meta name="keywords" content="网络代理,怎么访问外网,小火箭怎么安装,美国VPS,自定义PAC规则,Hexo博客建站,aardio编程,消费USDT,USDC信用卡,数字货币信用卡,虚拟币出金卡,U币消费卡"><title>流量劫持系列8_SSLStrip终极版_location瞒天过海 | 搜百谷</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script src="https://www.googletagmanager.com/gtag/js?id=UA-22119753-2" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-22119753-2');
+</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 7.1.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">流量劫持系列8_SSLStrip终极版_location瞒天过海</h1><a id="logo" href="/.">搜百谷</a><p class="description">达则兼济天下尤物，科技改变世界嫩模！</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/software/"><i class="fa fa-university"> 宝库</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">流量劫持系列8_SSLStrip终极版_location瞒天过海</h1><div class="post-meta">2015-06-02<span> | </span><span class="category"><a href="/categories/%E6%90%9E%E8%BD%AF%E4%BB%B6/">搞软件</a></span><span>：</span><span>流量劫持</span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 3k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 10</span><span class="post-meta-item-text"> 分钟</span></span></span></div><a class="disqus-comment-count" href="/traffic-hijack-sslstrip-plus.html#waline"><span class="waline-comment-count" id="/traffic-hijack-sslstrip-plus.html"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2%E6%98%8E%E6%96%87-URL"><span class="toc-number">2.</span> <span class="toc-text">替换明文 URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2-location"><span class="toc-number">3.</span> <span class="toc-text">替换 location</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E5%A4%96%E9%93%BE%E8%84%9A%E6%9C%AC"><span class="toc-number">4.</span> <span class="toc-text">处理外链脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E5%AD%97%E9%9B%86%E7%BC%96%E7%A0%81"><span class="toc-number">5.</span> <span class="toc-text">处理字集编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%88%86%E5%9D%97"><span class="toc-number">6.</span> <span class="toc-text">处理数据分块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF-location-%E4%BB%A3%E7%90%86"><span class="toc-number">7.</span> <span class="toc-text">前端 location 代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC%E5%8A%AB%E6%8C%81"><span class="toc-number">8.</span> <span class="toc-text">动态脚本劫持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%94%E7%A4%BA"><span class="toc-number">9.</span> <span class="toc-text">演示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E8%8C%83%E6%8E%AA%E6%96%BD"><span class="toc-number">10.</span> <span class="toc-text">防范措施</span></a></li></ol></div></div><div class="post-content"><h2 id="前言"><a class="headerlink" href="#前言"></a>前言</h2>
+<p>之前介绍了 <a href="/traffic-hijack-sslstrip.html">HTTPS 前端劫持</a> 的方案，虽然很有趣，然而现实却并不理想。其唯一、也是最大的缺陷，就是无法阻止脚本跳转。若是没有这个缺陷，那就非常完美了 —— 当然也就没有必要写这篇文章了。</p>
+<p>说到底，还是因为无法重写 <code>location</code> 这个对象 —— 它是脚本跳转的唯一渠道。尽管也流传一些 Hack 能勉强实现，但终究是不靠谱的。</p>
+<p>事实上，在最近封稿的 HTML5 标准里，已非常明确了 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.w3.org/TR/2014/REC-html5-20141028/browsers.html#window">location</a> 的地位 —— Unforgeable。</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201411/091655081126031.png" alt="" loading="lazy"></p>
+<p>这是个不幸的消息。不过也是件好事，让我们彻底打消各种偏门邪道的念头，寻求一条全新的出路。</p>
+<h2 id="替换明文-URL"><a class="headerlink" href="#替换明文-URL"></a>替换明文 URL</h2>
+<p>上回也提到，可以参考 SSLStrip 那样，把脚本里的 HTTPS URL 全都替换成 HTTP 版本，即可满足部分场合。</p>
+<p>当然，缺陷也是显而易见的。只要 URL 不是以明文出现 —— 例如通过字符串拼接而成，那就完全无法识别了，最终还是无法避免跳转到 HTTPS 页面上。</p>
+<p>这种情况并不少见，所以我们需要更先进的解决方案。</p>
+<h2 id="替换-location"><a class="headerlink" href="#替换-location"></a>替换 location</h2>
+<p>尽管我们无法重写 location，但要山寨一个和 location 功能一样的玩意，还是非常容易的。我们只需定义几个 getter 和 setter，即可模拟出一个功能完全相同的 <code>location2</code>。但如何将原先的 location 映射过来呢？</p>
+<p>这时，后端的作用就发挥出来了。类似替换 HTTPS URL，这次我们只关注脚本里的 location 字符，把它们都改成 location2 —— 于是所有和地址栏相关的读写，都将落到我们的代理上面。之后能做什么，不用说大家也都明白吧。</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201411/091655221591607.png" alt="" loading="lazy"></p>
+<ul>
+<li>代理所有的 setter：如果跳转到 HTTPS 就将其拦下，然后降级到 HTTP 版本上。</li>
+<li>代理所有的 getter：如果当前处于降级的页面，我们将返回的路径都还原 HTTPS 字符，即可骗过协议判断脚本，让那些自检功能彻底失效！<br>
+<img src="http://images.cnitblog.com/blog/273626/201411/091655318152159.png" alt="" loading="lazy"></li>
+</ul>
+<p>相比之前的 URL 替换，这个方案完美太多 —— <strong>URL 是动态创建的非常普遍，但 location 不是明文出现的，及其罕见</strong>。</p>
+<p>除非脚本是加密过的，否则即使用 Uglify 那样的压缩工具，也不会把全局变量给混淆。至于人为刻意去转义它，更是无稽之谈了。</p>
+<pre><code>&lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;hljs-built_in&quot;&gt;window&lt;/span&gt;[&lt;span class=&quot;hljs-string&quot;&gt;'loc\ation'&lt;/span&gt;].protocol != &lt;span class=&quot;hljs-string&quot;&gt;'https:'&lt;/span&gt;) &#123;
+	&lt;span class=&quot;hljs-comment&quot;&gt;// ...&lt;/span&gt;
+&#125;`&lt;/pre&gt;
+到此，我们的目标已经明确了：
+</code></pre>
+<ul>
+<li>
+<p>前端：实现一个 location 代理。</p>
+</li>
+<li>
+<p>后端：将脚本里出现的 location 替换成代理变量名。</p>
+<h2 id="处理外链脚本"><a class="headerlink" href="#处理外链脚本"></a>处理外链脚本</h2>
+<p>虽然替换页面脚本的内容并不困难，但对于外链脚本，那就不容乐观了。</p>
+<p>现实中，不少页面外链了 <strong>HTTPS 绝对路径</strong> 的脚本。这时，我们的中间人就无能为力了。为了避免这种情况，我们仍需替换页面里的 HTTPS URL，让中间人能掌控更多的资源。</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201411/091655431288234.png" alt="" loading="lazy"></p>
+<p>要替换 URL 倒也不难，一个简单的正则就能实现 —— 但既然使用正则，我们面对的只能是字符串了。</p>
+<p>然而事实上，收到的都是最原始的二进制数据，甚至未必都是 UTF-8 的。在上一篇文章里，我们为了简单，直接使用二进制的方式注入。但在如今，这个方法显然不可行了。</p>
+<p>使用二进制，不仅难以控制，而且很不严谨。我们很难得知匹配到的是独立的字符，还是一个宽字符的部分字节。因此，我们还是得用传统可靠的方式来处理字符串。</p>
+<h2 id="处理字集编码"><a class="headerlink" href="#处理字集编码"></a>处理字集编码</h2>
+<p>我们得借助字集转换库，例如大名鼎鼎的 iconv，来协助完成这件事：</p>
+</li>
+<li>
+<p>首先将二进制数据转换成 UTF-8 字符串</p>
+</li>
+<li>
+<p>有了标准的字符串，我们的正则即可顺利执行了</p>
+</li>
+<li>
+<p>将处理完的字符串，重新换回先前的编码<br>
+尽管这一来一回得折腾两次，性能又得耗费不少，但这仍是必须的。</p>
+<p>事实上，这个过程也不是想象的那么顺利。有相当多的服务器，并没有在返回的 <code>Content-Type</code> 里指定编码字集，于是我们只能尝试从页面的 <code>&amp;lt;meta&amp;gt;</code> 中获取。</p>
+<p>但这个标签兼容诸多规范，例如过去的：</p>
+<pre class="html">`<span class="hljs-tag">&lt;<span class="hljs-title">META</span> <span class="hljs-attribute">HTTP-EQUIV</span>=<span class="hljs-value">"Content-Type"</span> <span class="hljs-attribute">CONTENT</span>=<span class="hljs-value">"text/html; CHARSET=GBK"</span>&gt;</span>`</pre>
+<p>以及如今流行的：</p>
+<pre class="html">`<span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"GBK"</span> /&gt;</span>
+</li>
+</ul>
+<p>尽管通过正则很容易获取，但用正则的前提还是得先有字符串，于是我们陷入了僵局。</p>
+<p>不过好在标签、属性、字集名，基本都是纯 ASCII 字符，所以可先将二进制转成默认的 UTF-8 字符串，从中取出字集信息，然后再进行转码。</p>
+<h2 id="处理数据分块"><a class="headerlink" href="#处理数据分块"></a>处理数据分块</h2>
+<p>得益于丰富的第三方扩展，上述问题都不难解决。</p>
+<p>然而，之前提到过『前端劫持』的一个巨大优势 —— 无需处理所有数据，只需在第一个 chunk 里注入代码即可。但现在，这项优势面临着严峻的考验。</p>
+<p>我们要替换页面里的 HTTPS 资源、location 变量等等，它们会出现在页面的各个位置。如果我们对每个 chunk 进行单独过滤、转发，这样会有问题吗？</p>
+<p>现实中，未必都是这样理想的 —— 总会有那么一定的几率，替换的关键字正好跨越两个 chunk：</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201411/091656066432418.png" alt="" loading="lazy"></p>
+<p>这时候，残缺的首尾都无法匹配到，于是就会出现遗漏。关键字越长，出现的几率也就越大。对于 URL 这样长的字符串来说，这是一个潜在的隐患。</p>
+<p>要完美解决这个问题，是比较麻烦的。不过有个简单的办法：我们可以扣留下 chunk 末尾部分字符，拼接到下个 chunk 的之前，从而降低遗漏的可能。</p>
+<p>当然，如果不考虑用户体验的话，还是收集完所有数据，最后一次性处理，最省事了。</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201411/091656168311938.png" alt="" loading="lazy"></p>
+<p>事实上还有更好的方案：中间人开启一个缓冲区，将收到数据暂时缓存其中。当数据积累到一定量、或者超过多久没有数据时，才开始批量处理缓存队列。</p>
+<p>这样就可以避免 <strong>频繁的 chunk 上下文处理</strong>，同时也 <strong>不会长时间阻塞用户的响应时间</strong>，自然是两全其美的。</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201411/091656246596846.png" alt="" loading="lazy"></p>
+<p>这是不是有点类似 TCP nagle 的味道呢。</p>
+<h2 id="前端-location-代理"><a class="headerlink" href="#前端-location-代理"></a>前端 location 代理</h2>
+<p>讲完了后端的相关细节，我们继续回到前端的话题上。</p>
+<p>实现一个 location 的代理很简单，不过值得留意的细节倒是不少：</p>
+<ul>
+<li>location 不仅存在于 <code>window</code>，其实 <code>document</code> 里也有个相同的。</li>
+<li>location 对象本身也是可以被赋值的，效果等同于 location.href。（<code>[PutForwards=href, ...]</code>已经很好的解释了）</li>
+<li>同理，location 的 <code>toString</code> 返回的也是 <code>href</code> 属性。</li>
+<li>如果带有 location2 的脚本被缓存住了，那么用户在没有劫持的页面里，也许就会报错。所以还得留一条兼容的后路。</li>
+<li>…<br>
+只要考虑充分，实现一个 location 的切面还算是比较容易的。</li>
+</ul>
+<h2 id="动态脚本劫持"><a class="headerlink" href="#动态脚本劫持"></a>动态脚本劫持</h2>
+<p>前面谈到替换页面的 HTTPS URL，以确保外链脚本明文传输。</p>
+<p>然而现实中，并非所有脚本都是静态的。如今这个脚本泛滥的时代，动态加载模块是很常见的事。如果引入的是一个 HTTPS 的脚本，那么我们的中间人又无从下手了。</p>
+<p>不过值得庆幸的是，模块拦截不像 location 那样无法实现。现实中，有非常多的方法可以拦截动态模块。在之前写的<a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.cnblogs.com/index-html/p/xss-frontend-firewall-2.html">《XSS 前端防火墙 —— 可疑模块拦截》</a> 一文里，已经详细讨论过各种方法和细节，这里正好派上用场。</p>
+<p>事实上，除了脚本外，框架页同样也存在这个问题。上一篇文章里，我们采用 CSP 来阻挡 HTTPS 的框架页。但那仅仅是<strong>屏蔽</strong>，并不是真正意义的拦截。只有加上如今这套钩子系统，才算一个完善的拦截系统。</p>
+<h2 id="演示"><a class="headerlink" href="#演示"></a>演示</h2>
+<p>说了那么多，真正的核心无非就是改变脚本里的 location 变量而已，其他的一切都只是为了辅助它。</p>
+<p>下面我们找几个之前无法成功的网站，试验下这个加强版的劫持工具。</p>
+<p>上一篇文章里提到京东登录，就是通过脚本跳转的。我们首先就拿它测试：</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201411/091656365811038.png" alt="" loading="lazy"></p>
+<p>当流量经过中间人代理，页面和脚本里的 location 都变成了我们的变量名。于是之后和地址栏相关的一切，尽在我们的掌控之中了：</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201411/091656467843787.png" alt="" loading="lazy"></p>
+<p>注意地址栏里有一个 <code>zh_cn</code> 的标记，那正是 URL 向下转型后的识别暗号。</p>
+<p>通过 <code>location2</code> 获取到的一切属性，看起来就像在 HTTPS 页面上一模一样。即使脚本里有自检功能，也会被我们的虚拟环境所欺骗。</p>
+<p>点击登录，自然是成功的。</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201411/091656557539480.png" alt="" loading="lazy"></p>
+<p>毕竟，HTTPS 和 HTTP 只是传输上的差异。在应用层上，页面是无法知晓的 —— 除了询问脚本的 location，但它已被我们劫持了。</p>
+<p>除了京东的脚本跳转，财付通网站则是通过非主流的 <code>&amp;lt;meta http-equiv=&quot;refresh&quot;&amp;gt;</code> 进行的。</p>
+<p>好在我们对页面里的 HTTPS URL 都替换了，所以仍然能够跳转到降级后的页面：</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201411/091657057997745.jpg" alt="" loading="lazy"></p>
+<blockquote>
+<p>值得注意的是，如果是从 QQ 图标里点进来的，那么页面就直接进入 HTTPS 版本，就不会被劫持了。但从第三方过来那就听天由命了。<br>
+由于一般开发人员的思维，是不可能转义 location 这个变量的。因此这套方案几乎可以通杀所有的安全站点。</p>
+</blockquote>
+<p><img src="http://images.cnitblog.com/blog/273626/201411/091657186284792.jpg" alt="" loading="lazy"></p>
+<p>当然，外国的网站也是一样的。只要之前没有被 <code>HSTS</code> 所缓存，劫持依旧轻松自如。</p>
+<p><img src="http://images.cnitblog.com/blog/273626/201411/091657282537885.png" alt="" loading="lazy"></p>
+<p><img src="http://images.cnitblog.com/blog/273626/201411/091657353468651.png" alt="" loading="lazy"></p>
+<p>…</p>
+<p>所以，只要发挥无尽的想象，实现一个工程化的通用劫持方案，依然是可行的。</p>
+<h2 id="防范措施"><a class="headerlink" href="#防范措施"></a>防范措施</h2>
+<p>如果你是仔细看完本文的话，应该早就想到如何应对了。</p>
+<p>事实上，由于 JS 具有超强的灵活性，几乎无法从静态源码推测运行时的行为。</p>
+<p>因此，只要将涉及 <code>location</code> 相关操作，进行简单的转义混淆，就能躲过中间人的劫持了。毕竟，要在劫持流量的同时，还要对脚本进行语法分析，这个代价不免有点大了。</p>
+<p> </p>
+<p>原文:<a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.cnblogs.com/index-html/p/sslstrip-plus.html">http://www.cnblogs.com/index-html/p/sslstrip-plus.html</a></p>
+<p>流量劫持系列文章目录:</p>
+<p><a href="/traffic-hijack.html" title="[混技能]流量劫持系列1_流量劫持_常见方法_是如何产生的?">流量劫持系列1_流量劫持_常见方法_是如何产生的?</a></p>
+<p><a href="/traffic-hijack-harm.html">流量劫持系列2_流量劫持能有多大危害?</a></p>
+<p><a href="/traffic-hijack-wifi-phone.html">流量劫持系列3_WiFi流量劫持_把笔记本改造成无线路由器_手机抓包</a></p>
+<p><a href="/traffic-hijack-in-everypage.html">流量劫持系列4_WiFi流量劫持_浏览任意页面即可中毒！</a></p>
+<p><a href="/traffic-hijack-wifi-js.html">流量劫持系列5_WiFi流量劫持_JS脚本缓存投毒</a></p>
+<p><a href="/traffic-hijack-danger-dialog.html">流量劫持系列6_浮层登录框的隐患</a></p>
+<p><a href="/traffic-hijack-sslstrip.html">流量劫持系列7_SSLStrip 的未来_HTTPS 前端劫持</a></p>
+<p><a href="/traffic-hijack-sslstrip-plus.html">流量劫持系列8_SSLStrip终极版_location瞒天过海</a></p>
+<p><a href="/traffic-hijack-mitm-cookie-sniffer.html">流量劫持系列9_沉默中的狂怒_Cookie 大喷发</a></p>
+<p><a href="/traffic-hijack-hsts.html">流量劫持系列10_躲避HSTS的HTTPS劫持</a></p>
+<p><a href="/traffic-hijack-web-hijack.html">流量劫持系列11_浅谈网站流量劫持防范措施</a></p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>本文标题：</span>流量劫持系列8_SSLStrip终极版_location瞒天过海</p><p><span>文章作者：</span>凹凸曼</p><p><span>发布时间：</span>2015-06-02</p><p><span>最后更新：</span>2024-09-28</p><p><span>原始链接：</span><a href="/traffic-hijack-sslstrip-plus.html">https://sobaigu.com/traffic-hijack-sslstrip-plus.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://sobaigu.com/traffic-hijack-sslstrip-plus.html"></i></span></p><p><span>版权声明：</span>转载请务必保留本文链接和注明内容来源，并自负版权等法律责任。</p></div><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7390437336363898" data-ad-slot="7454544896" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});
+</script><div class="tags"></div><div class="post-nav"><a class="pre" href="/traffic-hijack-mitm-cookie-sniffer.html">流量劫持系列9_沉默中的狂怒_Cookie 大喷发</a><a class="next" href="/traffic-hijack-sslstrip.html">流量劫持系列7_SSLStrip 的未来_HTTPS 前端劫持</a></div><div class="nofancybox" id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://waline.sobaigu.com',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+  login: 'disable',
+  reaction: true,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/s" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="sobaigu.com"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 网站标签</i></div><div class="tagcloud"><a href="/tags/Ubuntu/" style="font-size: 19.71px;">Ubuntu</a> <a href="/tags/Linux/" style="font-size: 23.82px;">Linux</a> <a href="/tags/Windows/" style="font-size: 22.65px;">Windows</a> <a href="/tags/%E6%99%92%E9%85%B7%E8%BD%AF/" style="font-size: 25px;">晒酷软</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 22.06px;">软件</a> <a href="/tags/%E6%B7%B7%E6%8A%80%E8%83%BD/" style="font-size: 20.88px;">混技能</a> <a href="/tags/WordPress/" style="font-size: 18.53px;">WordPress</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99/" style="font-size: 23.24px;">博客建站</a> <a href="/tags/%E7%B2%BE%E7%AE%80%E7%BB%BF%E8%89%B2%E5%8E%BB%E5%B9%BF%E5%91%8A%E7%89%88/" style="font-size: 24.41px;">精简绿色去广告版</a> <a href="/tags/%E6%B1%9F%E6%B9%96/" style="font-size: 16.18px;">江湖</a> <a href="/tags/shell/" style="font-size: 20.29px;">shell</a> <a href="/tags/shadowsocks/" style="font-size: 15px;">shadowsocks</a> <a href="/tags/%E5%8A%A0%E9%80%9F%E4%BB%A3%E7%90%86/" style="font-size: 21.47px;">加速代理</a> <a href="/tags/aardio/" style="font-size: 17.94px;">aardio</a> <a href="/tags/python/" style="font-size: 15.59px;">python</a> <a href="/tags/%E6%89%8B%E6%9C%BA/" style="font-size: 17.35px;">手机</a> <a href="/tags/Hexo/" style="font-size: 19.12px;">Hexo</a> <a href="/tags/%E6%B7%98%E5%AE%9D/" style="font-size: 15px;">淘宝</a> <a href="/tags/%E7%BD%91%E8%B5%9A/" style="font-size: 15px;">网赚</a> <a href="/tags/%E5%88%B7%E5%8D%95/" style="font-size: 15px;">刷单</a> <a href="/tags/v2ray/" style="font-size: 16.76px;">v2ray</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 16.76px;">教程</a> <a href="/tags/hugo/" style="font-size: 15px;">hugo</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%B8%81/" style="font-size: 15.59px;">虚拟币</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 近期文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/windows-iis-log-with-360xingtu-webview.html">网站服务器使用360星图自动分析IIS日志，并通过网页浏览</a></li><li class="post-list-item"><a class="post-list-link" href="/webhook-install-as-service-in-windows-server.html">Windows Server 部署 webhook 服务，并注册为系统服务守护</a></li><li class="post-list-item"><a class="post-list-link" href="/iis-charset-chinese.html">解决 IIS W3C格式日志中中文路径乱码问题</a></li><li class="post-list-item"><a class="post-list-link" href="/bat-git-clone-auto-public.html">一个BAT批处理实现HTML网页自动同步发布到Windows Server</a></li><li class="post-list-item"><a class="post-list-link" href="/DNS-PROBE-STARTED-issue-on-edge-in-windows-server.html">解决Windows服务器开一段时间edge浏览器就 DNS_PROBE_STARTED 错误</a></li><li class="post-list-item"><a class="post-list-link" href="/bot-spider-names.html">最新搜索引擎蜘蛛机器人User Agent名称</a></li><li class="post-list-item"><a class="post-list-link" href="/linux-jq-syntax-list.html">常用 linux jq 命令语法整理</a></li><li class="post-list-item"><a class="post-list-link" href="/software-postfix-mailinfo-hostname.html">宝塔邮局优化解决 `hostname` 信息得分大幅提升</a></li><li class="post-list-item"><a class="post-list-link" href="/git-set-proxy-for-github.html">设置Git通过代理连接，解决GitHub仓库无法更新等</a></li><li class="post-list-item"><a class="post-list-link" href="/composer-upgrade-error-A-facade-root-has-not-been-set.html">php composer.phar update：A facade root has not been set</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://waline.sobaigu.com" count="6" src="/js/recent-comments.js?v=1.0.2" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 内容分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%81%9A%E7%BD%91%E7%AB%99/">做网站</a><span class="category-list-count">97</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E7%BC%96%E7%A8%8B/">学编程</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%90%9E%E8%BD%AF%E4%BB%B6/">搞软件</a><span class="category-list-count">142</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%94%92%E7%9F%A5%E8%AF%86/">攒知识</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B7X%E5%9C%88/">混X圈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E7%B3%BB%E7%BB%9F/">玩系统</a><span class="category-list-count">126</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9E%8E%E9%80%BC%E9%80%BC/">瞎逼逼</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://sobaigu.com/software/" title="软件宝库" target="_blank">软件宝库</a><ul></ul><a href="http://www.jayxon.com/" title="JayXon" target="_blank">JayXon</a><ul></ul><a href="http://www.wubase.com/" title="网联基地" target="_blank">网联基地</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">搜百谷.</a> Powered by<a rel="nofollow" target="_blank" href="http://sobaigu.com"> 凹凸曼.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script></div></body></html>

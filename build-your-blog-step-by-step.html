@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="互联网精神病患者小站，始终秉承建站理念：分享是种美德，好人一生平安。"><meta name="keywords" content="网络代理,怎么访问外网,小火箭怎么安装,美国VPS,自定义PAC规则,Hexo博客建站,aardio编程,消费USDT,USDC信用卡,数字货币信用卡,虚拟币出金卡,U币消费卡"><title>从0开始搭建自己的博客网站 | 搜百谷</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script src="https://www.googletagmanager.com/gtag/js?id=UA-22119753-2" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-22119753-2');
+</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 7.1.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">从0开始搭建自己的博客网站</h1><a id="logo" href="/.">搜百谷</a><p class="description">达则兼济天下尤物，科技改变世界嫩模！</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/software/"><i class="fa fa-university"> 宝库</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">从0开始搭建自己的博客网站</h1><div class="post-meta">2017-03-18<span> | </span><span class="category"><a href="/categories/%E5%81%9A%E7%BD%91%E7%AB%99/">做网站</a></span><span>：</span><span>怎么搭建网站</span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 2.1k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 7</span><span class="post-meta-item-text"> 分钟</span></span></span></div><a class="disqus-comment-count" href="/build-your-blog-step-by-step.html#waline"><span class="waline-comment-count" id="/build-your-blog-step-by-step.html"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">建站要素</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E5%9F%9F%E5%90%8D"><span class="toc-number">2.1.</span> <span class="toc-text">网站域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E7%A9%BA%E9%97%B4"><span class="toc-number">2.2.</span> <span class="toc-text">网站空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E7%A8%8B%E5%BA%8F%E5%B9%B3%E5%8F%B0"><span class="toc-number">2.3.</span> <span class="toc-text">网站程序平台</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WordPress"><span class="toc-number">2.3.1.</span> <span class="toc-text">WordPress</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo"><span class="toc-number">2.3.2.</span> <span class="toc-text">Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9%E9%80%89%E6%8B%A9"><span class="toc-number">2.3.3.</span> <span class="toc-text">优缺点选择</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">部署示例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo-2"><span class="toc-number">3.1.</span> <span class="toc-text">Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WordPress-2"><span class="toc-number">3.2.</span> <span class="toc-text">WordPress</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85lnmp"><span class="toc-number">3.2.1.</span> <span class="toc-text">安装lnmp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AENginx"><span class="toc-number">3.2.2.</span> <span class="toc-text">设置Nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E7%BD%91%E7%AB%99"><span class="toc-number">3.2.3.</span> <span class="toc-text">部署网站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E4%BA%8B%E9%A1%B9"><span class="toc-number">3.2.4.</span> <span class="toc-text">其他事项</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">后续优化运营</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SEO"><span class="toc-number">4.1.</span> <span class="toc-text">SEO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E5%BB%BA%E8%AE%BE"><span class="toc-number">4.2.</span> <span class="toc-text">内容建设</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BF%E5%91%8A%E6%8E%A5%E5%85%A5"><span class="toc-number">4.3.</span> <span class="toc-text">广告接入</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">后记</span></a></li></ol></div></div><div class="post-content"><h1>前言</h1>
+<p>作为一个打杂工，从8年前就玩自己的网站了，虽然一事无成，但这份兴趣爱好却一直保留了下来。</p>
+<p>这些年，偶尔逛逛域名注册商网站，脑袋一热也会注册个域名，然后淘汰看不顺眼不想要的域名，也怀着走韦博运的梦想一步步走来。到现在，对搭建个小站已轻车熟路，记录些经验，仅供参考。</p>
+<h1>建站要素</h1>
+<h2 id="网站域名"><a class="headerlink" href="#网站域名"></a>网站域名</h2>
+<p>写个自己的博客，可以用新浪，163这种开放的博客，也可以是QQ空间这种，内容自己产生，维护及资源消耗的事托管商帮你完成，当然这种人家也要给你塞个广告，让贴什么也是受管制的。</p>
+<p>既然想折腾，那就自己整一个，自己的网站最好选个称心如意的域名，注册了就是一份资产，万一撞上财团看上眼呢……</p>
+<p>以前国外域名托管商注册域名便宜，现在软妹币汇率跌了，国内域名也降了价，直接国内域名注册商注册就行，如新网，dnspod，<a target="_blank" rel="noopener external nofollow noreferrer" href="https://wanwang.aliyun.com/domain/">阿里万网域名注册</a>等都可以，老牌常见顶级域名也就60一年，遇上优惠券促销甚至几块钱，注册域名也可以当是一种投资。</p>
+<p>当然，所谓顶级域名，只要有人解析就行，但一些乱七八糟的域名就别浪费几块钱了，买域名还得买<code>.com，.cn，.net，.org</code>这些。</p>
+<h2 id="网站空间"><a class="headerlink" href="#网站空间"></a>网站空间</h2>
+<p>网站文件需要个存放托管的地方，可以是个服务器，也可以是有网络访问权限的存储空间，如果只是个纯粹的静态页站点，用<a target="_blank" rel="noopener external nofollow noreferrer" href="https://pages.github.com/">GitHub page</a>，<a target="_blank" rel="noopener external nofollow noreferrer" href="https://coding.net/help/doc/pages/index.html">coding page</a>，或者七牛存储这样的免费空间还不错。</p>
+<p>如果需要部署复杂应用，比如WordPress这种需要数据库服务，那网络上的免费资源比较少，买托管空间或VPS，建议自行买个VPS，成本在一百软妹币每年，磁盘空间足够，流量一般都是不限的，还可以搭梯子用。</p>
+<h2 id="网站程序平台"><a class="headerlink" href="#网站程序平台"></a>网站程序平台</h2>
+<p>常见的网站程序平台有WordPress，Z-blog，织梦CMS，Jekyll，Hexo等，选择平台尽量大众化。</p>
+<h3 id="WordPress"><a class="headerlink" href="#WordPress"></a>WordPress</h3>
+<p>市面上的个人网站程序很多，但其中WordPress绝对是个人网站平台霸主，配合其丰富的功能及插件功能，完全能满足个人及企业网站的需求，而且几乎可以实现傻瓜式维护，推荐普通用户使用。</p>
+<p>更多可见<a target="_blank" rel="noopener external nofollow noreferrer" href="https://cn.wordpress.org/">WordPress中文官网</a></p>
+<h3 id="Hexo"><a class="headerlink" href="#Hexo"></a>Hexo</h3>
+<p>当初作者就是觉得WordPress那种太庞大了，所以弄了个Hexo，使用MarkDown格式写作，然后解析成HTML静态页发布，<a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io/zh-cn/">详见官方网站</a>。</p>
+<p>因为轻便了，但相应的功能也少了，需要什么功能基本上需要自行解决，自行改造设计，所以Hexo这种偏向技术型，需要对web编程相关知识有一定的了解，需要有一定的动手解决能力。</p>
+<h3 id="优缺点选择"><a class="headerlink" href="#优缺点选择"></a>优缺点选择</h3>
+<p>从以上介绍可见，各平台都有自己的优缺点：</p>
+<ul>
+<li>
+<p>WordPress：</p>
+<ul>
+<li>维护难度低，管理方便</li>
+<li>用户基数大，功能插件多，主题多</li>
+<li>程序大</li>
+<li>默认动态格式访问慢，尤其是中文语言</li>
+<li>需要PHP，MySql支持</li>
+</ul>
+</li>
+<li>
+<p>Hexo：</p>
+<ul>
+<li>轻便，服务器部署要求低</li>
+<li>纯MarkDown写作</li>
+<li>需要动手能力强</li>
+</ul>
+</li>
+</ul>
+<p>根据实际需求及喜好选择对应的平台：</p>
+<ul>
+<li>不在乎程序大小，及网站反映速度，对维护难度敏感者选择WordPress</li>
+<li>喜欢折腾，喜欢简洁则选择Hexo，绝对有挑战性。</li>
+</ul>
+<h1>部署示例</h1>
+<h2 id="Hexo-2"><a class="headerlink" href="#Hexo-2"></a>Hexo</h2>
+<p>Hexo的服务器部署相对简单，由于其对服务器要求低的特性，在网络上薅免费羊毛也较容易，但对内容创建端有一定的要求，详见：<a href="/Hexo-git-to-vps.html">Hexo博客Git-VPS部署完整记录</a>。</p>
+<h2 id="WordPress-2"><a class="headerlink" href="#WordPress-2"></a>WordPress</h2>
+<p>这里假设你已经申请好了域名，一级二级都不是问题，买个VPS自己用，把域名解析到VPS地址。</p>
+<p>VPS上需要安装PHP+MySql+Apache或Nginx环境，一般图省事直接安装<a target="_blank" rel="noopener external nofollow noreferrer" href="http://lnmp.org">LNMP</a>或WNMP，VPS一般跑的都是linux，所以示例皆以linux为例。</p>
+<h3 id="安装lnmp"><a class="headerlink" href="#安装lnmp"></a>安装lnmp</h3>
+<p>使用<a href="/software-remotetool-SecureCRT.html">secureCRT</a>或类似的SSH工具登陆VPS或服务器，登陆后运行：<code>screen -S lnmp</code>,</p>
+<blockquote>
+<p>如果提示screen: command not found 命令不存在可以执行：yum install screen 或 apt-get install screen安装，详细内容参考<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.vpser.net/manage/run-screen-lnmp.html">screen教程</a>。</p>
+</blockquote>
+<p>下载并安装lnmp一键安装包命令如下</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">wget</span> -c http://soft.vpser.net/lnmp/lnmp1.<span class="number">3</span>-full.tar.gz &amp;&amp; tar zxf lnmp1.<span class="number">3</span>-full.tar.gz &amp;&amp; cd lnmp1.<span class="number">3</span>-full &amp;&amp; ./install.sh lnmp</span><br></pre></td></tr></table></figure>
+<p>按上面的命令执行后，会有比较长的等待时间，主要消耗在编译安装过程，安装完成后会要求选择数据库，PHP，输入密码等，根据自己的需求选择及输入。安装脚本默认会让你添加网站，其实就是配置Nginx，此时不输入时候再改也可以。</p>
+<p>详细安装教程见<a target="_blank" rel="noopener external nofollow noreferrer" href="http://lnmp.org">官网</a></p>
+<h3 id="设置Nginx"><a class="headerlink" href="#设置Nginx"></a>设置Nginx</h3>
+<p>Nginx设置中主要是域名（包括二级域名等），域名指向目录，一般情况下设置一级域名，二级域名<code>www</code>及一个<code>*</code>用于收拢流量来源。</p>
+<p>通过Nginx的设置，一个VPS可以在80端口跑n个网站。</p>
+<h3 id="部署网站"><a class="headerlink" href="#部署网站"></a>部署网站</h3>
+<p>以上完成后，网站运行需要的基础条件都已经具备了，我们只需要将WordPress整套程序（目录下的所有文件）上传到域名对应的目录中，然后访问前台地址，就会进入引导安装界面，主要设置网站域名，名称，数据库及管理员等，详细教程可见：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://codex.wordpress.org/zh-cn:%E5%AE%89%E8%A3%85_WordPress">安装 WordPress</a>。</p>
+<h3 id="其他事项"><a class="headerlink" href="#其他事项"></a>其他事项</h3>
+<p>经过以上设置，一个网站就搭起来了。在往后的运行中，如果需要个性界面，那么可以找相应的主题换上，需要什么辅助功能也能找到相应的插件。如果你的VPS发现用着用着卡了，网站打不开，考虑下是不是没空间了，默认装的MySQL有个坑会占用大量空间，见此<a href="/mysql-is-running-but-pid-file-could-not-be-found.html">解决办法</a>。其他问题就充分使用搜索引擎吧，大众化的程序出现的问题总能找到解决教程，这就是为什么前面选择平台的时候要选择大众化。</p>
+<h1>后续优化运营</h1>
+<h2 id="SEO"><a class="headerlink" href="#SEO"></a>SEO</h2>
+<p>SEO说起来简单，做起来也不难，但真正要做好，就不止程序设计的好，还涉及统计学，社会工程学，审美，以及个人觉悟等，SEOer是个综合型的职业。常用SEO辅助工具类似各大统计分析，站长工具等。</p>
+<p>一般的SEO准则：</p>
+<ol>
+<li>关键词与站点内容关联，密度合理范围在2%-8%</li>
+<li>内容层次结构清晰，如网站目录结构，内容导航，网站内链等</li>
+<li>多与优质网站关联，不要被不良网站牵连</li>
+<li>网站内容独一无二</li>
+</ol>
+<h2 id="内容建设"><a class="headerlink" href="#内容建设"></a>内容建设</h2>
+<p>不管什么网站，都是内容为王。</p>
+<p>内容有人感兴趣，才会留住访问，PV才会上升，就如1024，91pron之流，只需要做一把种子SEO，剩下的流量就呈几何形态上升，据说做的好的每IP每月能产生2块软妹币的利润。</p>
+<h2 id="广告接入"><a class="headerlink" href="#广告接入"></a>广告接入</h2>
+<p>个人站点主要是接入广告联盟，如果做大也可以自己卖广告位。市面上大的信誉有保障的广告联盟有：Google AdSense，百度联盟，阿里妈妈……，天朝广告联盟都需要网站㓟ICP备案，所以Google AdSense是不二之选。据说如果做的是英文站点，Google AdSense的收入还是可观的。</p>
+<p>到广告联盟后台申请广告代码，一般在主题中都会提供广告位设置，选择对应尺寸接入即可。</p>
+<h1>后记</h1>
+<p>这种教程要写详细够写一本书，本文只是篇导引文章，之于建站及运营也还没进入皮毛，但入门是够了，更多细节请充分利用搜索引擎。</p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>本文标题：</span>从0开始搭建自己的博客网站</p><p><span>文章作者：</span>凹凸曼</p><p><span>发布时间：</span>2017-03-18</p><p><span>最后更新：</span>2017-03-18</p><p><span>原始链接：</span><a href="/build-your-blog-step-by-step.html">https://sobaigu.com/build-your-blog-step-by-step.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://sobaigu.com/build-your-blog-step-by-step.html"></i></span></p><p><span>版权声明：</span>转载请务必保留本文链接和注明内容来源，并自负版权等法律责任。</p></div><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7390437336363898" data-ad-slot="7454544896" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});
+</script><div class="tags"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99/" rel="tag">博客建站</a></li></ul></div><div class="post-nav"><a class="pre" href="/software-player-kugou.html">酷狗音乐-Hello，酷狗！</a><a class="next" href="/software-player-potplayer.html">PotPlayer-全能视频播放器</a></div><div class="nofancybox" id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://waline.sobaigu.com',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+  login: 'disable',
+  reaction: true,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/s" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="sobaigu.com"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 网站标签</i></div><div class="tagcloud"><a href="/tags/Ubuntu/" style="font-size: 19.71px;">Ubuntu</a> <a href="/tags/Linux/" style="font-size: 23.82px;">Linux</a> <a href="/tags/Windows/" style="font-size: 22.65px;">Windows</a> <a href="/tags/%E6%99%92%E9%85%B7%E8%BD%AF/" style="font-size: 25px;">晒酷软</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 22.06px;">软件</a> <a href="/tags/%E6%B7%B7%E6%8A%80%E8%83%BD/" style="font-size: 20.88px;">混技能</a> <a href="/tags/WordPress/" style="font-size: 18.53px;">WordPress</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99/" style="font-size: 23.24px;">博客建站</a> <a href="/tags/%E7%B2%BE%E7%AE%80%E7%BB%BF%E8%89%B2%E5%8E%BB%E5%B9%BF%E5%91%8A%E7%89%88/" style="font-size: 24.41px;">精简绿色去广告版</a> <a href="/tags/%E6%B1%9F%E6%B9%96/" style="font-size: 16.18px;">江湖</a> <a href="/tags/shell/" style="font-size: 20.29px;">shell</a> <a href="/tags/shadowsocks/" style="font-size: 15px;">shadowsocks</a> <a href="/tags/%E5%8A%A0%E9%80%9F%E4%BB%A3%E7%90%86/" style="font-size: 21.47px;">加速代理</a> <a href="/tags/aardio/" style="font-size: 17.94px;">aardio</a> <a href="/tags/python/" style="font-size: 15.59px;">python</a> <a href="/tags/%E6%89%8B%E6%9C%BA/" style="font-size: 17.35px;">手机</a> <a href="/tags/Hexo/" style="font-size: 19.12px;">Hexo</a> <a href="/tags/%E6%B7%98%E5%AE%9D/" style="font-size: 15px;">淘宝</a> <a href="/tags/%E7%BD%91%E8%B5%9A/" style="font-size: 15px;">网赚</a> <a href="/tags/%E5%88%B7%E5%8D%95/" style="font-size: 15px;">刷单</a> <a href="/tags/v2ray/" style="font-size: 16.76px;">v2ray</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 16.76px;">教程</a> <a href="/tags/hugo/" style="font-size: 15px;">hugo</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%B8%81/" style="font-size: 15.59px;">虚拟币</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 近期文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/windows-iis-log-with-360xingtu-webview.html">网站服务器使用360星图自动分析IIS日志，并通过网页浏览</a></li><li class="post-list-item"><a class="post-list-link" href="/webhook-install-as-service-in-windows-server.html">Windows Server 部署 webhook 服务，并注册为系统服务守护</a></li><li class="post-list-item"><a class="post-list-link" href="/iis-charset-chinese.html">解决 IIS W3C格式日志中中文路径乱码问题</a></li><li class="post-list-item"><a class="post-list-link" href="/bat-git-clone-auto-public.html">一个BAT批处理实现HTML网页自动同步发布到Windows Server</a></li><li class="post-list-item"><a class="post-list-link" href="/DNS-PROBE-STARTED-issue-on-edge-in-windows-server.html">解决Windows服务器开一段时间edge浏览器就 DNS_PROBE_STARTED 错误</a></li><li class="post-list-item"><a class="post-list-link" href="/bot-spider-names.html">最新搜索引擎蜘蛛机器人User Agent名称</a></li><li class="post-list-item"><a class="post-list-link" href="/linux-jq-syntax-list.html">常用 linux jq 命令语法整理</a></li><li class="post-list-item"><a class="post-list-link" href="/software-postfix-mailinfo-hostname.html">宝塔邮局优化解决 `hostname` 信息得分大幅提升</a></li><li class="post-list-item"><a class="post-list-link" href="/git-set-proxy-for-github.html">设置Git通过代理连接，解决GitHub仓库无法更新等</a></li><li class="post-list-item"><a class="post-list-link" href="/composer-upgrade-error-A-facade-root-has-not-been-set.html">php composer.phar update：A facade root has not been set</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://waline.sobaigu.com" count="6" src="/js/recent-comments.js?v=1.0.2" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 内容分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%81%9A%E7%BD%91%E7%AB%99/">做网站</a><span class="category-list-count">97</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E7%BC%96%E7%A8%8B/">学编程</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%90%9E%E8%BD%AF%E4%BB%B6/">搞软件</a><span class="category-list-count">142</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%94%92%E7%9F%A5%E8%AF%86/">攒知识</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B7X%E5%9C%88/">混X圈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E7%B3%BB%E7%BB%9F/">玩系统</a><span class="category-list-count">126</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9E%8E%E9%80%BC%E9%80%BC/">瞎逼逼</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://sobaigu.com/software/" title="软件宝库" target="_blank">软件宝库</a><ul></ul><a href="http://www.jayxon.com/" title="JayXon" target="_blank">JayXon</a><ul></ul><a href="http://www.wubase.com/" title="网联基地" target="_blank">网联基地</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">搜百谷.</a> Powered by<a rel="nofollow" target="_blank" href="http://sobaigu.com"> 凹凸曼.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script></div></body></html>

@@ -1,0 +1,12 @@
+User-agent: *
+
+Allow: /
+
+Disallow: /images/
+Disallow: /history/
+Disallow: /about/
+Disallow: /js/
+Disallow: /css/
+Disallow: /fancybox/
+
+Sitemap: http://sobaigu.com/sitemap.xml

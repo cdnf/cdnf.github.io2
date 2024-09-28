@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="互联网精神病患者小站，始终秉承建站理念：分享是种美德，好人一生平安。"><meta name="keywords" content="网络代理,怎么访问外网,小火箭怎么安装,美国VPS,自定义PAC规则,Hexo博客建站,aardio编程,消费USDT,USDC信用卡,数字货币信用卡,虚拟币出金卡,U币消费卡"><title>宝塔邮局优化解决 `hostname` 信息得分大幅提升 | 搜百谷</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script src="https://www.googletagmanager.com/gtag/js?id=UA-22119753-2" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-22119753-2');
+</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 7.1.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">宝塔邮局优化解决 `hostname` 信息得分大幅提升</h1><a id="logo" href="/.">搜百谷</a><p class="description">达则兼济天下尤物，科技改变世界嫩模！</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/software/"><i class="fa fa-university"> 宝库</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">宝塔邮局优化解决 `hostname` 信息得分大幅提升</h1><div class="post-meta">2024-01-23<span> | </span><span class="category"><a href="/categories/%E5%81%9A%E7%BD%91%E7%AB%99/">做网站</a></span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 1.1k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 4</span><span class="post-meta-item-text"> 分钟</span></span></span></div><a class="disqus-comment-count" href="/software-postfix-mailinfo-hostname.html#waline"><span class="waline-comment-count" id="/software-postfix-mailinfo-hostname.html"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">优化项目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E7%A7%8DDNS%E8%A7%A3%E6%9E%90"><span class="toc-number">2.1.</span> <span class="toc-text">各种DNS解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PTR%EF%BC%88rDNS%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">PTR（rDNS）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A%E8%AE%B0%E5%BD%95"><span class="toc-number">2.3.</span> <span class="toc-text">A记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MX%E8%AE%B0%E5%BD%95"><span class="toc-number">2.4.</span> <span class="toc-text">MX记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPF%E8%AE%B0%E5%BD%95"><span class="toc-number">2.5.</span> <span class="toc-text">SPF记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DMARC%E8%AE%B0%E5%BD%95"><span class="toc-number">2.6.</span> <span class="toc-text">DMARC记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DKIM%E8%AE%B0%E5%BD%95"><span class="toc-number">2.7.</span> <span class="toc-text">DKIM记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hostname"><span class="toc-number">2.8.</span> <span class="toc-text">hostname</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">结果验证</span></a></li></ol></div></div><div class="post-content"><h1>前言</h1>
+<p>之前怀疑宝塔邮局到达率，实际上邮件测试也只有3.5分，所以最近一直在折腾邮件系统。iRedMail 折腾了好几遍，可最终还留下个暂时解决不了的问题：客户端SMTP发信时提示连接服务器失败。</p>
+<p>客户端可以收信，系统各端口访问正常，网页版收发信件也没问题，发出的信件经 <code>mail-tester.com</code> 测试分值几乎满分。可惜，就是解决不了不能外部发信的问题。</p>
+<p>有了折腾 iRedMail 的经验，回过头再来优化下宝塔邮局。</p>
+<h1>优化项目</h1>
+<p>邮件测试显示存在的问题主要有：</p>
+<ol>
+<li>PTR 记录不过关</li>
+<li>主机xxx与xx不匹配，具体忘记截图了</li>
+</ol>
+<p>既然知道问题了，那就朝提示的信息请优化。</p>
+<h2 id="各种DNS解析"><a class="headerlink" href="#各种DNS解析"></a>各种DNS解析</h2>
+<p>以下各种记录，请根据自己服务器实际情况设置，一般邮件系统会提示。设置完可以通过以下命令验证，也可以通过网站查询：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.whatsmydns.net/">https://www.whatsmydns.net/</a></p>
+<h2 id="PTR（rDNS）"><a class="headerlink" href="#PTR（rDNS）"></a>PTR（rDNS）</h2>
+<p>就是通过IP反查主机名，一般VPS后台能自己绑定，不能绑定的给服务商发工单处理。<br>
+设置好后，可以用此命令测试结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup 8.8.8.8 服务器IP</span><br></pre></td></tr></table></figure>
+<h2 id="A记录"><a class="headerlink" href="#A记录"></a>A记录</h2>
+<p>就是把域名解析到你邮件服务器：</p>
+<ul>
+<li>类型：<code>A</code></li>
+<li>名称：如 <code>mail</code></li>
+<li>记录值： 如 <code>10x.16x.19x.11x</code></li>
+</ul>
+<p>验证命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup mail.xxxx.win</span><br></pre></td></tr></table></figure>
+<h2 id="MX记录"><a class="headerlink" href="#MX记录"></a>MX记录</h2>
+<p>配置内容：</p>
+<ul>
+<li>类型：<code>MX</code></li>
+<li>名称：<code>@</code> 或一级域名如 <code>xxxx.win</code></li>
+<li>邮件服务器：就是前一步做A记录的那个，如 <code>mail.xxxx.win</code></li>
+</ul>
+<p>查询验证命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup -<span class="built_in">type</span>=mx xxxx.win</span><br></pre></td></tr></table></figure>
+<h2 id="SPF记录"><a class="headerlink" href="#SPF记录"></a>SPF记录</h2>
+<ul>
+<li>类型：TXT</li>
+<li>名称：<code>@</code> 或一级域名如 <code>xxxx.win</code></li>
+<li>内容：<code>v=spf1 mx ~all</code></li>
+</ul>
+<p>验证命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup -<span class="built_in">type</span>=txt xxxx.win</span><br></pre></td></tr></table></figure>
+<h2 id="DMARC记录"><a class="headerlink" href="#DMARC记录"></a>DMARC记录</h2>
+<ul>
+<li>类型：TXT</li>
+<li>名称：<code>_dmarc</code></li>
+<li>内容：<code>v=DMARC1; p=none; pct=100; rua=mailto:admin@xxxx.win</code></li>
+</ul>
+<p>验证命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup -<span class="built_in">type</span>=txt _dmarc.xxxx.win</span><br></pre></td></tr></table></figure>
+<h2 id="DKIM记录"><a class="headerlink" href="#DKIM记录"></a>DKIM记录</h2>
+<ul>
+<li>类型：TXT</li>
+<li>名称：<code>default._domainkey</code> 或者 <code>dkim._domainkey</code> ，根据邮件系统提示来，宝塔邮局是 <code>default._domainkey</code></li>
+<li>内容：<code>v=DKIM1;k=rsa;p=MIG……</code> ，这是一串很长的字符串，iRedMail 需要去除双引号和换行拼接，宝塔邮局提供直接复制。</li>
+</ul>
+<p>验证命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nslookup -<span class="built_in">type</span>=txt default._domainkey.xxxx.win</span><br><span class="line">nslookup -<span class="built_in">type</span>=txt dkim._domainkey.xxxx.win</span><br></pre></td></tr></table></figure>
+<p>如果记录验证不通过，收件方将提示邮件发送者不可信，查看看到如下错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dkim=fail(Bad signature)</span><br></pre></td></tr></table></figure>
+<h2 id="hostname"><a class="headerlink" href="#hostname"></a>hostname</h2>
+<p>这个主机名比较坑，可以用 <code>hostname -f</code> 查询，见<a href="/software-iRedMail-hosts.html">本站之前的记录文章</a>。</p>
+<p>在设置完这些后，<code>postfix</code> 给留了个坑，查看邮件原文可见老的 <code>hostname</code> 信息，这个信息是很早之前的 <code>hostname</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Received: from xxx-4aebdd ([2607:f130:0:f3::aaaa:aaaa])</span><br><span class="line">	by newxmmxszc96.qq.com (NewMX) with SMTP <span class="built_in">id</span> E1720475</span><br><span class="line">	<span class="keyword">for</span> &lt;admin@qq.com&gt;; Mon, 29 Nov 2021 08:56:23 +0800</span><br><span class="line">X-QQ-mid: xmmxszc96t163814xxxxtebzr1d2z</span><br><span class="line">X-QQ-XMAILINFO: MOGuJKokHloM75uz8dxxxrH+vnbIE9n1iuJzmAhtVuxVfxxxx6/hFesAIIJaU9</span><br><span class="line">	 ttUm/awDNtZJ+IxEnNjlQ03GOcxgTNOmjGMSxxxxW7</span><br><span class="line">   ...</span><br><span class="line">Received: from [127.0.0.1] (localhost [127.0.0.1])</span><br><span class="line">	by xxx-4aebdd (Postfix) with ESMTPA <span class="built_in">id</span> 3473260EDB</span><br></pre></td></tr></table></figure>
+<p>本来第一怀疑就是 <code>postfix</code> 配置文件 <code>/etc/postfix/main.cf</code>，可宝塔邮局界面上打开此配置文件按主机名关键词搜索却无任何匹配，一直信了宝塔的搜索结果。最后通过 vi 打开搜索才发现是宝塔的坑：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myhostname = mail.xxxx.win  //将此行设置为你想展示的主机信息</span><br></pre></td></tr></table></figure>
+<p>这个应该是 <code>postfix</code> 在安装的时候自动取的 <code>hostname</code> 值，网上有些说法是为了安全，还需要加其他的过滤规则插件将主机信息隐藏，不知道是否会影响反垃圾邮件，暂且不管。</p>
+<h1>结果验证</h1>
+<p>经以上优化设置后，垃圾邮件测试一番，效果满意，宝塔邮局也可以战！</p>
+<blockquote>
+<p>WOW! 完美，你现在可以开始发送了。<br>
+得分 ： 9.5/10</p>
+</blockquote>
+<blockquote>
+<p>SpamAssassin喜欢你</p>
+<p>你的发件人身份已验证。</p>
+<ul>
+<li>[SPF] 你的发件服务器 10x.16x.19x.11x 授权使用该发件地址 noreply@xxxx.win</li>
+<li>你的 DKIM 签名有效。</li>
+<li>您的邮件通过了 DMARC 测试</li>
+<li>你的发件服务器 10x.16x.19x.11x 与 mail.xxxx.win 成功关联。</li>
+<li>Your domain name xxxx.win is assigned to a mail server.</li>
+<li>你的主机名mail.xxxx.win已分配了一台邮件服务器。</li>
+</ul>
+<p>Your message could be improved</p>
+<p>你的发件IP在1个黑名单中。</p>
+<ul>
+<li>将你的服务器IP地址 (10x.16x.19x.11x) 与 24 个最常见的 IPv4 黑名单进行匹配。被列入 Barracuda ( -0.5 )</li>
+</ul>
+</blockquote>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>本文标题：</span>宝塔邮局优化解决 `hostname` 信息得分大幅提升</p><p><span>文章作者：</span>凹凸曼</p><p><span>发布时间：</span>2024-01-23</p><p><span>最后更新：</span>2024-01-23</p><p><span>原始链接：</span><a href="/software-postfix-mailinfo-hostname.html">https://sobaigu.com/software-postfix-mailinfo-hostname.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://sobaigu.com/software-postfix-mailinfo-hostname.html"></i></span></p><p><span>版权声明：</span>转载请务必保留本文链接和注明内容来源，并自负版权等法律责任。</p></div><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7390437336363898" data-ad-slot="7454544896" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});
+</script><div class="tags"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99/" rel="tag">博客建站</a></li></ul></div><div class="post-nav"><a class="pre" href="/linux-jq-syntax-list.html">常用 linux jq 命令语法整理</a><a class="next" href="/git-set-proxy-for-github.html">设置Git通过代理连接，解决GitHub仓库无法更新等</a></div><div class="nofancybox" id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://waline.sobaigu.com',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+  login: 'disable',
+  reaction: true,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/s" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="sobaigu.com"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 网站标签</i></div><div class="tagcloud"><a href="/tags/Ubuntu/" style="font-size: 19.71px;">Ubuntu</a> <a href="/tags/Linux/" style="font-size: 23.82px;">Linux</a> <a href="/tags/Windows/" style="font-size: 22.65px;">Windows</a> <a href="/tags/%E6%99%92%E9%85%B7%E8%BD%AF/" style="font-size: 25px;">晒酷软</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 22.06px;">软件</a> <a href="/tags/%E6%B7%B7%E6%8A%80%E8%83%BD/" style="font-size: 20.88px;">混技能</a> <a href="/tags/WordPress/" style="font-size: 18.53px;">WordPress</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99/" style="font-size: 23.24px;">博客建站</a> <a href="/tags/%E7%B2%BE%E7%AE%80%E7%BB%BF%E8%89%B2%E5%8E%BB%E5%B9%BF%E5%91%8A%E7%89%88/" style="font-size: 24.41px;">精简绿色去广告版</a> <a href="/tags/%E6%B1%9F%E6%B9%96/" style="font-size: 16.18px;">江湖</a> <a href="/tags/shell/" style="font-size: 20.29px;">shell</a> <a href="/tags/shadowsocks/" style="font-size: 15px;">shadowsocks</a> <a href="/tags/%E5%8A%A0%E9%80%9F%E4%BB%A3%E7%90%86/" style="font-size: 21.47px;">加速代理</a> <a href="/tags/aardio/" style="font-size: 17.94px;">aardio</a> <a href="/tags/python/" style="font-size: 15.59px;">python</a> <a href="/tags/%E6%89%8B%E6%9C%BA/" style="font-size: 17.35px;">手机</a> <a href="/tags/Hexo/" style="font-size: 19.12px;">Hexo</a> <a href="/tags/%E6%B7%98%E5%AE%9D/" style="font-size: 15px;">淘宝</a> <a href="/tags/%E7%BD%91%E8%B5%9A/" style="font-size: 15px;">网赚</a> <a href="/tags/%E5%88%B7%E5%8D%95/" style="font-size: 15px;">刷单</a> <a href="/tags/v2ray/" style="font-size: 16.76px;">v2ray</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 16.76px;">教程</a> <a href="/tags/hugo/" style="font-size: 15px;">hugo</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%B8%81/" style="font-size: 15.59px;">虚拟币</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 近期文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/windows-iis-log-with-360xingtu-webview.html">网站服务器使用360星图自动分析IIS日志，并通过网页浏览</a></li><li class="post-list-item"><a class="post-list-link" href="/webhook-install-as-service-in-windows-server.html">Windows Server 部署 webhook 服务，并注册为系统服务守护</a></li><li class="post-list-item"><a class="post-list-link" href="/iis-charset-chinese.html">解决 IIS W3C格式日志中中文路径乱码问题</a></li><li class="post-list-item"><a class="post-list-link" href="/bat-git-clone-auto-public.html">一个BAT批处理实现HTML网页自动同步发布到Windows Server</a></li><li class="post-list-item"><a class="post-list-link" href="/DNS-PROBE-STARTED-issue-on-edge-in-windows-server.html">解决Windows服务器开一段时间edge浏览器就 DNS_PROBE_STARTED 错误</a></li><li class="post-list-item"><a class="post-list-link" href="/bot-spider-names.html">最新搜索引擎蜘蛛机器人User Agent名称</a></li><li class="post-list-item"><a class="post-list-link" href="/linux-jq-syntax-list.html">常用 linux jq 命令语法整理</a></li><li class="post-list-item"><a class="post-list-link" href="/software-postfix-mailinfo-hostname.html">宝塔邮局优化解决 `hostname` 信息得分大幅提升</a></li><li class="post-list-item"><a class="post-list-link" href="/git-set-proxy-for-github.html">设置Git通过代理连接，解决GitHub仓库无法更新等</a></li><li class="post-list-item"><a class="post-list-link" href="/composer-upgrade-error-A-facade-root-has-not-been-set.html">php composer.phar update：A facade root has not been set</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://waline.sobaigu.com" count="6" src="/js/recent-comments.js?v=1.0.2" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 内容分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%81%9A%E7%BD%91%E7%AB%99/">做网站</a><span class="category-list-count">97</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E7%BC%96%E7%A8%8B/">学编程</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%90%9E%E8%BD%AF%E4%BB%B6/">搞软件</a><span class="category-list-count">142</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%94%92%E7%9F%A5%E8%AF%86/">攒知识</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B7X%E5%9C%88/">混X圈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E7%B3%BB%E7%BB%9F/">玩系统</a><span class="category-list-count">126</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9E%8E%E9%80%BC%E9%80%BC/">瞎逼逼</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://sobaigu.com/software/" title="软件宝库" target="_blank">软件宝库</a><ul></ul><a href="http://www.jayxon.com/" title="JayXon" target="_blank">JayXon</a><ul></ul><a href="http://www.wubase.com/" title="网联基地" target="_blank">网联基地</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">搜百谷.</a> Powered by<a rel="nofollow" target="_blank" href="http://sobaigu.com"> 凹凸曼.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script></div></body></html>

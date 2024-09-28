@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="互联网精神病患者小站，始终秉承建站理念：分享是种美德，好人一生平安。"><meta name="keywords" content="网络代理,怎么访问外网,小火箭怎么安装,美国VPS,自定义PAC规则,Hexo博客建站,aardio编程,消费USDT,USDC信用卡,数字货币信用卡,虚拟币出金卡,U币消费卡"><title>ProcessExplorer-ProcessMonitor-系统监控必备工具 | 搜百谷</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.2"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script src="https://www.googletagmanager.com/gtag/js?id=UA-22119753-2" async></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-22119753-2');
+</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 7.1.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">ProcessExplorer-ProcessMonitor-系统监控必备工具</h1><a id="logo" href="/.">搜百谷</a><p class="description">达则兼济天下尤物，科技改变世界嫩模！</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/software/"><i class="fa fa-university"> 宝库</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">ProcessExplorer-ProcessMonitor-系统监控必备工具</h1><div class="post-meta">2016-06-26<span> | </span><span class="category"><a href="/categories/%E6%90%9E%E8%BD%AF%E4%BB%B6/">搞软件</a></span><span>：</span><span>ProcessExplorer使用教程,ProcessMonitor使用教程</span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 2.4k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 8</span><span class="post-meta-item-text"> 分钟</span></span></span></div><a class="disqus-comment-count" href="/software-procexp-and-procmon.html#waline"><span class="waline-comment-count" id="/software-procexp-and-procmon.html"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">下载地址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">ProcessExplorer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF"><span class="toc-number">3.1.</span> <span class="toc-text">查看进程相关信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB"><span class="toc-number">3.2.</span> <span class="toc-text">查看程序调用关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8"><span class="toc-number">3.3.</span> <span class="toc-text">查找文件占用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">ProcessMonitor</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-number">4.1.</span> <span class="toc-text">示例</span></a></li></ol></li></ol></div></div><div class="post-content"><h1>前言</h1>
+<p>经常用到SYSINTERNALS SOFTWARE的几个经典工具.</p>
+<blockquote>
+<p>对软件行为监控首选SYSINTERNALS SOFTWARE出品的系列工具:</p>
+<p>regmon—可以监控系统注册表读写</p>
+<p>filemon—用于监控文件读写</p>
+<p>ProcessExplorer—用于监控进程以及进程关系</p>
+<p>tcpview—监控进程监听端口，网络连接行为</p>
+</blockquote>
+<p>鉴于以上软件功能上互有交集，SYSINTERNALS SOFTWARE收归微软后，以上工具除了ProcessExplorer和tcpview，文件和注册表监控工具都已不支持vista以上版本系统，取而代之的是集以上软件功能为一体的ProcessMonitor.</p>
+<span id="more"></span>
+<p>今天就稍微详细点介绍下以上几个工具中的ProcessExplorer和ProcessMonitor</p>
+<h1>下载地址</h1>
+<p><em>每列提取码与链接对应，如为空表示直接点进去链接不需要提取码，无链接则表示对应软件只需要提取码即可</em></p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>地址一</th>
+<th>地址二</th>
+<th>地址三</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="">百度网盘</a></td>
+<td><a href="">备用网盘</a></td>
+<td>BitTorrent Sync</td>
+</tr>
+<tr>
+<td>提取码</td>
+<td>rtki</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1>ProcessExplorer</h1>
+<p>ProcessExplorer这个工具如果经常折腾系统或者做软件调试的人应该接触较多.</p>
+<p>相比Windows系统自带的任务管理器，其优秀之处在于很方便地查看进程相关信息，如进程路径，参数，线程等，还可以查看TCPIP连接，进程关系，占用情况等.</p>
+<p>工具虽小，但作用很大，是一款软件爱好者必备利器.</p>
+<h2 id="查看进程相关信息"><a class="headerlink" href="#查看进程相关信息"></a>查看进程相关信息</h2>
+<p>启动ProcessExplorer.exe后，我们可以在你需要查看的进程上右键&gt;属性查看，也可以直接双击或点击工具栏上方的手势按钮，打开后我们可以看到程序的路径，参数，线程等等信息，如图2所示:</p>
+<p>此处我们可以查看一个进程的文件版本，加载线程，网络连接等各方面信息，其中有个比较有用的功能是校验程序的真伪.</p>
+<p>我们知道目前网络上病毒猖狂，伪造的或者被人修改的系统文件比比皆是，在这么多文件里面我们根本难以区分哪些文件真正属于微软原版文件，指不定一个外表看上去微软得不能再微软的程序，实际上跟微软一点关系也没有，甚至是植入了恶意程序.</p>
+<p>当一个程序签名是微软的信息，而实际上被注入第三方线程或者干脆非微软时，软件默认会以紫色醒目提示.同时，我们可以查看该进程属性，点击&quot;verify&quot;按钮，程序会自动与微软提供的程序符号表校对，如果确系微软文件，将会在版本信息处标识已校验通过.</p>
+<p>反之，如果非微软的文件，则肯定无法与微软提供的符号表相匹配，软件将会提示无法验证.如果签名信息为微软，而又无法在此处通过验证，那么此时你就要多留意此文件的安全性了.</p>
+<h2 id="查看程序调用关系"><a class="headerlink" href="#查看程序调用关系"></a>查看程序调用关系</h2>
+<p>一个程序往往由很多组件组成，程序通过各种调用关联完成一系列的功能.当然，现在的程序编写多采用标准库，查看到的也包含系统提供的相关模块.</p>
+<p>我们可以点击工具栏上的面板按钮，也可以按快捷<code>ctrl+l</code>或者<code>ctrl+d</code>，一般多用<code>ctrl+d</code>，软件将自动展开程序的下级调用查看面板，我们选择一个程序，可以在下方看到相应的调用关系.</p>
+<p>比如我要查看浏览器都加载了哪些插件，那么可以启动浏览器，然后选择浏览器进程，查看起调用的所有动态链接库.可能大部分都是微软的公司签名，那么我们可以点击公司名称标签排序，这样就可以快速地筛选出非微软的程序了.当然，纯粹公司名是可以任意伪造的，要验证真伪请参考前文.</p>
+<p>在进程调用关系上，我们经常可以用于定位某些弹窗软件.</p>
+<p>我们经常会发现右下角多出个小窗，小窗内播放着各种诱惑的东西，这种广告多如牛毛，还不知道是谁弹的，那么此功能就派上用场了.</p>
+<p>左键点住工具栏上的雷达图标(一般是最后一个)，拖到弹出的小窗上再松开，程序自动定位到窗口程序，其程序间的父子关系一目了然，父进程就是罪魁祸首了，该怎么办您自己看着办.</p>
+<p>做了个简单的示范录像，有兴趣的可以查看下，更多使用技巧请自己下载使用中体验</p>
+<h2 id="查找文件占用"><a class="headerlink" href="#查找文件占用"></a>查找文件占用</h2>
+<p>其实是查看程序调用功能的延伸，本身程序能检查到各个文件之间的相互调用关系，那么就很好理解此功能的来源了.</p>
+<p>我们平常可能会经常用到unlock这种工具删除被占用的文件，原理也类似，我们可以利用ProcessExplorer查找占用，然后将占用的程序结束掉再删文件，就不用装unlock了.</p>
+<p>有一种程序一启动就会占用的文件，此时我们可以将进程结束，然后点击<code>菜单&gt;file&gt;run/save</code>等功能任意选一个，打开Windows的对话框，在此找到要删除的文件，右键能看到explorer下一样的菜单，将文件删除即可.</p>
+<h1>ProcessMonitor</h1>
+<p>前面说过了，SYSINTERNALS SOFTWARE收归微软后，除了ProcessExplorer和tcpview，文件和注册表监控工具都已不支持vista以上版本系统，取而代之的是集文件，进程，注册表，网络监控功能为一体的ProcessMonitor.</p>
+<p>ProcessMonitor集成了:</p>
+<ul>
+<li>filemon和diskmon的文件读写监控功能</li>
+<li>regmon的注册表读写监控功能</li>
+<li>tcpview的网络连接监控功能</li>
+<li>ProcessExplorer的进程监控功能</li>
+</ul>
+<p><img src="../images/software-procmon_.png" alt="" loading="lazy"><br>
+process monitor的界面延续了其集成软件的风格，菜单按钮基本一致，在最右侧提供了功能过滤区，当不需要某个监控功能时将其置于非按下状态，则不会在下方信息显示框中显示该功能信息.</p>
+<p>展示区默认展示进程名，pid，操作项，路径，操作结果和相信信息显示，通过这些信息组合，我们可以知道一个程序到底做了什么.</p>
+<p>这么个工具抓到的信息量是惊人的，每秒钟估计可以抓到系统中事件成百上千个，如果直接一个个去看，那么将是个难以想象的工程量.</p>
+<p>对此，我们需要对抓到的信息进行过滤，最终只显示我们需要的信息.</p>
+<p>点击菜单栏上的漏斗图标进入过滤设置菜单.在此我们可以设置过滤条件，点击上端下拉三角，选择我们要过滤的类别，包括公司名称，PID，进程名，路径等，后面继续选择表达式，规则包括等于，不等于，小于，大于等…在此不一一枚举</p>
+<h2 id="示例"><a class="headerlink" href="#示例"></a>示例</h2>
+<p>以一实例示范.</p>
+<blockquote>
+<p>需求:需要监控前面说的进程浏览器的行为.</p>
+</blockquote>
+<blockquote>
+<p>分析:进程名称随文件名固定，默认为<code>ProcessExplorer.exe</code></p>
+</blockquote>
+<p>那么我们可以设定规律规则<code>process name is ProcessExplorer.exe include</code>就是上面选择规则添加后的结果，如果是排除不显示则选择<code>exclude</code>，添加完后为红叉显示.规则设定好后点击确定即开始了新规则过滤显示了，信息显示框只展示进程名为<code>ProcessExplorer</code>的监控信息.</p>
+<p>可能我们只需要某个时刻的信息就行，那么你可以点击菜单栏上的搜索模样的图标停止捕捉.</p>
+<p>也许过滤后我们看到的信息仍然很多，我们可以对已经过滤的信息再次进行过滤.</p>
+<p>程序集成的四大功能我们可以首先进行过滤掉，如我只需要文件监控信息，那么将其他三个功能块都取消，则会只展示文件监控事件.</p>
+<p>针对文件监控结果，你可以再次进入过滤规则设置那添加条件，也可以在选择的事件上右键设置过滤规则.如不需要关闭操作的事件，那么在关闭操作上右键&gt;排除关闭文件，那么对应的关闭操作都将不展示.</p>
+<p>一系列过则过滤后，最终呈现的将是我们需要的信息，从这些信息中我们可以得知该程序做了什么操作，结果如何等.</p>
+<p>右键设置规则对初学者来说十分有用，在哪右键就可以针对哪设置包含，排除，高亮等规则，具体可以自己进行尝试.</p>
+<p>这里需要说明下，其实ProcessMonitor是将所有的时间都捕获，所以设置各种过滤规则只是显示的问题.由于捕获了大量的事件，时间久了可能出现机器卡的情况，请适时将时间做清除操作.当然，我们也可以将时间保存成文本，便于后续分析或者转交他人查看.</p>
+<p>更多此类工具可见：<a href="/software-security-tools.html">Windows下几个很酷的安全维护工具</a></p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.2"><p><span>本文标题：</span>ProcessExplorer-ProcessMonitor-系统监控必备工具</p><p><span>文章作者：</span>凹凸曼</p><p><span>发布时间：</span>2016-06-26</p><p><span>最后更新：</span>2024-09-28</p><p><span>原始链接：</span><a href="/software-procexp-and-procmon.html">https://sobaigu.com/software-procexp-and-procmon.html</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://sobaigu.com/software-procexp-and-procmon.html"></i></span></p><p><span>版权声明：</span>转载请务必保留本文链接和注明内容来源，并自负版权等法律责任。</p></div><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7390437336363898" data-ad-slot="7454544896" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});
+</script><div class="tags"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%92%E9%85%B7%E8%BD%AF/" rel="tag">晒酷软</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B7%E6%8A%80%E8%83%BD/" rel="tag">混技能</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B2%BE%E7%AE%80%E7%BB%BF%E8%89%B2%E5%8E%BB%E5%B9%BF%E5%91%8A%E7%89%88/" rel="tag">精简绿色去广告版</a></li></ul></div><div class="post-nav"><a class="pre" href="/software-chinese-art-tool.html">有趣的软件_毛笔字生成工具</a><a class="next" href="/ubuntu-3d-white-scr.html">Ubuntu开启3D效果出现白屏解决办法</a></div><div class="nofancybox" id="waline"></div><script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script><link rel="stylesheet" type="text/css" href="//unpkg.com/@waline/client@v2/dist/waline.css"><script>let metaInfo = ['nick', 'mail', 'link']
+let requiredMeta = 'nick,mail'.split(',').filter(item => {
+  return metaInfo.indexOf(item) > -1
+})
+Waline.init({
+  el: '#waline',
+  comment: true,
+  serverURL: 'https://waline.sobaigu.com',
+  pageSize: '30',
+  wordLimit: '500',
+  requiredMeta,
+  login: 'disable',
+  reaction: true,
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/s" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="sobaigu.com"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 网站标签</i></div><div class="tagcloud"><a href="/tags/Ubuntu/" style="font-size: 19.71px;">Ubuntu</a> <a href="/tags/Linux/" style="font-size: 23.82px;">Linux</a> <a href="/tags/Windows/" style="font-size: 22.65px;">Windows</a> <a href="/tags/%E6%99%92%E9%85%B7%E8%BD%AF/" style="font-size: 25px;">晒酷软</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 22.06px;">软件</a> <a href="/tags/%E6%B7%B7%E6%8A%80%E8%83%BD/" style="font-size: 20.88px;">混技能</a> <a href="/tags/WordPress/" style="font-size: 18.53px;">WordPress</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99/" style="font-size: 23.24px;">博客建站</a> <a href="/tags/%E7%B2%BE%E7%AE%80%E7%BB%BF%E8%89%B2%E5%8E%BB%E5%B9%BF%E5%91%8A%E7%89%88/" style="font-size: 24.41px;">精简绿色去广告版</a> <a href="/tags/%E6%B1%9F%E6%B9%96/" style="font-size: 16.18px;">江湖</a> <a href="/tags/shell/" style="font-size: 20.29px;">shell</a> <a href="/tags/shadowsocks/" style="font-size: 15px;">shadowsocks</a> <a href="/tags/%E5%8A%A0%E9%80%9F%E4%BB%A3%E7%90%86/" style="font-size: 21.47px;">加速代理</a> <a href="/tags/aardio/" style="font-size: 17.94px;">aardio</a> <a href="/tags/python/" style="font-size: 15.59px;">python</a> <a href="/tags/%E6%89%8B%E6%9C%BA/" style="font-size: 17.35px;">手机</a> <a href="/tags/Hexo/" style="font-size: 19.12px;">Hexo</a> <a href="/tags/%E6%B7%98%E5%AE%9D/" style="font-size: 15px;">淘宝</a> <a href="/tags/%E7%BD%91%E8%B5%9A/" style="font-size: 15px;">网赚</a> <a href="/tags/%E5%88%B7%E5%8D%95/" style="font-size: 15px;">刷单</a> <a href="/tags/v2ray/" style="font-size: 16.76px;">v2ray</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 16.76px;">教程</a> <a href="/tags/hugo/" style="font-size: 15px;">hugo</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%B8%81/" style="font-size: 15.59px;">虚拟币</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 近期文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/windows-iis-log-with-360xingtu-webview.html">网站服务器使用360星图自动分析IIS日志，并通过网页浏览</a></li><li class="post-list-item"><a class="post-list-link" href="/webhook-install-as-service-in-windows-server.html">Windows Server 部署 webhook 服务，并注册为系统服务守护</a></li><li class="post-list-item"><a class="post-list-link" href="/iis-charset-chinese.html">解决 IIS W3C格式日志中中文路径乱码问题</a></li><li class="post-list-item"><a class="post-list-link" href="/bat-git-clone-auto-public.html">一个BAT批处理实现HTML网页自动同步发布到Windows Server</a></li><li class="post-list-item"><a class="post-list-link" href="/DNS-PROBE-STARTED-issue-on-edge-in-windows-server.html">解决Windows服务器开一段时间edge浏览器就 DNS_PROBE_STARTED 错误</a></li><li class="post-list-item"><a class="post-list-link" href="/bot-spider-names.html">最新搜索引擎蜘蛛机器人User Agent名称</a></li><li class="post-list-item"><a class="post-list-link" href="/linux-jq-syntax-list.html">常用 linux jq 命令语法整理</a></li><li class="post-list-item"><a class="post-list-link" href="/software-postfix-mailinfo-hostname.html">宝塔邮局优化解决 `hostname` 信息得分大幅提升</a></li><li class="post-list-item"><a class="post-list-link" href="/git-set-proxy-for-github.html">设置Git通过代理连接，解决GitHub仓库无法更新等</a></li><li class="post-list-item"><a class="post-list-link" href="/composer-upgrade-error-A-facade-root-has-not-been-set.html">php composer.phar update：A facade root has not been set</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><div id="widget-waline-list"></div><script type="text/javascript" id="recent-comment" serverURL="https://waline.sobaigu.com" count="6" src="/js/recent-comments.js?v=1.0.2" async="async"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 内容分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%81%9A%E7%BD%91%E7%AB%99/">做网站</a><span class="category-list-count">97</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E7%BC%96%E7%A8%8B/">学编程</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%90%9E%E8%BD%AF%E4%BB%B6/">搞软件</a><span class="category-list-count">142</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%94%92%E7%9F%A5%E8%AF%86/">攒知识</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B7X%E5%9C%88/">混X圈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E7%B3%BB%E7%BB%9F/">玩系统</a><span class="category-list-count">126</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9E%8E%E9%80%BC%E9%80%BC/">瞎逼逼</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://sobaigu.com/software/" title="软件宝库" target="_blank">软件宝库</a><ul></ul><a href="http://www.jayxon.com/" title="JayXon" target="_blank">JayXon</a><ul></ul><a href="http://www.wubase.com/" title="网联基地" target="_blank">网联基地</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">搜百谷.</a> Powered by<a rel="nofollow" target="_blank" href="http://sobaigu.com"> 凹凸曼.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.2" async></script><script type="text/javascript" src="/js/copycode.js?v=1.0.2" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.2"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.2"></script></div></body></html>
